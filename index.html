@@ -1,0 +1,23 @@
+---
+layout: default
+title: Archive
+---
+<h2 style="font-size: 1.2rem; margin-bottom: 1rem;">Daily Briefings</h2>
+
+{% assign posts_by_month = site.posts | group_by_exp: "post", "post.date | date: '%B %Y'" %}
+
+{% for month in posts_by_month %}
+<h3 style="font-size: 0.95rem; color: var(--muted); margin: 1.5rem 0 0.5rem; font-weight: 600;">{{ month.name }}</h3>
+<ul class="post-list">
+  {% for post in month.items %}
+  <li>
+    <span class="date">{{ post.date | date: "%a, %b %-d" }}</span>
+    <h2><a href="{{ post.url | relative_url }}">{{ post.title }}</a></h2>
+  </li>
+  {% endfor %}
+</ul>
+{% endfor %}
+
+{% if site.posts.size == 0 %}
+<p style="color: var(--muted);">No briefings yet. The first one will appear after the scheduled task runs.</p>
+{% endif %}
