@@ -1,3 +1,4 @@
+layout: post
 title: Tech Briefing
 description: Daily curated tech news — enterprise software, VC, AI, and markets
 url: "" # Will be set to your GitHub Pages URL
@@ -27,6 +28,7 @@ defaults:
       type: "posts"
     values:
       layout: "post"
+      permalink: /briefing/
 
 # Feed
 feed:
