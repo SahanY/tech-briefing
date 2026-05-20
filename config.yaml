@@ -1,0 +1,189 @@
+delivery:
+  time: "05:30"
+  timezone: "America/Chicago"
+  weekdays_only: true
+  recipients:
+    - recipient@example.com
+
+sources:
+  # Tier 1 — Traditional / Institutional Media
+  - name: Wall Street Journal Tech
+    url: https://feeds.a.dj.com/rss/RSSWSJD.xml
+    categories: [top_stories, tech_investing]
+    weight: 9
+    paywalled: true
+
+  - name: Bloomberg Technology
+    url: https://feeds.bloomberg.com/technology/news.rss
+    categories: [top_stories, tech_investing]
+    weight: 9
+    paywalled: true
+
+  - name: CNBC Tech
+    url: https://search.cnbc.com/rs/search/combinedcms/view.xml?partnerId=wrss01&id=19854910
+    categories: [top_stories, tech_investing, enterprise_software]
+    weight: 8
+    paywalled: false
+
+  - name: Reuters Technology
+    url: https://www.reutersagency.com/feed/?best-topics=tech
+    categories: [top_stories, ai_emerging_tech]
+    weight: 8
+    paywalled: false
+
+  - name: Financial Times Tech
+    url: https://www.ft.com/technology?format=rss
+    categories: [top_stories, tech_investing]
+    weight: 8
+    paywalled: true
+
+  - name: The Information
+    url: https://www.theinformation.com/feed
+    categories: [top_stories, vc_fundraising, enterprise_software]
+    weight: 8
+    paywalled: true
+
+  # Tier 2 — Tech-Native Publications
+  - name: TechCrunch
+    url: https://techcrunch.com/feed
+    categories: [enterprise_software, vc_fundraising, ai_emerging_tech]
+    weight: 8
+    paywalled: false
+
+  - name: The Verge
+    url: https://www.theverge.com/rss/index.xml
+    categories: [top_stories, ai_emerging_tech]
+    weight: 7
+    paywalled: false
+
+  - name: Ars Technica
+    url: https://feeds.arstechnica.com/arstechnica/index
+    categories: [ai_emerging_tech]
+    weight: 6
+    paywalled: false
+
+  - name: VentureBeat
+    url: https://feeds.feedburner.com/venturebeat/SZYF
+    categories: [ai_emerging_tech, enterprise_software]
+    weight: 7
+    paywalled: false
+
+  - name: SiliconANGLE
+    url: https://siliconangle.com/feed
+    categories: [enterprise_software, ai_emerging_tech]
+    weight: 6
+    paywalled: false
+
+  - name: Hacker News
+    url: https://news.ycombinator.com/rss
+    categories: [ai_emerging_tech, hot_takes]
+    weight: 5
+    paywalled: false
+
+  - name: Crunchbase News
+    url: https://news.crunchbase.com/feed
+    categories: [vc_fundraising]
+    weight: 7
+    paywalled: false
+
+  - name: PitchBook News
+    url: https://pitchbook.com/news/feed
+    categories: [vc_fundraising, tech_investing]
+    weight: 7
+    paywalled: false
+
+  # Tier 3 — Free Substacks & Newsletters
+  - name: Not Boring
+    url: https://www.notboring.co/feed
+    categories: [top_stories, enterprise_software, hot_takes]
+    weight: 7
+    paywalled: false
+
+  - name: The Pragmatic Engineer
+    url: https://newsletter.pragmaticengineer.com/feed
+    categories: [enterprise_software, hot_takes]
+    weight: 7
+    paywalled: false
+
+  - name: Stratechery
+    url: https://stratechery.com/feed
+    categories: [top_stories, enterprise_software, hot_takes]
+    weight: 8
+    paywalled: false
+
+  - name: SemiAnalysis
+    url: https://semianalysis.com/feed
+    categories: [ai_emerging_tech]
+    weight: 7
+    paywalled: false
+
+  - name: The Generalist
+    url: https://www.generalist.com/feed
+    categories: [enterprise_software, vc_fundraising, hot_takes]
+    weight: 6
+    paywalled: false
+
+  - name: Newcomer
+    url: https://www.newcomer.co/feed
+    categories: [vc_fundraising, hot_takes]
+    weight: 7
+    paywalled: false
+
+  - name: "Lenny's Newsletter"
+    url: https://www.lennysnewsletter.com/feed
+    categories: [enterprise_software, hot_takes]
+    weight: 6
+    paywalled: false
+
+  - name: The Pragmatic Optimist
+    url: https://thepragmaticoptimist.substack.com/feed
+    categories: [ai_emerging_tech, tech_investing]
+    weight: 5
+    paywalled: false
+
+  - name: High Growth Investing
+    url: https://highgrowthinvesting.substack.com/feed
+    categories: [tech_investing]
+    weight: 5
+    paywalled: false
+
+curation:
+  max_articles_per_source: 3
+  lookback_hours: 24
+  max_email_words: 2000
+  max_articles_to_claude: 40
+  model: claude-sonnet-4-6
+  temperature: 0.3
+
+ranking:
+  high_signal_keywords:
+    - acquisition
+    - acquired
+    - funding
+    - series a
+    - series b
+    - series c
+    - series d
+    - ipo
+    - launch
+    - launched
+    - billion
+    - million
+    - partnership
+    - merger
+    - layoff
+    - startup
+    - valuation
+    - regulation
+    - antitrust
+    - breakthrough
+    - open source
+
+  category_priority:
+    top_stories: 2
+    enterprise_software: 1
+    vc_fundraising: 1
+    tech_investing: 1
+    ai_emerging_tech: 1
+    hot_takes: 0
+    quick_hits: 0
