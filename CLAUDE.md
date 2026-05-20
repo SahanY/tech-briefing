@@ -8,6 +8,8 @@ Publish a concise weekday tech briefing to GitHub Pages as a Jekyll post.
 
 Run Monday–Friday at **9:00 AM CT**.
 
+On Monday runs, include weekend coverage: collect and consider technology news published since the prior Friday briefing, including Saturday and Sunday stories, using a 72-hour lookback.
+
 ## Context Rules
 
 - Do not read, summarize, reference, or use `latest-post.md` unless explicitly asked to debug generated output.

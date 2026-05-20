@@ -26,7 +26,7 @@ If missing, stop and tell the user to create `.github-pages-config`.
 Use `web_fetch` to collect title, URL, publication date, source, and summary from the feeds below.
 Rules:
 Include stories from the last 24 hours.
-For Monday, use a 72-hour lookback.
+For Monday, use a 72-hour lookback and explicitly collect weekend technology news published on Saturday and Sunday since the prior Friday briefing.
 If a feed fails, skip it and continue.
 For paywalled sources, use headline/summary as signal only unless the article is accessible.
 Tier 1 — Institutional Media

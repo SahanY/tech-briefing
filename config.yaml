@@ -1,5 +1,5 @@
 delivery:
-  time: "05:30"
+  time: "09:00"
   timezone: "America/Chicago"
   weekdays_only: true
   recipients:
@@ -150,6 +150,8 @@ sources:
 curation:
   max_articles_per_source: 3
   lookback_hours: 24
+  monday_lookback_hours: 72
+  monday_include_weekend_news: true
   max_email_words: 2000
   max_articles_to_claude: 40
   model: claude-sonnet-4-6
