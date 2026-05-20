@@ -8,6 +8,7 @@ permalink: /subscribe/
   <p>Enter your email to receive each new weekday briefing when it publishes.</p>
 
   {% assign subscription_action = site.subscription.form_action | default: "" | strip %}
+  {% assign beehiiv_url = site.subscription.beehiiv_url | default: "" | strip %}
   {% if subscription_action != "" %}
   <form class="subscribe-form" action="{{ site.subscription.form_action }}" method="{{ site.subscription.form_method | default: 'post' }}">
     <label for="subscriber-email" class="sr-only">Email address</label>
@@ -15,6 +16,9 @@ permalink: /subscribe/
     <button type="submit">Subscribe</button>
   </form>
   <p class="subscribe-note">Prefer a feed reader? Use the <a href="{{ '/feed.xml' | relative_url }}">RSS feed</a>.</p>
+  {% elsif beehiiv_url != "" %}
+  <a class="subscribe-button" href="{{ beehiiv_url }}" rel="noopener">Subscribe on beehiiv</a>
+  <p class="subscribe-note">This opens the hosted beehiiv signup page for Sahan Tech Briefing. Prefer a feed reader? Use the <a href="{{ '/feed.xml' | relative_url }}">RSS feed</a>.</p>
   {% else %}
   <div class="subscribe-form">
     <input type="email" placeholder="you@example.com" disabled>

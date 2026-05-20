@@ -30,8 +30,8 @@ feed:
   path: feed.xml
 
 # Email subscriptions
-# Set form_action to your newsletter/form provider endpoint, for example:
-# https://formspree.io/f/your-form-id, https://buttondown.email/your-list, etc.
+# Use beehiiv_url for a hosted signup page, or form_action for a direct form endpoint.
 subscription:
+  beehiiv_url: "https://sahans-tech-briefing.beehiiv.com/"
   form_action: ""
   form_method: "post"
