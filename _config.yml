@@ -1,7 +1,7 @@
 title: Tech Briefing
 description: Daily curated tech news — enterprise software, VC, AI, and markets
-url: ""
-baseurl: ""
+url: "https://sahany.github.io"
+baseurl: "/tech-briefing"
 
 # Build settings
 markdown: kramdown
