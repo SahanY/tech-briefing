@@ -28,8 +28,8 @@ defaults:
       type: "posts"
     values:
       layout: "post"
-      permalink: /briefing/
+      permalink: /:year/:month/:day/
 
 # Feed
 feed:
-  path: feed.xml
+  path: 
