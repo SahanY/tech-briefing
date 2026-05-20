@@ -167,16 +167,13 @@ fi
 echo "$RESPONSE"
 ```
 Verify the response contains a `content` key. If the push fails, keep the local markdown file and tell the user what failed.
-9. Confirm Completion
-After a successful push, report:
-Number of articles collected
-Number of reachable sources
-Any failed feeds
-GitHub Pages URL for today's post
-Hard Rules
-Do not expose credentials.
-Do not include unsupported claims.
-Do not summarize paywalled body text unless accessible.
-Use archive.ph if paywall is found.
-Always include source links.
-Publish even on light news days.
+9. Clean Up Old Posts
+After pushing today's post, delete any posts older than 30 days from the repo.
+```bash
+source "/sessions/loving-focused-brahmagupta/mnt/News Agent/.github-pages-config"
+
+CUTOFF=$(date -d "30 days ago" +%Y-%m-%d)
+API="https://api.github.com/repos/${GITHUB_USERNAME}/${GITHUB_REPO_NAME}/contents/_posts"
+
+# List all files in _posts/
+FILES=$(curl -s -H "Authorization: t
