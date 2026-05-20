@@ -60,6 +60,71 @@
     .post-list h2 { font-size: 1.15rem; margin: 0.25rem 0; }
     .post-list h2 a { color: var(--text); text-decoration: none; }
     .post-list h2 a:hover { color: var(--accent); }
+    .subscribe-panel {
+      background: var(--section-bg);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 1.25rem;
+      margin: 1.5rem 0 2rem;
+    }
+    .subscribe-panel h2 {
+      font-size: 1.15rem;
+      line-height: 1.35;
+      margin-bottom: 0.35rem;
+    }
+    .subscribe-panel p {
+      color: var(--muted);
+      font-size: 0.95rem;
+      margin-bottom: 1rem;
+    }
+    .subscribe-form {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      gap: 0.65rem;
+      align-items: center;
+    }
+    .subscribe-form input[type="email"] {
+      min-width: 0;
+      width: 100%;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      background: var(--card-bg);
+      color: var(--text);
+      font: inherit;
+      font-size: 1rem;
+      line-height: 1.4;
+      padding: 0.7rem 0.8rem;
+    }
+    .subscribe-form button,
+    .subscribe-disabled {
+      border: 1px solid var(--accent);
+      border-radius: 6px;
+      background: var(--accent);
+      color: #ffffff;
+      cursor: pointer;
+      font: inherit;
+      font-size: 0.95rem;
+      font-weight: 600;
+      line-height: 1.4;
+      padding: 0.7rem 0.95rem;
+      white-space: nowrap;
+    }
+    .subscribe-disabled {
+      display: inline-block;
+      cursor: default;
+      opacity: 0.65;
+    }
+    .subscribe-note {
+      color: var(--muted);
+      font-size: 0.82rem;
+      margin-top: 0.75rem;
+    }
+    .subscribe-note a { color: var(--accent); }
+    @media (max-width: 520px) {
+      .subscribe-form { grid-template-columns: 1fr; }
+      .subscribe-form button,
+      .subscribe-disabled { width: 100%; }
+    }
     footer {
       margin-top: 3rem;
       padding-top: 1rem;
@@ -77,7 +142,7 @@
       <nav>
         <a href="{{ '/briefing/' | relative_url }}">Latest</a>
         <a href="{{ '/' | relative_url }}">Past Briefings</a>
-        <a href="{{ '/feed.xml' | relative_url }}">RSS</a>
+        <a href="{{ '/subscribe/' | relative_url }}">Subscribe</a>
       </nav>
     </header>
     <main>

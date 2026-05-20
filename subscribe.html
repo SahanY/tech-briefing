@@ -1,0 +1,39 @@
+---
+layout: default
+title: Subscribe
+permalink: /subscribe/
+---
+<section class="subscribe-panel">
+  <h2>Get the Tech Briefing by email</h2>
+  <p>Enter your email to receive each new weekday briefing when it publishes.</p>
+
+  {% assign subscription_action = site.subscription.form_action | default: "" | strip %}
+  {% if subscription_action != "" %}
+  <form class="subscribe-form" action="{{ site.subscription.form_action }}" method="{{ site.subscription.form_method | default: 'post' }}">
+    <label for="subscriber-email" class="sr-only">Email address</label>
+    <input id="subscriber-email" type="email" name="email" placeholder="you@example.com" autocomplete="email" required>
+    <button type="submit">Subscribe</button>
+  </form>
+  <p class="subscribe-note">Prefer a feed reader? Use the <a href="{{ '/feed.xml' | relative_url }}">RSS feed</a>.</p>
+  {% else %}
+  <div class="subscribe-form">
+    <input type="email" placeholder="you@example.com" disabled>
+    <span class="subscribe-disabled">Subscribe</span>
+  </div>
+  <p class="subscribe-note">Email signup needs a newsletter endpoint in <code>_config.yml</code>. For now, readers can use the <a href="{{ '/feed.xml' | relative_url }}">RSS feed</a>.</p>
+  {% endif %}
+</section>
+
+<style>
+  .sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+  }
+</style>
