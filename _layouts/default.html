@@ -13,6 +13,10 @@
       --border: #e5e7eb;
       --card-bg: #ffffff;
       --section-bg: #f3f4f6;
+      --gain: #15803d;
+      --gain-bg: #dcfce7;
+      --loss: #b91c1c;
+      --loss-bg: #fee2e2;
     }
     @media (prefers-color-scheme: dark) {
       :root {
@@ -23,6 +27,10 @@
         --border: #374151;
         --card-bg: #1f2937;
         --section-bg: #1f2937;
+        --gain: #86efac;
+        --gain-bg: rgba(22, 101, 52, 0.25);
+        --loss: #fca5a5;
+        --loss-bg: rgba(127, 29, 29, 0.28);
       }
     }
     * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -33,7 +41,7 @@
       line-height: 1.7;
       font-size: 17px;
     }
-    .container { max-width: 680px; margin: 0 auto; padding: 2rem 1.5rem; }
+    .container { max-width: var(--container-width, 680px); margin: 0 auto; padding: 2rem 1.5rem; }
     header {
       border-bottom: 2px solid var(--accent);
       padding-bottom: 1rem;
@@ -147,6 +155,7 @@
       <p>{{ site.description }}</p>
       <nav>
         <a href="{{ '/briefing/' | relative_url }}">Latest</a>
+        <a href="{{ '/stocks/' | relative_url }}">Market Movers</a>
         <a href="{{ '/' | relative_url }}">Past Briefings</a>
         <a href="{{ '/subscribe/' | relative_url }}">Subscribe</a>
       </nav>

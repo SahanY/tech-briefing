@@ -13,8 +13,20 @@ plugins:
 exclude:
   - README.md
   - setup.py
+  - CLAUDE.md
+  - config.yaml
+  - Gemfile
+  - Gemfile.lock
+  - scripts
   - .env
   - github-pages-site
+  - jekyll-serve.log
+  - jekyll-serve.err.log
+
+# Market movers
+stock_movers:
+  count: 15
+  data_file: "_data/stock_movers.json"
 
 # Defaults
 defaults:

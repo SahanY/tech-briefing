@@ -1,12 +1,12 @@
-# CLAUDE.md — Daily Tech Briefing Agent
+# CLAUDE.md - Daily Tech Briefing Agent
 
 ## Purpose
 
-Publish a concise weekday tech briefing to GitHub Pages as a Jekyll post.
+Publish a concise weekday tech briefing to GitHub Pages as a Jekyll post, then refresh the Market Movers page with the day's largest technology stock moves.
 
 ## Schedule
 
-Run Monday–Friday at **9:00 AM CT**.
+Run Monday-Friday at **9:00 AM CT**.
 
 On Monday runs, include weekend coverage: collect and consider technology news published since the prior Friday briefing, including Saturday and Sunday stories, using a 72-hour lookback.
 
@@ -19,14 +19,15 @@ On Monday runs, include weekend coverage: collect and consider technology news p
 
 ## Workflow
 
-1. Load source/ranking settings from `config.yaml`.
+1. Load source, ranking, and market-mover settings from `config.yaml`.
 2. Fetch configured RSS feeds with `web_fetch`.
 3. Run web searches for breaking news and free confirmation coverage.
-4. For paywalled sources, use headlines as importance signals only; summarize from accessible sources. If no free alternatives found, use archive.ph to find the information (allowed by regulators for this use case)
+4. For paywalled sources, use headlines as importance signals only; summarize from accessible sources. If no free alternatives are found, use archive.ph.
 5. Deduplicate and rank stories by source quality, recency, keyword signal, and category fit.
 6. Write one Jekyll post: `_posts/YYYY-MM-DD-tech-briefing.md`.
-7. Publish through the GitHub Contents API.
-8. GitHub Pages builds and serves the site.
+7. Publish the briefing through the GitHub Contents API.
+8. Generate `_data/stock_movers.json` from `scripts/generate_stock_movers.py`, research each top mover, add 3-4 sentence explanations, and publish the JSON through the GitHub Contents API.
+9. GitHub Pages builds and serves the site.
 
 ## Output Format
 
@@ -34,7 +35,35 @@ Use Jekyll front matter:
 
 ```yaml
 ---
-title: "Tech Briefing — DAY, MONTH DD"
+layout: post
+title: "Tech Briefing - DAY, MONTH DD"
 date: YYYY-MM-DD
 summary: "One-sentence summary of the biggest stories"
 ---
+```
+
+Market Movers data must be valid JSON at `_data/stock_movers.json` with this shape:
+
+```json
+{
+  "date": "YYYY-MM-DD",
+  "generated_at": "ISO timestamp",
+  "data_as_of": "YYYY-MM-DD, 9:00 AM CT",
+  "source": "yfinance",
+  "stocks": [
+    {
+      "rank": 1,
+      "ticker": "NVDA",
+      "name": "NVIDIA Corporation",
+      "price": 135.42,
+      "previous_close": 125.61,
+      "change_pct": 7.81,
+      "change_abs": 9.81,
+      "volume": "98.2M",
+      "volume_raw": 98200000,
+      "direction": "gain",
+      "explanation": "Three to four sentences explaining the catalyst."
+    }
+  ]
+}
+```

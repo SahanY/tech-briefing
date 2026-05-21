@@ -189,3 +189,80 @@ ranking:
     ai_emerging_tech: 1
     hot_takes: 0
     quick_hits: 0
+
+market_movers:
+  enabled: true
+  page_path: /stocks/
+  data_path: _data/stock_movers.json
+  script_path: scripts/generate_stock_movers.py
+  count: 15
+  source: yfinance
+  explanation_query_template: "{ticker} stock news today"
+  tickers:
+    - AAPL
+    - MSFT
+    - GOOGL
+    - AMZN
+    - NVDA
+    - META
+    - TSLA
+    - AVGO
+    - ORCL
+    - CRM
+    - AMD
+    - ADBE
+    - INTC
+    - QCOM
+    - CSCO
+    - NFLX
+    - UBER
+    - ABNB
+    - XYZ
+    - SHOP
+    - SNOW
+    - PLTR
+    - PANW
+    - CRWD
+    - ZS
+    - DDOG
+    - MDB
+    - NET
+    - TEAM
+    - NOW
+    - WDAY
+    - HUBS
+    - VEEV
+    - FTNT
+    - TTD
+    - DASH
+    - COIN
+    - MELI
+    - SE
+    - ROKU
+    - U
+    - RBLX
+    - PINS
+    - SNAP
+    - LYFT
+    - HOOD
+    - RIVN
+    - LCID
+    - ARM
+    - SMCI
+    - MRVL
+    - ON
+    - LRCX
+    - KLAC
+    - AMAT
+    - MU
+    - TXN
+    - CDNS
+    - SNPS
+    - ANSS
+    - ADI
+    - ASML
+    - NXPI
+    - INTU
+    - ADP
+    - ROP
+    - FICO

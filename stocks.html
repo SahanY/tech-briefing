@@ -1,0 +1,230 @@
+---
+layout: default
+title: Market Movers
+permalink: /stocks/
+---
+{% assign movers = site.data.stock_movers %}
+{% assign stocks = movers.stocks | default: empty %}
+
+<section class="market-movers">
+  <header class="market-movers-header">
+    <p class="eyebrow">{{ movers.date | default: "Latest trading day" }}</p>
+    <h1>Market Movers</h1>
+    <p>Largest daily moves across major tech stocks in the Nasdaq-100 and S&amp;P 500 technology universe.</p>
+  </header>
+
+  {% if stocks and stocks.size > 0 %}
+  <div class="movers-summary" aria-label="Market movers summary">
+    <span>{{ stocks.size }} stocks tracked</span>
+    <span>{{ movers.source | default: "yfinance" }}</span>
+    <span>{{ movers.data_as_of | default: movers.generated_at }}</span>
+  </div>
+
+  <div class="movers-table-wrap">
+    <table class="movers-table">
+      <caption>Top technology stock movers</caption>
+      <thead>
+        <tr>
+          <th scope="col">Rank</th>
+          <th scope="col">Ticker</th>
+          <th scope="col">Company</th>
+          <th scope="col">Price</th>
+          <th scope="col">Daily Change (%)</th>
+          <th scope="col">Daily Change ($)</th>
+          <th scope="col">Explanation</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for stock in stocks %}
+        {% assign change_pct = stock.change_pct | plus: 0 %}
+        {% assign change_abs = stock.change_abs | plus: 0 %}
+        <tr class="{% if change_pct >= 0 %}gain{% else %}loss{% endif %}">
+          <td data-label="Rank">{{ stock.rank }}</td>
+          <td data-label="Ticker"><strong>{{ stock.ticker }}</strong></td>
+          <td data-label="Company">{{ stock.name }}</td>
+          <td data-label="Price">${{ stock.price | round: 2 }}</td>
+          <td data-label="Daily Change (%)" class="change">
+            {% if change_pct > 0 %}+{% endif %}{{ change_pct | round: 2 }}%
+          </td>
+          <td data-label="Daily Change ($)" class="change">
+            {% if change_abs > 0 %}+${{ change_abs | round: 2 }}{% elsif change_abs < 0 %}-${{ change_abs | times: -1 | round: 2 }}{% else %}$0.00{% endif %}
+          </td>
+          <td data-label="Explanation" class="explanation">{{ stock.explanation }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+
+  <p class="movers-footnote">Data as of {{ movers.data_as_of | default: movers.generated_at }}. Prices and explanations are generated during the weekday briefing run.</p>
+  {% else %}
+  <div class="empty-state">
+    <h2>No market movers published yet</h2>
+    <p>The next weekday briefing run will populate this page with the day's largest technology stock moves.</p>
+  </div>
+  {% endif %}
+</section>
+
+<style>
+  :root { --container-width: 1040px; }
+
+  .market-movers-header {
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 1.25rem;
+    padding-bottom: 1.25rem;
+  }
+
+  .market-movers-header .eyebrow {
+    color: var(--muted);
+    font-size: 0.85rem;
+    margin-bottom: 0.25rem;
+  }
+
+  .market-movers-header h1 {
+    font-size: 1.7rem;
+    line-height: 1.2;
+    margin-bottom: 0.4rem;
+  }
+
+  .market-movers-header p:last-child {
+    color: var(--muted);
+    font-size: 0.96rem;
+    max-width: 720px;
+  }
+
+  .movers-summary {
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    color: var(--muted);
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem 1rem;
+    margin-bottom: 1rem;
+    padding: 0.75rem 0.9rem;
+    font-size: 0.86rem;
+  }
+
+  .movers-table-wrap {
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    overflow-x: auto;
+    background: var(--card-bg);
+  }
+
+  .movers-table {
+    border-collapse: collapse;
+    width: 100%;
+    min-width: 920px;
+    font-size: 0.92rem;
+    line-height: 1.45;
+  }
+
+  .movers-table caption {
+    height: 1px;
+    overflow: hidden;
+    position: absolute;
+    width: 1px;
+  }
+
+  .movers-table th,
+  .movers-table td {
+    border-bottom: 1px solid var(--border);
+    padding: 0.72rem 0.75rem;
+    text-align: left;
+    vertical-align: top;
+  }
+
+  .movers-table th {
+    background: var(--section-bg);
+    color: var(--muted);
+    font-size: 0.76rem;
+    font-weight: 700;
+    letter-spacing: 0;
+    text-transform: uppercase;
+    white-space: nowrap;
+  }
+
+  .movers-table tbody tr:last-child td { border-bottom: 0; }
+  .movers-table tr.gain { background: var(--gain-bg); }
+  .movers-table tr.loss { background: var(--loss-bg); }
+
+  .movers-table .change {
+    color: var(--gain);
+    font-weight: 700;
+    white-space: nowrap;
+  }
+
+  .movers-table tr.loss .change { color: var(--loss); }
+  .movers-table .explanation { min-width: 300px; }
+
+  .movers-footnote {
+    color: var(--muted);
+    font-size: 0.82rem;
+    margin-top: 0.9rem;
+  }
+
+  .empty-state {
+    background: var(--section-bg);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 1.25rem;
+  }
+
+  .empty-state h2 {
+    font-size: 1.1rem;
+    line-height: 1.35;
+    margin-bottom: 0.35rem;
+  }
+
+  .empty-state p {
+    color: var(--muted);
+    font-size: 0.95rem;
+  }
+
+  @media (max-width: 760px) {
+    .movers-table-wrap {
+      border: 0;
+      background: transparent;
+      overflow: visible;
+    }
+
+    .movers-table {
+      min-width: 0;
+      display: block;
+      width: 100%;
+    }
+
+    .movers-table thead { display: none; }
+    .movers-table tbody { display: grid; gap: 0.85rem; }
+
+    .movers-table tr {
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      display: grid;
+      overflow: hidden;
+    }
+
+    .movers-table td {
+      border-bottom: 1px solid var(--border);
+      display: grid;
+      grid-template-columns: 8.5rem minmax(0, 1fr);
+      gap: 0.75rem;
+      padding: 0.68rem 0.75rem;
+    }
+
+    .movers-table td:last-child { border-bottom: 0; }
+
+    .movers-table td::before {
+      color: var(--muted);
+      content: attr(data-label);
+      font-size: 0.76rem;
+      font-weight: 700;
+      text-transform: uppercase;
+    }
+
+    .movers-table .explanation {
+      grid-template-columns: 1fr;
+      min-width: 0;
+    }
+  }
+</style>
