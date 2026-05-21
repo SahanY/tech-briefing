@@ -3,5 +3,25 @@
   "generated_at": "",
   "data_as_of": "",
   "source": "yfinance",
+  "universe": {
+    "mode": "nasdaq_listed_plus_sp500",
+    "count": 0,
+    "ranked_count": 0,
+    "tech_only": true,
+    "tech_selected_count": 0,
+    "skipped_non_tech_count": 0,
+    "sector_lookups": 0,
+    "skipped_non_tech_sample": [],
+    "sources": [
+      "https://www.nasdaqtrader.com/dynamic/SymDir/nasdaqlisted.txt",
+      "https://en.wikipedia.org/wiki/List_of_S%26P_500_companies"
+    ]
+  },
+  "filters": {
+    "min_price": 0,
+    "min_volume": 0,
+    "tech_only": true,
+    "max_sector_lookups": 75
+  },
   "stocks": []
 }

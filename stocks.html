@@ -10,12 +10,15 @@ permalink: /stocks/
   <header class="market-movers-header">
     <p class="eyebrow">{{ movers.date | default: "Latest trading day" }}</p>
     <h1>Market Movers</h1>
-    <p>Largest daily moves across major tech stocks in the Nasdaq-100 and S&amp;P 500 technology universe.</p>
+    <p>Largest daily percentage moves across Nasdaq-listed common stocks and current S&amp;P 500 constituents.</p>
   </header>
 
   {% if stocks and stocks.size > 0 %}
   <div class="movers-summary" aria-label="Market movers summary">
-    <span>{{ stocks.size }} stocks tracked</span>
+    <span>{{ stocks.size }} top movers</span>
+    {% if movers.universe.count %}
+    <span>{{ movers.universe.count }} stocks scanned</span>
+    {% endif %}
     <span>{{ movers.source | default: "yfinance" }}</span>
     <span>{{ movers.data_as_of | default: movers.generated_at }}</span>
   </div>
@@ -57,6 +60,9 @@ permalink: /stocks/
   </div>
 
   <p class="movers-footnote">Data as of {{ movers.data_as_of | default: movers.generated_at }}. Prices and explanations are generated during the weekday briefing run.</p>
+  {% if movers.universe.tech_only %}
+  <p class="movers-footnote">The generator ranks the broad Nasdaq-listed and S&amp;P 500 universe by absolute daily percentage move, skips non-tech companies, and keeps walking down the ranked list until 15 tech-related movers are selected.</p>
+  {% endif %}
   {% else %}
   <div class="empty-state">
     <h2>No market movers published yet</h2>

@@ -222,14 +222,16 @@ python3 "${SITE_ROOT}/scripts/generate_stock_movers.py" \
   --output "${WORKSPACE}/tmp/stock_movers_raw.json" \
   --date "${DATE}" \
   --data-as-of "${DATE}, 9:00 AM CT" \
-  --count 15
+  --count 15 \
+  --batch-size 200 \
+  --max-sector-lookups 75
 ```
 
-The script scans the configured major technology stock universe, calculates daily price and percentage moves, sorts by absolute percentage change, and writes the top 15.
+The script downloads the broad universe from Nasdaq Trader's Nasdaq-listed common stock directory plus the current S&P 500 constituents table, fetches prices in batches, ranks all movers by absolute daily percentage change, skips non-tech companies, and keeps walking down the ranked list until it has 15 tech-related movers.
 
 ### 9.2 Research Catalysts
 
-Read `${WORKSPACE}/tmp/stock_movers_raw.json`. For each listed ticker, run a web search:
+Read `${WORKSPACE}/tmp/stock_movers_raw.json`. The listed tickers have already passed the tech-only filter. For each listed ticker, run a web search:
 
 ```text
 [TICKER] stock news today
@@ -257,7 +259,9 @@ python3 "${SITE_ROOT}/scripts/generate_stock_movers.py" \
   --output "${WORKSPACE}/tmp/stock_movers.json" \
   --date "${DATE}" \
   --data-as-of "${DATE}, 9:00 AM CT" \
-  --count 15
+  --count 15 \
+  --batch-size 200 \
+  --max-sector-lookups 75
 ```
 
 Validate the JSON:

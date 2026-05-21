@@ -26,7 +26,7 @@ The scheduled task runs Monday-Friday at **9:00 AM CT**.
 
 ## Market Movers
 
-The Market Movers page lives at `/stocks/`. It reads from Jekyll data file `_data/stock_movers.json` and shows the top 10-15 absolute daily movers across a major technology stock universe, including ticker, company, price, percentage move, dollar move, volume, and a short explanation of the catalyst.
+The Market Movers page lives at `/stocks/`. It reads from Jekyll data file `_data/stock_movers.json` and shows the top 15 tech-related daily movers from a broad scan of Nasdaq-listed common stocks plus current S&P 500 constituents. The generator ranks the full universe by absolute percentage move, skips non-tech companies, and keeps walking down the ranked list until 15 tech-related stocks are selected.
 
 The generator uses `yfinance`, which the scheduled task installs in its sandbox before running:
 

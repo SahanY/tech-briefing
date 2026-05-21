@@ -2,7 +2,7 @@
 
 ## Purpose
 
-Publish a concise weekday tech briefing to GitHub Pages as a Jekyll post, then refresh the Market Movers page with the day's largest technology stock moves.
+Publish a concise weekday tech briefing to GitHub Pages as a Jekyll post, then refresh the Market Movers page with the day's largest tech-related stock moves from a broad Nasdaq-listed plus S&P 500 scan.
 
 ## Schedule
 
@@ -26,7 +26,7 @@ On Monday runs, include weekend coverage: collect and consider technology news p
 5. Deduplicate and rank stories by source quality, recency, keyword signal, and category fit.
 6. Write one Jekyll post: `_posts/YYYY-MM-DD-tech-briefing.md`.
 7. Publish the briefing through the GitHub Contents API.
-8. Generate `_data/stock_movers.json` from `scripts/generate_stock_movers.py`, research each top mover, add 3-4 sentence explanations, and publish the JSON through the GitHub Contents API.
+8. Generate `_data/stock_movers.json` from `scripts/generate_stock_movers.py`, which ranks the broad Nasdaq-listed plus S&P 500 universe and skips non-tech companies until 15 tech-related movers are selected. Research each selected mover, add 3-4 sentence explanations, and publish the JSON through the GitHub Contents API.
 9. GitHub Pages builds and serves the site.
 
 ## Output Format
@@ -50,6 +50,13 @@ Market Movers data must be valid JSON at `_data/stock_movers.json` with this sha
   "generated_at": "ISO timestamp",
   "data_as_of": "YYYY-MM-DD, 9:00 AM CT",
   "source": "yfinance",
+  "universe": {
+    "mode": "nasdaq_listed_plus_sp500",
+    "tech_only": true
+  },
+  "filters": {
+    "tech_only": true
+  },
   "stocks": [
     {
       "rank": 1,
