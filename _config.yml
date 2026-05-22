@@ -13,6 +13,7 @@ plugins:
 exclude:
   - README.md
   - setup.py
+  - AGENTS.md
   - CLAUDE.md
   - config.yaml
   - Gemfile

@@ -5,3 +5,5 @@ __pycache__/
 latest-post.md
 _site/
 jekyll-serve*.log
+tmp/
+stock_movers*.json

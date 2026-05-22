@@ -16,6 +16,19 @@ WORKSPACE="/sessions/loving-focused-brahmagupta/mnt/News Agent"
 SITE_ROOT="${WORKSPACE}/github-pages-site"
 ```
 
+For Codex local automation, the workspace is:
+
+```text
+C:\Users\sahan\.claude\projects\News Agent
+```
+
+Use the local path style required by the current shell. The market movers script is stored in both locations:
+
+```text
+github-pages-site/scripts/generate_stock_movers.py
+scripts/generate_stock_movers.py
+```
+
 ## 2. Read GitHub Credentials
 
 Read credentials from:
@@ -210,6 +223,12 @@ Verify the response contains a `content` key. If the push fails, keep the local 
 
 Run this after the briefing post is published.
 
+Important storage rule:
+- Replace the prior Market Movers names every run.
+- Store only the current data in `_data/stock_movers.json`.
+- Do not create dated Market Movers files, snapshots, archives, or history folders.
+- Temporary JSON files are allowed during the run, but delete them after the GitHub update succeeds or after reporting a failure.
+
 ### 9.1 Fetch and Rank Stock Moves
 
 Install `yfinance` if needed and generate a raw ranked data file:
@@ -304,7 +323,15 @@ fi
 echo "$RESPONSE"
 ```
 
-Verify the response contains a `content` key. If the push fails, keep the local JSON file and tell the user what failed.
+Verify the response contains a `content` key. This must update the single `_data/stock_movers.json` file in place; do not write dated or historical market mover files. If the push fails, keep the local JSON file long enough to report what failed, then do not create any additional archive copies.
+
+After a successful push, remove temporary stock mover JSON files:
+
+```bash
+rm -f "${WORKSPACE}/tmp/stock_movers_raw.json" \
+  "${WORKSPACE}/tmp/stock_movers_explanations.json" \
+  "${WORKSPACE}/tmp/stock_movers.json"
+```
 
 ## 10. Clean Up Old Posts
 
