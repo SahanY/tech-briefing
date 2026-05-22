@@ -36,11 +36,20 @@ Use Jekyll front matter:
 ```yaml
 ---
 layout: post
-title: "Tech Briefing - DAY, MONTH DD"
+title: "Tech Briefing — DAY, MONTH DD"
 date: YYYY-MM-DD
-summary: "One-sentence summary of the biggest stories"
+summary: "One-sentence deck with 3-4 biggest items separated by semicolons"
 ---
 ```
+
+Briefing body format:
+
+- Start directly with `## Top Stories`; no intro paragraph.
+- Use `##` section headers only.
+- Do not use `###` story subheads.
+- In all sections except Hot Takes and Quick Hits, each story is one paragraph beginning with a bold declarative lead sentence.
+- Use bullets only in Quick Hits.
+- End with `---` and an italic sources line.
 
 Market Movers data must be valid JSON at `_data/stock_movers.json` with this shape:
 

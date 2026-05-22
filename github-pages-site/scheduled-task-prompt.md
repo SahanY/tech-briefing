@@ -113,7 +113,12 @@ Select the top 30-40 stories.
 
 ## 6. Write the Briefing
 
-Write in a professional, concise, investor-relevant tone. No filler. No AI-sounding transitions.
+Write in the same design and format as the May 22 example briefing. The rendered page should feel like a compact newspaper briefing: clean title block, short summary deck, blue section headers, story paragraphs with bold lead sentences, and bullets only in Quick Hits.
+
+Voice:
+- Professional, concise, investor-relevant.
+- Direct and specific; no filler, throat-clearing, or AI-sounding transitions.
+- Prefer concrete numbers, dates, valuations, revenue figures, named companies, and market impact.
 
 Sections must appear in this order:
 
@@ -129,7 +134,18 @@ Sections must appear in this order:
 
 Total target: 1,300-2,000 words.
 
-Rules:
+Format rules:
+- Front matter `summary` should be a one-sentence deck with 3-4 major items separated by semicolons.
+- Start the post body directly with `## Top Stories`; do not add an introductory paragraph below the front matter.
+- Use `##` for section headers only. Do not use `###` story subheads.
+- In all sections except Hot Takes and Quick Hits, each story should be one paragraph beginning with a bold declarative lead sentence: `**Company does thing.** Rest of paragraph...`
+- Keep the bold lead sentence in the same paragraph as the body text, not on its own line.
+- Use normal paragraphs for Hot Takes & Commentary, usually 2-3 short analytical paragraphs without bold lead sentences.
+- Use bullets only in Quick Hits. Each Quick Hit should be one bullet with a bold lead clause followed by one sentence of context.
+- End with a horizontal rule and italic source line exactly like: `*Sources: [article count] articles from [publication count] publications, curated [DISPLAY_DATE].*`
+- Do not use tables, blockquotes, emoji, callout boxes, numbered lists, or nested bullets in the post body.
+
+Content rules:
 - Always include inline markdown source links.
 - Use 2-3 sentence summaries for major stories.
 - Use bullets only for Quick Hits.
@@ -143,38 +159,42 @@ Create a post with this format:
 ```md
 ---
 layout: post
-title: "Tech Briefing - [Day, Month Date]"
+title: "Tech Briefing — [Day, Month Date]"
 date: YYYY-MM-DD
-summary: "[One-line summary of the biggest stories]"
+summary: "[One-sentence deck with 3-4 biggest items separated by semicolons]"
 ---
 
 ## Top Stories
 
-[content with markdown links]
+**[Bold lead sentence.]** [One paragraph with markdown links and concrete numbers.]
+
+**[Bold lead sentence.]** [One paragraph.]
 
 ## Enterprise Software
 
-[content]
+**[Bold lead sentence.]** [One paragraph.]
 
 ## Venture Capital & Fundraising
 
-[content]
+**[Bold lead sentence.]** [One paragraph.]
 
 ## Tech Investing & Markets
 
-[content]
+**[Bold lead sentence.]** [One paragraph.]
 
 ## AI & Emerging Tech
 
-[content]
+**[Bold lead sentence.]** [One paragraph.]
 
 ## Hot Takes & Commentary
 
-[content]
+[Short analytical paragraph.]
+
+[Short analytical paragraph.]
 
 ## Quick Hits
 
-- [bullet with link]
+- **[Bold lead clause]** [one sentence with link].
 
 ---
 
