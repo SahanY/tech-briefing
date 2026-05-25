@@ -111,6 +111,15 @@ Rank using:
 
 Select the top 30-40 stories.
 
+## 5.5 Source Diversity Gate
+
+Before drafting, validate the selected story pool against `curation.source_diversity_gate` in `config.yaml`:
+- At least 10 usable articles.
+- At least 5 distinct publications.
+- No single publication should supply more than 35% of usable articles.
+
+If the gate fails, retry RSS collection and run broader web searches for accessible confirmation from Reuters, CNBC, TechCrunch, The Verge, Ars Technica, VentureBeat, SiliconANGLE, Crunchbase News, PitchBook, company blogs, SEC filings, and press releases. If the gate still fails, you may publish reduced coverage, but the sources footer must explicitly say reduced coverage and name the reason, for example: `*Sources: 8 articles from 3 publications, curated Monday, May 25, 2026. Reduced coverage: RSS collection failed and broader confirmation sources were unavailable.*`
+
 ## 6. Write the Briefing
 
 Write in the same design and format as the May 22 example briefing. The rendered page should feel like a compact newspaper briefing: clean title block, short summary deck, blue section headers, story paragraphs with bold lead sentences, and bullets only in Quick Hits.
