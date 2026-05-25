@@ -24,10 +24,11 @@ On Monday runs, include weekend coverage: collect and consider technology news p
 3. Run web searches for breaking news and free confirmation coverage.
 4. For paywalled sources, use headlines as importance signals only; summarize from accessible sources. If no free alternatives are found, use archive.ph.
 5. Deduplicate and rank stories by source quality, recency, keyword signal, and category fit.
-6. Write one Jekyll post: `_posts/YYYY-MM-DD-tech-briefing.md`.
-7. Publish the briefing through the GitHub Contents API.
-8. Generate `_data/stock_movers.json` from `scripts/generate_stock_movers.py`, which ranks the broad Nasdaq-listed plus S&P 500 universe and skips non-tech companies until 15 tech-related movers are selected. Research each selected mover, add 3-4 sentence explanations, and publish the JSON through the GitHub Contents API.
-9. GitHub Pages builds and serves the site.
+6. Before writing, apply the source-diversity gate from `config.yaml`: the ranked story pool should include at least 10 usable articles from at least 5 publications, and no single publication should account for more than 35% of usable articles. If the gate fails, retry RSS/web collection with broader searches before drafting. If it still fails, publish only with an explicit reduced-coverage note in the sources footer.
+7. Write one Jekyll post: `_posts/YYYY-MM-DD-tech-briefing.md`.
+8. Publish the briefing through the GitHub Contents API.
+9. Generate `_data/stock_movers.json` from `scripts/generate_stock_movers.py`, which ranks the broad Nasdaq-listed plus S&P 500 universe and skips non-tech companies until 15 tech-related movers are selected. Research each selected mover, add 3-4 sentence explanations, and publish the JSON through the GitHub Contents API.
+10. GitHub Pages builds and serves the site.
 
 ## Output Format
 
