@@ -26,6 +26,14 @@ Run the weekday Tech Briefing automation in Codex and publish it to GitHub Pages
 - Use the existing file SHA when updating GitHub content so the file is replaced in place.
 - After publishing, clean up posts older than 30 days. Do not delete `_data/stock_movers.json`.
 
+## Source Diversity Gate
+
+- Before drafting the briefing, validate the selected story pool against `curation.source_diversity_gate` in `config.yaml`.
+- The pool should include at least 10 usable articles from at least 5 distinct publications.
+- No single publication should supply more than 35% of usable articles.
+- If the gate fails, retry RSS collection and broaden web searches before drafting.
+- If the gate still fails, publish only with an explicit reduced-coverage note in the sources footer explaining why coverage is reduced.
+
 ## Briefing Format
 
 - Match the May 22 example briefing style: compact newspaper-like post, blue section headers from the site theme, and dense source-linked paragraphs.
