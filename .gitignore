@@ -7,3 +7,4 @@ _site/
 jekyll-serve*.log
 tmp/
 stock_movers*.json
+tech_ticker_cache.json

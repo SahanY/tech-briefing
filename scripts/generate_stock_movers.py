@@ -1,11 +1,19 @@
 #!/usr/bin/env python3
 """Generate Jekyll stock-movers data from Yahoo Finance.
 
-The first pass builds a broad market universe from downloaded symbol lists:
-all Nasdaq-listed common stocks plus current S&P 500 constituents. It then
-fetches prices in yfinance batches and writes ranked movers with blank
-explanations. After the scheduled agent researches catalysts, run the script
-again with --input and --explanations to merge AI-written explanations without
+Supports a two-phase workflow to keep daily runs fast:
+
+1. Cache refresh (weekly): ``--refresh-cache`` downloads the full
+   Nasdaq-listed + S&P 500 universe, classifies every ticker for tech
+   relevance, uses yfinance profile lookups for borderline cases, and writes a
+   compact JSON cache to ``--cache-path``.
+
+2. Daily run (default): loads a fresh pre-filtered tech ticker cache so only
+   the tech universe needs price data. If the cache is missing or stale, the
+   script falls back to the full universe automatically.
+
+After the scheduled agent researches catalysts, run the script again with
+``--input`` and ``--explanations`` to merge AI-written explanations without
 refetching prices.
 """
 
@@ -22,7 +30,7 @@ import ssl
 import sys
 import urllib.error
 import urllib.request
-from datetime import datetime
+from datetime import datetime, timedelta, timezone
 from pathlib import Path
 from typing import Any, Iterable
 from zoneinfo import ZoneInfo
@@ -293,6 +301,37 @@ def parse_args() -> argparse.Namespace:
         "--list-universe",
         action="store_true",
         help="Download and print universe counts without fetching prices.",
+    )
+    parser.add_argument(
+        "--cache-path",
+        default="_data/tech_ticker_cache.json",
+        help="Path for the pre-filtered tech ticker cache file.",
+    )
+    parser.add_argument(
+        "--refresh-cache",
+        action="store_true",
+        help=(
+            "Download the full Nasdaq + S&P 500 universe, classify every ticker "
+            "for tech relevance, and write the filtered list to --cache-path. "
+            "Does not fetch prices or produce movers output."
+        ),
+    )
+    parser.add_argument(
+        "--cache-max-age-days",
+        type=int,
+        default=7,
+        help="Maximum age in days before the ticker cache is considered stale.",
+    )
+    parser.add_argument(
+        "--no-cache",
+        action="store_true",
+        help="Ignore the ticker cache and always download the full universe.",
+    )
+    parser.add_argument(
+        "--max-cache-profile-lookups",
+        type=int,
+        default=750,
+        help="Maximum yfinance profile lookups used while refreshing the ticker cache.",
     )
     parser.add_argument(
         "--include-non-tech",
@@ -666,6 +705,157 @@ def fetch_yahoo_profile(ticker: str) -> dict[str, str]:
     }
 
 
+def should_lookup_profile_for_cache(meta: dict[str, str]) -> bool:
+    """Return whether a non-tech ticker is worth a profile lookup."""
+    if meta.get("sector") or meta.get("industry"):
+        return False
+    name = meta.get("name", "")
+    return not NON_TECH_NAME_EXCLUSIONS.search(name)
+
+
+def build_tech_ticker_cache(max_profile_lookups: int) -> dict[str, Any]:
+    """Download the full universe and save only tech-related tickers."""
+    ticker_meta, universe_meta = load_market_universe()
+    tech_tickers: dict[str, dict[str, str]] = {}
+    non_tech_count = 0
+    profile_lookups = 0
+    total = len(ticker_meta)
+
+    for index, (ticker, meta) in enumerate(sorted(ticker_meta.items()), start=1):
+        is_tech, reason = classify_tech_related(ticker, meta)
+
+        if (
+            not is_tech
+            and profile_lookups < max_profile_lookups
+            and should_lookup_profile_for_cache(meta)
+        ):
+            profile = fetch_yahoo_profile(ticker)
+            profile_lookups += 1
+            if profile:
+                meta.update({key: value for key, value in profile.items() if value})
+                is_tech, reason = classify_tech_related(ticker, meta)
+
+        if is_tech:
+            tech_tickers[ticker] = {
+                "name": meta.get("name", ticker),
+                "source": meta.get("source", ""),
+                "sector": meta.get("sector", ""),
+                "industry": meta.get("industry", ""),
+                "tech_match": reason,
+            }
+        else:
+            non_tech_count += 1
+
+        if index % 500 == 0:
+            print(
+                f"Classified {index}/{total} tickers "
+                f"({len(tech_tickers)} tech, {non_tech_count} non-tech, "
+                f"{profile_lookups} profile lookups)",
+                file=sys.stderr,
+            )
+
+    print(
+        f"Cache complete: {len(tech_tickers)} tech tickers from {total} total "
+        f"({non_tech_count} non-tech, {profile_lookups} profile lookups)",
+        file=sys.stderr,
+    )
+
+    return {
+        "generated_at": datetime.now(timezone.utc).isoformat(timespec="seconds"),
+        "universe": universe_meta,
+        "profile_lookups_used": profile_lookups,
+        "tech_ticker_count": len(tech_tickers),
+        "non_tech_count": non_tech_count,
+        "tickers": tech_tickers,
+    }
+
+
+def write_cache(cache_data: dict[str, Any], cache_path: str) -> None:
+    path = Path(cache_path)
+    path.parent.mkdir(parents=True, exist_ok=True)
+    path.write_text(json.dumps(cache_data, indent=2) + "\n", encoding="utf-8")
+    print(f"Wrote {cache_data['tech_ticker_count']} tech tickers to {path}", file=sys.stderr)
+
+
+def load_cache(
+    cache_path: str,
+    max_age_days: int,
+) -> tuple[dict[str, dict[str, str]], dict[str, Any]] | None:
+    path = Path(cache_path)
+    if not path.exists():
+        print(f"No ticker cache at {path}, will download full universe", file=sys.stderr)
+        return None
+
+    try:
+        cache_data = json.loads(path.read_text(encoding="utf-8-sig"))
+    except (json.JSONDecodeError, OSError) as exc:
+        print(f"Could not read ticker cache: {exc}", file=sys.stderr)
+        return None
+
+    cache_meta: dict[str, Any] = {
+        "cache_path": str(path),
+        "cache_generated_at": cache_data.get("generated_at", ""),
+        "cache_profile_lookups_used": cache_data.get("profile_lookups_used"),
+        "cache_source_universe": cache_data.get("universe", {}),
+    }
+    generated_at = cache_data.get("generated_at", "")
+    if generated_at:
+        try:
+            cache_time = datetime.fromisoformat(str(generated_at))
+            if cache_time.tzinfo is None:
+                cache_time = cache_time.replace(tzinfo=timezone.utc)
+            age = datetime.now(timezone.utc) - cache_time.astimezone(timezone.utc)
+            cache_meta["cache_age_days"] = round(age.total_seconds() / 86400, 2)
+            if age > timedelta(days=max_age_days):
+                print(
+                    f"Ticker cache is {age.days} days old (max {max_age_days}), "
+                    f"will download full universe",
+                    file=sys.stderr,
+                )
+                return None
+            print(
+                f"Using ticker cache ({cache_data.get('tech_ticker_count', '?')} tech tickers, "
+                f"{cache_meta['cache_age_days']}d old)",
+                file=sys.stderr,
+            )
+        except (TypeError, ValueError):
+            print("Could not parse cache timestamp, using cache anyway", file=sys.stderr)
+
+    tickers = cache_data.get("tickers", {})
+    if not isinstance(tickers, dict) or not tickers:
+        print("Ticker cache is empty, will download full universe", file=sys.stderr)
+        return None
+
+    return tickers, cache_meta
+
+
+def load_universe_with_cache(
+    args: argparse.Namespace,
+) -> tuple[dict[str, dict[str, str]], dict[str, Any]]:
+    if not args.no_cache and not args.include_non_tech:
+        cached = load_cache(args.cache_path, args.cache_max_age_days)
+        if cached is not None:
+            cached_tickers, cache_meta = cached
+            ticker_meta = {
+                ticker: make_stock_meta(
+                    name=meta.get("name", ticker),
+                    source=meta.get("source", "cached"),
+                    sector=meta.get("sector", ""),
+                    industry=meta.get("industry", ""),
+                    force_tech=True,
+                )
+                for ticker, meta in cached_tickers.items()
+            }
+            universe_meta = {
+                "mode": "cached_tech_tickers",
+                "count": len(ticker_meta),
+                **cache_meta,
+            }
+            return ticker_meta, universe_meta
+
+    return load_market_universe()
+
+
 def select_publishable_movers(
     ranked_rows: list[dict[str, Any]],
     ticker_meta: dict[str, dict[str, str]],
@@ -745,7 +935,7 @@ def build_payload(args: argparse.Namespace) -> dict[str, Any]:
                 "sources": [],
             }
         else:
-            ticker_meta, universe_meta = load_market_universe()
+            ticker_meta, universe_meta = load_universe_with_cache(args)
         if args.list_universe:
             print(json.dumps(universe_meta, indent=2))
             raise SystemExit(0)
@@ -784,6 +974,11 @@ def build_payload(args: argparse.Namespace) -> dict[str, Any]:
 
 def main() -> int:
     args = parse_args()
+    if args.refresh_cache:
+        cache_data = build_tech_ticker_cache(max(0, args.max_cache_profile_lookups))
+        write_cache(cache_data, args.cache_path)
+        return 0
+
     payload = build_payload(args)
     output = Path(args.output)
     output.parent.mkdir(parents=True, exist_ok=True)

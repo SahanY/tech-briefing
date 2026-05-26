@@ -266,16 +266,26 @@ Install `yfinance` if needed and generate a raw ranked data file:
 python3 -m pip install --quiet yfinance
 mkdir -p "${WORKSPACE}/tmp"
 
+CACHE_PATH="${SITE_ROOT}/_data/tech_ticker_cache.json"
+if [ ! -f "${CACHE_PATH}" ] || [ -n "$(find "${CACHE_PATH}" -mtime +6 -print -quit)" ]; then
+  python3 "${SITE_ROOT}/scripts/generate_stock_movers.py" \
+    --refresh-cache \
+    --cache-path "${CACHE_PATH}" \
+    --max-cache-profile-lookups 750
+fi
+
 python3 "${SITE_ROOT}/scripts/generate_stock_movers.py" \
   --output "${WORKSPACE}/tmp/stock_movers_raw.json" \
   --date "${DATE}" \
   --data-as-of "${DATE}, 9:00 AM CT" \
   --count 15 \
   --batch-size 200 \
+  --cache-path "${CACHE_PATH}" \
+  --cache-max-age-days 7 \
   --max-sector-lookups 75
 ```
 
-The script downloads the broad universe from Nasdaq Trader's Nasdaq-listed common stock directory plus the current S&P 500 constituents table, fetches prices in batches, ranks all movers by absolute daily percentage change, skips non-tech companies, and keeps walking down the ranked list until it has 15 tech-related movers.
+The weekly refresh downloads the broad universe from Nasdaq Trader's Nasdaq-listed common stock directory plus the current S&P 500 constituents table, classifies tech-related tickers, and writes the filtered cache. The daily run uses that cache when it is fresh, fetches prices only for cached tech tickers, ranks movers by absolute daily percentage change, and keeps walking down the ranked list until it has 15 tech-related movers; if the cache is unavailable or stale, the script falls back to the full universe automatically.
 
 ### 9.2 Research Catalysts
 
