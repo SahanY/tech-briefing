@@ -601,7 +601,7 @@ def fetch_price_rows(
         try:
             download = yf.download(
                 tickers=" ".join(batch),
-                period="5d",
+                period="2d",
                 interval="1d",
                 group_by="ticker",
                 auto_adjust=False,
