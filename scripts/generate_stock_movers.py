@@ -344,6 +344,31 @@ def parse_args() -> argparse.Namespace:
         default=75,
         help="Maximum yfinance profile lookups used to classify borderline movers.",
     )
+    parser.add_argument(
+        "--two-pass",
+        action="store_true",
+        help=(
+            "Enable two-pass mode: pass 1 fetches prices for cached tech tickers, "
+            "pass 2 downloads the Nasdaq ticker list and fetches prices for any "
+            "tickers not already in the cache, merging big movers into the results."
+        ),
+    )
+    parser.add_argument(
+        "--pass2-min-change-pct",
+        type=float,
+        default=0,
+        help=(
+            "In two-pass mode, only keep pass-2 tickers whose absolute percent "
+            "change exceeds this threshold. 0 = use the smallest pass-1 mover as "
+            "the threshold automatically."
+        ),
+    )
+    parser.add_argument(
+        "--pass2-batch-size",
+        type=int,
+        default=200,
+        help="Batch size for pass-2 price downloads.",
+    )
     return parser.parse_args()
 
 
@@ -917,6 +942,68 @@ def merge_explanations(stocks: list[dict[str, Any]], explanations: dict[str, str
         stock["explanation"] = explanations.get(ticker, stock.get("explanation", "")).strip()
 
 
+
+def fetch_pass2_uncached_movers(
+    cached_tickers: set[str],
+    batch_size: int,
+    min_change_pct: float,
+    min_price: float,
+    min_volume: int,
+    max_tickers: int = 200,
+) -> list[dict[str, Any]]:
+    """Pass 2: download Nasdaq ticker list, fetch prices for a sample of
+    non-cached tickers, and return only rows whose absolute change exceeds
+    *min_change_pct*.
+
+    Downloads at most *max_tickers* uncached names (sorted alphabetically for
+    reproducibility) to keep the pass fast.  This is intentionally lightweight —
+    no Wikipedia S&P 500 fetch, no profile lookups.  The goal is to surface big
+    movers that the trimmed cache missed.
+    """
+    import random
+
+    print("Pass 2: downloading Nasdaq ticker list...", file=sys.stderr)
+    try:
+        nasdaq = load_nasdaq_listed_common_stocks()
+    except Exception as exc:
+        print(f"Pass 2 skipped — could not load Nasdaq list: {exc}", file=sys.stderr)
+        return []
+
+    uncached_keys = sorted(set(nasdaq.keys()) - cached_tickers)
+    total_uncached = len(uncached_keys)
+
+    # Deterministic daily sample: seed with today's date so reruns are stable
+    if total_uncached > max_tickers:
+        today_seed = datetime.now(timezone.utc).strftime("%Y-%m-%d")
+        rng = random.Random(today_seed)
+        uncached_keys = sorted(rng.sample(uncached_keys, max_tickers))
+
+    uncached = {t: nasdaq[t] for t in uncached_keys}
+    print(
+        f"Pass 2: sampling {len(uncached)}/{total_uncached} uncached Nasdaq tickers "
+        f"(skipping {len(cached_tickers)} cached)",
+        file=sys.stderr,
+    )
+    if not uncached:
+        return []
+
+    rows = fetch_price_rows(
+        ticker_meta=uncached,
+        batch_size=batch_size,
+        min_price=min_price,
+        min_volume=min_volume,
+    )
+
+    # Only keep rows with moves big enough to matter
+    significant = [r for r in rows if abs(r["change_pct"]) >= min_change_pct]
+    print(
+        f"Pass 2: {len(significant)} movers above {min_change_pct:.1f}% threshold "
+        f"(from {len(rows)} priced)",
+        file=sys.stderr,
+    )
+    return significant
+
+
 def build_payload(args: argparse.Namespace) -> dict[str, Any]:
     now = market_now(args.timezone)
     explanations = load_explanations(args.explanations)
@@ -953,6 +1040,44 @@ def build_payload(args: argparse.Namespace) -> dict[str, Any]:
             max_sector_lookups=max(0, args.max_sector_lookups),
         )
         universe_meta.update(filter_meta)
+
+        # --- Two-pass: sweep uncached Nasdaq tickers for big movers ---
+        if args.two_pass and not ticker_override:
+            # Auto-threshold: use the smallest selected mover from pass 1
+            if args.pass2_min_change_pct > 0:
+                threshold = args.pass2_min_change_pct
+            elif stocks:
+                threshold = min(abs(s["change_pct"]) for s in stocks)
+            else:
+                threshold = 3.0  # sensible default
+
+            pass2_rows = fetch_pass2_uncached_movers(
+                cached_tickers=set(ticker_meta.keys()),
+                batch_size=max(1, args.pass2_batch_size),
+                min_change_pct=threshold,
+                min_price=max(0, args.min_price),
+                min_volume=max(0, args.min_volume),
+            )
+            if pass2_rows:
+                # Merge pass-2 rows into ticker_meta and re-select
+                for row in pass2_rows:
+                    t = row["ticker"]
+                    if t not in ticker_meta:
+                        ticker_meta[t] = make_stock_meta(
+                            row.get("name", t), source="pass2_nasdaq"
+                        )
+                all_rows = ranked_rows + pass2_rows
+                all_rows.sort(key=lambda r: abs(r["change_pct"]), reverse=True)
+                stocks, filter_meta = select_publishable_movers(
+                    ranked_rows=all_rows,
+                    ticker_meta=ticker_meta,
+                    count=args.count,
+                    tech_only=not args.include_non_tech,
+                    max_sector_lookups=max(0, args.max_sector_lookups),
+                )
+                universe_meta.update(filter_meta)
+                universe_meta["pass2_candidates"] = len(pass2_rows)
+                universe_meta["mode"] = "two_pass_cached_plus_nasdaq"
 
     merge_explanations(stocks, explanations)
 
