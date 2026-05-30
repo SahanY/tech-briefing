@@ -11,7 +11,7 @@
     ]
   },
   "profile_lookups_used": 50,
-  "tech_ticker_count": 360,
+  "tech_ticker_count": 137,
   "non_tech_count": 3176,
   "tickers": {
     "A": {
@@ -35,13 +35,6 @@
       "industry": "Technology Hardware, Storage & Peripherals",
       "tech_match": "known tech ticker"
     },
-    "ABAT": {
-      "name": "American Battery Technology Company -",
-      "source": "nasdaq_listed",
-      "sector": "",
-      "industry": "",
-      "tech_match": "technology keyword"
-    },
     "ABNB": {
       "name": "Airbnb",
       "source": "nasdaq_listed,sp500",
@@ -61,13 +54,6 @@
       "source": "nasdaq_listed",
       "sector": "Technology",
       "industry": "Software - Infrastructure",
-      "tech_match": "technology keyword"
-    },
-    "ACLS": {
-      "name": "Axcelis Technologies, Inc. -",
-      "source": "nasdaq_listed",
-      "sector": "",
-      "industry": "",
       "tech_match": "technology keyword"
     },
     "ACMR": {
@@ -126,69 +112,6 @@
       "industry": "Communication Equipment",
       "tech_match": "technology keyword"
     },
-    "ADUR": {
-      "name": "Aduro Clean Technologies Inc. -",
-      "source": "nasdaq_listed",
-      "sector": "",
-      "industry": "",
-      "tech_match": "technology keyword"
-    },
-    "AERT": {
-      "name": "Aeries Technology, Inc. - Class A Ordinary Share",
-      "source": "nasdaq_listed",
-      "sector": "",
-      "industry": "",
-      "tech_match": "technology keyword"
-    },
-    "AEVA": {
-      "name": "Aeva Technologies, Inc. -",
-      "source": "nasdaq_listed",
-      "sector": "",
-      "industry": "",
-      "tech_match": "technology keyword"
-    },
-    "AIFC": {
-      "name": "AI Financial Corporation -",
-      "source": "nasdaq_listed",
-      "sector": "",
-      "industry": "",
-      "tech_match": "technology keyword"
-    },
-    "AIHS": {
-      "name": "Senmiao Technology Limited -",
-      "source": "nasdaq_listed",
-      "sector": "",
-      "industry": "",
-      "tech_match": "technology keyword"
-    },
-    "AIIO": {
-      "name": "Robo.ai Inc. - Class B Ordinary Shares",
-      "source": "nasdaq_listed",
-      "sector": "",
-      "industry": "",
-      "tech_match": "technology keyword"
-    },
-    "AIRJ": {
-      "name": "AirJoule Technologies Corporation - Class A",
-      "source": "nasdaq_listed",
-      "sector": "",
-      "industry": "",
-      "tech_match": "technology keyword"
-    },
-    "AIRS": {
-      "name": "AirSculpt Technologies, Inc. -",
-      "source": "nasdaq_listed",
-      "sector": "",
-      "industry": "",
-      "tech_match": "technology keyword"
-    },
-    "AISP": {
-      "name": "Airship AI Holdings, Inc - Class A",
-      "source": "nasdaq_listed",
-      "sector": "",
-      "industry": "",
-      "tech_match": "technology keyword"
-    },
     "AKAM": {
       "name": "Akamai Technologies",
       "source": "nasdaq_listed,sp500",
@@ -203,13 +126,6 @@
       "industry": "Health Care Supplies",
       "tech_match": "technology keyword"
     },
-    "ALKT": {
-      "name": "Alkami Technology, Inc. -",
-      "source": "nasdaq_listed",
-      "sector": "",
-      "industry": "",
-      "tech_match": "technology keyword"
-    },
     "AMAT": {
       "name": "Applied Materials",
       "source": "nasdaq_listed,sp500",
@@ -217,26 +133,12 @@
       "industry": "Semiconductor Materials & Equipment",
       "tech_match": "known tech ticker"
     },
-    "AMCI": {
-      "name": "AMC Robotics Corporation -",
-      "source": "nasdaq_listed",
-      "sector": "",
-      "industry": "",
-      "tech_match": "technology keyword"
-    },
     "AMD": {
       "name": "Advanced Micro Devices",
       "source": "nasdaq_listed,sp500",
       "sector": "Information Technology",
       "industry": "Semiconductors",
       "tech_match": "known tech ticker"
-    },
-    "AMKR": {
-      "name": "Amkor Technology, Inc. -",
-      "source": "nasdaq_listed",
-      "sector": "",
-      "industry": "",
-      "tech_match": "technology keyword"
     },
     "AMT": {
       "name": "American Tower",
@@ -259,33 +161,12 @@
       "industry": "Communications Equipment",
       "tech_match": "S&P Information Technology"
     },
-    "ANTA": {
-      "name": "Antalpha Platform Holding Company - Class A Ordinary Shares",
-      "source": "nasdaq_listed",
-      "sector": "",
-      "industry": "",
-      "tech_match": "technology keyword"
-    },
-    "AOSL": {
-      "name": "Alpha and Omega Semiconductor Limited - Common Shares",
-      "source": "nasdaq_listed",
-      "sector": "",
-      "industry": "",
-      "tech_match": "technology keyword"
-    },
     "APH": {
       "name": "Amphenol",
       "source": "sp500",
       "sector": "Information Technology",
       "industry": "Electronic Components",
       "tech_match": "S&P Information Technology"
-    },
-    "APLD": {
-      "name": "Applied Digital Corporation -",
-      "source": "nasdaq_listed",
-      "sector": "",
-      "industry": "",
-      "tech_match": "technology keyword"
     },
     "APP": {
       "name": "AppLovin",
@@ -294,75 +175,12 @@
       "industry": "Application Software",
       "tech_match": "known tech ticker"
     },
-    "APPS": {
-      "name": "Digital Turbine, Inc. -",
-      "source": "nasdaq_listed",
-      "sector": "",
-      "industry": "",
-      "tech_match": "technology keyword"
-    },
-    "AQB": {
-      "name": "AquaBounty Technologies, Inc. -",
-      "source": "nasdaq_listed",
-      "sector": "",
-      "industry": "",
-      "tech_match": "technology keyword"
-    },
-    "ARAI": {
-      "name": "Arrive AI Inc. -",
-      "source": "nasdaq_listed",
-      "sector": "",
-      "industry": "",
-      "tech_match": "technology keyword"
-    },
-    "ARBE": {
-      "name": "Arbe Robotics Ltd. - Ordinary Shares",
-      "source": "nasdaq_listed",
-      "sector": "",
-      "industry": "",
-      "tech_match": "technology keyword"
-    },
-    "ARRY": {
-      "name": "Array Technologies, Inc. -",
-      "source": "nasdaq_listed",
-      "sector": "",
-      "industry": "",
-      "tech_match": "technology keyword"
-    },
-    "ARTC": {
-      "name": "Art Technology Acquisition Corp. - Class A Ordinary Shares",
-      "source": "nasdaq_listed",
-      "sector": "",
-      "industry": "",
-      "tech_match": "technology keyword"
-    },
     "ASML": {
       "name": "ASML Holding N.V. - New York Registry Shares",
       "source": "nasdaq_listed",
       "sector": "",
       "industry": "",
       "tech_match": "known tech ticker"
-    },
-    "ASTI": {
-      "name": "Ascent Solar Technologies, Inc -",
-      "source": "nasdaq_listed",
-      "sector": "",
-      "industry": "",
-      "tech_match": "technology keyword"
-    },
-    "ASUR": {
-      "name": "Asure Software Inc -",
-      "source": "nasdaq_listed",
-      "sector": "",
-      "industry": "",
-      "tech_match": "technology keyword"
-    },
-    "ATGL": {
-      "name": "Alpha Technology Group Limited - Class A Ordinary Shares",
-      "source": "nasdaq_listed",
-      "sector": "",
-      "industry": "",
-      "tech_match": "technology keyword"
     },
     "AVGO": {
       "name": "Broadcom",
@@ -371,27 +189,6 @@
       "industry": "Semiconductors",
       "tech_match": "known tech ticker"
     },
-    "AVR": {
-      "name": "Anteris Technologies Global Corp. -",
-      "source": "nasdaq_listed",
-      "sector": "",
-      "industry": "",
-      "tech_match": "technology keyword"
-    },
-    "AVX": {
-      "name": "Avax One Technology Ltd. - Common Shares",
-      "source": "nasdaq_listed",
-      "sector": "",
-      "industry": "",
-      "tech_match": "technology keyword"
-    },
-    "AZI": {
-      "name": "Autozi Internet Technology (Global) Ltd. - Class A Ordinary Shares",
-      "source": "nasdaq_listed",
-      "sector": "",
-      "industry": "",
-      "tech_match": "technology keyword"
-    },
     "BBY": {
       "name": "Best Buy",
       "source": "sp500",
@@ -399,102 +196,11 @@
       "industry": "Computer & Electronics Retail",
       "tech_match": "S&P Consumer Discretionary tech-adjacent industry"
     },
-    "BFRG": {
-      "name": "Bullfrog AI Holdings, Inc. -",
-      "source": "nasdaq_listed",
-      "sector": "",
-      "industry": "",
-      "tech_match": "technology keyword"
-    },
-    "BGDE": {
-      "name": "Big Digital Energy, Inc. -",
-      "source": "nasdaq_listed",
-      "sector": "",
-      "industry": "",
-      "tech_match": "technology keyword"
-    },
-    "BIAF": {
-      "name": "bioAffinity Technologies, Inc. -",
-      "source": "nasdaq_listed",
-      "sector": "",
-      "industry": "",
-      "tech_match": "technology keyword"
-    },
-    "BLIN": {
-      "name": "Bridgeline Digital, Inc. -",
-      "source": "nasdaq_listed",
-      "sector": "",
-      "industry": "",
-      "tech_match": "technology keyword"
-    },
-    "BNAI": {
-      "name": "Brand Engagement Network Inc. -",
-      "source": "nasdaq_listed",
-      "sector": "",
-      "industry": "",
-      "tech_match": "technology keyword"
-    },
-    "BOSC": {
-      "name": "B.O.S. Better Online Solutions - Ordinary Shares",
-      "source": "nasdaq_listed",
-      "sector": "",
-      "industry": "",
-      "tech_match": "technology keyword"
-    },
     "BR": {
       "name": "Broadridge Financial Solutions",
       "source": "sp500",
       "sector": "Industrials",
       "industry": "Data Processing & Outsourced Services",
-      "tech_match": "technology keyword"
-    },
-    "BTBT": {
-      "name": "Bit Digital, Inc. - Ordinary Share",
-      "source": "nasdaq_listed",
-      "sector": "",
-      "industry": "",
-      "tech_match": "technology keyword"
-    },
-    "BTCT": {
-      "name": "BTC Digital Ltd. - Ordinary Shares",
-      "source": "nasdaq_listed",
-      "sector": "",
-      "industry": "",
-      "tech_match": "technology keyword"
-    },
-    "BTDR": {
-      "name": "Bitdeer Technologies Group - Ordinary Shares",
-      "source": "nasdaq_listed",
-      "sector": "",
-      "industry": "",
-      "tech_match": "technology keyword"
-    },
-    "BTQ": {
-      "name": "BTQ Technologies Corp. -",
-      "source": "nasdaq_listed",
-      "sector": "",
-      "industry": "",
-      "tech_match": "technology keyword"
-    },
-    "BYAH": {
-      "name": "Park Ha Biological Technology Co., Ltd. - Class A Ordinary Shares",
-      "source": "nasdaq_listed",
-      "sector": "",
-      "industry": "",
-      "tech_match": "technology keyword"
-    },
-    "BYRN": {
-      "name": "Byrna Technologies, Inc. -",
-      "source": "nasdaq_listed",
-      "sector": "",
-      "industry": "",
-      "tech_match": "technology keyword"
-    },
-    "CBAT": {
-      "name": "CBAK Energy Technology, Inc. -",
-      "source": "nasdaq_listed",
-      "sector": "",
-      "industry": "",
       "tech_match": "technology keyword"
     },
     "CBOE": {
@@ -511,47 +217,12 @@
       "industry": "Telecom Tower REITs",
       "tech_match": "technology keyword"
     },
-    "CCSI": {
-      "name": "Consensus Cloud Solutions, Inc. -",
-      "source": "nasdaq_listed",
-      "sector": "",
-      "industry": "",
-      "tech_match": "technology keyword"
-    },
-    "CCTG": {
-      "name": "CCSC Technology International Holdings Limited - Class A Ordinary Shares",
-      "source": "nasdaq_listed",
-      "sector": "",
-      "industry": "",
-      "tech_match": "technology keyword"
-    },
-    "CD": {
-      "name": "Chaince Digital Holdings Inc. - American Ordinary Shares",
-      "source": "nasdaq_listed",
-      "sector": "",
-      "industry": "",
-      "tech_match": "technology keyword"
-    },
     "CDNS": {
       "name": "Cadence Design Systems",
       "source": "nasdaq_listed,sp500",
       "sector": "Information Technology",
       "industry": "Application Software",
       "tech_match": "known tech ticker"
-    },
-    "CDRO": {
-      "name": "Codere Online Luxembourg, S.A. - Ordinary Shares",
-      "source": "nasdaq_listed",
-      "sector": "",
-      "industry": "",
-      "tech_match": "technology keyword"
-    },
-    "CDTG": {
-      "name": "CDT Environmental Technology Investment Holdings Limited - ordinary shares",
-      "source": "nasdaq_listed",
-      "sector": "",
-      "industry": "",
-      "tech_match": "technology keyword"
     },
     "CDW": {
       "name": "CDW Corporation",
@@ -560,41 +231,6 @@
       "industry": "Technology Distributors",
       "tech_match": "S&P Information Technology"
     },
-    "CETY": {
-      "name": "Clean Energy Technologies, Inc. -",
-      "source": "nasdaq_listed",
-      "sector": "",
-      "industry": "",
-      "tech_match": "technology keyword"
-    },
-    "CGNT": {
-      "name": "Cognyte Software Ltd. - Ordinary Shares",
-      "source": "nasdaq_listed",
-      "sector": "",
-      "industry": "",
-      "tech_match": "technology keyword"
-    },
-    "CGTL": {
-      "name": "Creative Global Technology Holdings Limited - Class A Ordinary Shares",
-      "source": "nasdaq_listed",
-      "sector": "",
-      "industry": "",
-      "tech_match": "technology keyword"
-    },
-    "CHAI": {
-      "name": "Core AI Holdings, Inc. - Common Shares",
-      "source": "nasdaq_listed",
-      "sector": "",
-      "industry": "",
-      "tech_match": "technology keyword"
-    },
-    "CHKP": {
-      "name": "Check Point Software Technologies Ltd. - Ordinary Shares",
-      "source": "nasdaq_listed",
-      "sector": "",
-      "industry": "",
-      "tech_match": "technology keyword"
-    },
     "CIEN": {
       "name": "Ciena",
       "source": "sp500",
@@ -602,32 +238,11 @@
       "industry": "Communications Equipment",
       "tech_match": "S&P Information Technology"
     },
-    "CIFR": {
-      "name": "Cipher Digital Inc. -",
-      "source": "nasdaq_listed",
-      "sector": "",
-      "industry": "",
-      "tech_match": "technology keyword"
-    },
-    "CLIR": {
-      "name": "ClearSign Technologies Corporation -",
-      "source": "nasdaq_listed",
-      "sector": "",
-      "industry": "",
-      "tech_match": "technology keyword"
-    },
     "CME": {
       "name": "CME Group",
       "source": "nasdaq_listed,sp500",
       "sector": "Financials",
       "industry": "Financial Exchanges & Data",
-      "tech_match": "technology keyword"
-    },
-    "CNET": {
-      "name": "ZW Data Action Technologies Inc. -",
-      "source": "nasdaq_listed",
-      "sector": "",
-      "industry": "",
       "tech_match": "technology keyword"
     },
     "COHR": {
@@ -649,20 +264,6 @@
       "source": "sp500",
       "sector": "Financials",
       "industry": "Transaction & Payment Processing Services",
-      "tech_match": "technology keyword"
-    },
-    "CPSH": {
-      "name": "CPS Technologies Corp. -",
-      "source": "nasdaq_listed",
-      "sector": "",
-      "industry": "",
-      "tech_match": "technology keyword"
-    },
-    "CRDO": {
-      "name": "Credo Technology Group Holding Ltd - Ordinary Shares",
-      "source": "nasdaq_listed",
-      "sector": "",
-      "industry": "",
       "tech_match": "technology keyword"
     },
     "CRM": {
@@ -693,47 +294,12 @@
       "industry": "IT Consulting & Other Services",
       "tech_match": "S&P Information Technology"
     },
-    "CYPH": {
-      "name": "Cypherpunk Technologies Inc. -",
-      "source": "nasdaq_listed",
-      "sector": "",
-      "industry": "",
-      "tech_match": "technology keyword"
-    },
-    "DAAQ": {
-      "name": "Digital Asset Acquisition Corp. - Class A Ordinary shares",
-      "source": "nasdaq_listed",
-      "sector": "",
-      "industry": "",
-      "tech_match": "technology keyword"
-    },
-    "DAIO": {
-      "name": "Data I/O Corporation -",
-      "source": "nasdaq_listed",
-      "sector": "",
-      "industry": "",
-      "tech_match": "technology keyword"
-    },
     "DASH": {
       "name": "DoorDash",
       "source": "nasdaq_listed,sp500",
       "sector": "Consumer Discretionary",
       "industry": "Specialized Consumer Services",
       "tech_match": "known tech ticker"
-    },
-    "DBGI": {
-      "name": "Digital Brands Group, Inc. -",
-      "source": "nasdaq_listed",
-      "sector": "",
-      "industry": "",
-      "tech_match": "technology keyword"
-    },
-    "DCX": {
-      "name": "Digital Currency X Technology Inc. - Class A Ordinary Shares",
-      "source": "nasdaq_listed",
-      "sector": "",
-      "industry": "",
-      "tech_match": "technology keyword"
     },
     "DDOG": {
       "name": "Datadog",
@@ -742,33 +308,12 @@
       "industry": "Application Software",
       "tech_match": "known tech ticker"
     },
-    "DEFT": {
-      "name": "Defi Technologies, Inc. -",
-      "source": "nasdaq_listed",
-      "sector": "",
-      "industry": "",
-      "tech_match": "technology keyword"
-    },
     "DELL": {
       "name": "Dell Technologies",
       "source": "sp500",
       "sector": "Information Technology",
       "industry": "Technology Hardware, Storage & Peripherals",
       "tech_match": "S&P Information Technology"
-    },
-    "DFSC": {
-      "name": "DEFSEC Technologies Inc. - common stock, no R/S concurrent with offering",
-      "source": "nasdaq_listed",
-      "sector": "",
-      "industry": "",
-      "tech_match": "technology keyword"
-    },
-    "DJT": {
-      "name": "Trump Media & Technology Group Corp. -",
-      "source": "nasdaq_listed",
-      "sector": "",
-      "industry": "",
-      "tech_match": "technology keyword"
     },
     "DLR": {
       "name": "Digital Realty",
@@ -777,117 +322,12 @@
       "industry": "Data Center REITs",
       "tech_match": "technology keyword"
     },
-    "DRCT": {
-      "name": "Direct Digital Holdings, Inc. - Class A",
-      "source": "nasdaq_listed",
-      "sector": "",
-      "industry": "",
-      "tech_match": "technology keyword"
-    },
-    "DSP": {
-      "name": "Viant Technology Inc. - common stock",
-      "source": "nasdaq_listed",
-      "sector": "",
-      "industry": "",
-      "tech_match": "technology keyword"
-    },
-    "DSY": {
-      "name": "Big Tree Cloud Holdings Limited - Class A Ordinary Shares",
-      "source": "nasdaq_listed",
-      "sector": "",
-      "industry": "",
-      "tech_match": "technology keyword"
-    },
-    "DTSQ": {
-      "name": "DT Cloud Star Acquisition Corporation - Ordinary Shares",
-      "source": "nasdaq_listed",
-      "sector": "",
-      "industry": "",
-      "tech_match": "technology keyword"
-    },
-    "DTSS": {
-      "name": "Datasea Intelligent Technology Ltd. - Class A Ordinary Shares",
-      "source": "nasdaq_listed",
-      "sector": "",
-      "industry": "",
-      "tech_match": "technology keyword"
-    },
-    "DTST": {
-      "name": "Data Storage Corporation -",
-      "source": "nasdaq_listed",
-      "sector": "",
-      "industry": "",
-      "tech_match": "technology keyword"
-    },
-    "DUKR": {
-      "name": "DUKE Robotics Corp. -",
-      "source": "nasdaq_listed",
-      "sector": "",
-      "industry": "",
-      "tech_match": "technology keyword"
-    },
-    "DUO": {
-      "name": "Fangdd Network Group Ltd. - Class A Ordinary Shares",
-      "source": "nasdaq_listed",
-      "sector": "",
-      "industry": "",
-      "tech_match": "technology keyword"
-    },
-    "DUOT": {
-      "name": "Duos Technologies Group, Inc. -",
-      "source": "nasdaq_listed",
-      "sector": "",
-      "industry": "",
-      "tech_match": "technology keyword"
-    },
-    "DVLT": {
-      "name": "Datavault AI Inc. -",
-      "source": "nasdaq_listed",
-      "sector": "",
-      "industry": "",
-      "tech_match": "technology keyword"
-    },
-    "DYOR": {
-      "name": "Insight Digital Partners II - Class A Ordinary Shares",
-      "source": "nasdaq_listed",
-      "sector": "",
-      "industry": "",
-      "tech_match": "technology keyword"
-    },
     "EBAY": {
       "name": "eBay Inc.",
       "source": "nasdaq_listed,sp500",
       "sector": "Consumer Discretionary",
       "industry": "Broadline Retail",
       "tech_match": "S&P Consumer Discretionary tech-adjacent industry"
-    },
-    "EDHL": {
-      "name": "Everbright Digital Holding Limited - Ordinary Shares",
-      "source": "nasdaq_listed",
-      "sector": "",
-      "industry": "",
-      "tech_match": "technology keyword"
-    },
-    "EDTK": {
-      "name": "Skillful Craftsman Education Technology Limited - Ordinary Share",
-      "source": "nasdaq_listed",
-      "sector": "",
-      "industry": "",
-      "tech_match": "technology keyword"
-    },
-    "EMAT": {
-      "name": "Evolution Metals & Technologies Corp. -",
-      "source": "nasdaq_listed",
-      "sector": "",
-      "industry": "",
-      "tech_match": "technology keyword"
-    },
-    "EMPD": {
-      "name": "Empery Digital Inc. - Common stock",
-      "source": "nasdaq_listed",
-      "sector": "",
-      "industry": "",
-      "tech_match": "technology keyword"
     },
     "EPAM": {
       "name": "EPAM Systems",
@@ -901,34 +341,6 @@
       "source": "nasdaq_listed,sp500",
       "sector": "Real Estate",
       "industry": "Data Center REITs",
-      "tech_match": "technology keyword"
-    },
-    "EVLV": {
-      "name": "Evolv Technologies Holdings, Inc. - Class A",
-      "source": "nasdaq_listed",
-      "sector": "",
-      "industry": "",
-      "tech_match": "technology keyword"
-    },
-    "EXYN": {
-      "name": "Exyn Technologies, Inc. -",
-      "source": "nasdaq_listed",
-      "sector": "",
-      "industry": "",
-      "tech_match": "technology keyword"
-    },
-    "EZGO": {
-      "name": "EZGO Technologies Ltd. - Ordinary Shares",
-      "source": "nasdaq_listed",
-      "sector": "",
-      "industry": "",
-      "tech_match": "technology keyword"
-    },
-    "FABC": {
-      "name": "Fabric.AI, Inc. -",
-      "source": "nasdaq_listed",
-      "sector": "",
-      "industry": "",
       "tech_match": "technology keyword"
     },
     "FDS": {
@@ -952,13 +364,6 @@
       "industry": "Application Software",
       "tech_match": "known tech ticker"
     },
-    "FIGR": {
-      "name": "Figure Technology Solutions, Inc. - Class A",
-      "source": "nasdaq_listed",
-      "sector": "",
-      "industry": "",
-      "tech_match": "technology keyword"
-    },
     "FIS": {
       "name": "Fidelity National Information Services",
       "source": "sp500",
@@ -973,20 +378,6 @@
       "industry": "Transaction & Payment Processing Services",
       "tech_match": "technology keyword"
     },
-    "FOFO": {
-      "name": "Hang Feng Technology Innovation Co., Ltd. - Ordinary Shares",
-      "source": "nasdaq_listed",
-      "sector": "",
-      "industry": "",
-      "tech_match": "technology keyword"
-    },
-    "FRGT": {
-      "name": "Freight Technologies, Inc. - Ordinary Shares",
-      "source": "nasdaq_listed",
-      "sector": "",
-      "industry": "",
-      "tech_match": "technology keyword"
-    },
     "FSLR": {
       "name": "First Solar",
       "source": "nasdaq_listed,sp500",
@@ -994,26 +385,12 @@
       "industry": "Semiconductors",
       "tech_match": "S&P Information Technology"
     },
-    "FTFT": {
-      "name": "Future FinTech Group Inc. -",
-      "source": "nasdaq_listed",
-      "sector": "",
-      "industry": "",
-      "tech_match": "technology keyword"
-    },
     "FTNT": {
       "name": "Fortinet",
       "source": "nasdaq_listed,sp500",
       "sector": "Information Technology",
       "industry": "Systems Software",
       "tech_match": "known tech ticker"
-    },
-    "GCT": {
-      "name": "GigaCloud Technology Inc - Class A Ordinary Shares",
-      "source": "nasdaq_listed",
-      "sector": "",
-      "industry": "",
-      "tech_match": "technology keyword"
     },
     "GDDY": {
       "name": "GoDaddy",
@@ -1029,61 +406,12 @@
       "industry": "Systems Software",
       "tech_match": "S&P Information Technology"
     },
-    "GEOS": {
-      "name": "Geospace Technologies Corporation -",
-      "source": "nasdaq_listed",
-      "sector": "",
-      "industry": "",
-      "tech_match": "technology keyword"
-    },
-    "GFAI": {
-      "name": "Guardforce AI Co., Limited - Ordinary Shares",
-      "source": "nasdaq_listed",
-      "sector": "",
-      "industry": "",
-      "tech_match": "technology keyword"
-    },
-    "GITS": {
-      "name": "Global Interactive Technologies, Inc. -",
-      "source": "nasdaq_listed",
-      "sector": "",
-      "industry": "",
-      "tech_match": "technology keyword"
-    },
-    "GLBE": {
-      "name": "Global-E Online Ltd. - ordinary shares",
-      "source": "nasdaq_listed",
-      "sector": "",
-      "industry": "",
-      "tech_match": "technology keyword"
-    },
     "GLW": {
       "name": "Corning Inc.",
       "source": "sp500",
       "sector": "Information Technology",
       "industry": "Electronic Components",
       "tech_match": "S&P Information Technology"
-    },
-    "GLXY": {
-      "name": "Galaxy Digital Inc. - Class A common stock",
-      "source": "nasdaq_listed",
-      "sector": "",
-      "industry": "",
-      "tech_match": "technology keyword"
-    },
-    "GMEX": {
-      "name": "GMEX ROBOTICS CORPORATION - Class A Ordinary Shares",
-      "source": "nasdaq_listed",
-      "sector": "",
-      "industry": "",
-      "tech_match": "technology keyword"
-    },
-    "GMM": {
-      "name": "Global Mofy AI Limited - Class A Ordinary Shares",
-      "source": "nasdaq_listed",
-      "sector": "",
-      "industry": "",
-      "tech_match": "technology keyword"
     },
     "GOOG": {
       "name": "Alphabet Inc. (Class C)",
@@ -1106,13 +434,6 @@
       "industry": "Transaction & Payment Processing Services",
       "tech_match": "technology keyword"
     },
-    "GRDX": {
-      "name": "GridAI Technologies Corp. -",
-      "source": "nasdaq_listed",
-      "sector": "",
-      "industry": "",
-      "tech_match": "technology keyword"
-    },
     "GRMN": {
       "name": "Garmin",
       "source": "sp500",
@@ -1120,89 +441,12 @@
       "industry": "Consumer Electronics",
       "tech_match": "S&P Consumer Discretionary tech-adjacent industry"
     },
-    "GRRR": {
-      "name": "Gorilla Technology Group Inc. - Ordinary shares",
-      "source": "nasdaq_listed",
-      "sector": "",
-      "industry": "",
-      "tech_match": "technology keyword"
-    },
-    "GSIT": {
-      "name": "GSI Technology, Inc. -",
-      "source": "nasdaq_listed",
-      "sector": "",
-      "industry": "",
-      "tech_match": "technology keyword"
-    },
-    "GSUN": {
-      "name": "Golden Sun Technology Group Limited - Class A Ordinary Shares",
-      "source": "nasdaq_listed",
-      "sector": "",
-      "industry": "",
-      "tech_match": "technology keyword"
-    },
-    "GTEC": {
-      "name": "Greenland Technologies Holding Corporation - Class A Ordinary Shares",
-      "source": "nasdaq_listed",
-      "sector": "",
-      "industry": "",
-      "tech_match": "technology keyword"
-    },
-    "GTM": {
-      "name": "ZoomInfo Technologies Inc. -",
-      "source": "nasdaq_listed",
-      "sector": "",
-      "industry": "",
-      "tech_match": "technology keyword"
-    },
-    "GWAV": {
-      "name": "Greenwave Technology Solutions, Inc. -",
-      "source": "nasdaq_listed",
-      "sector": "",
-      "industry": "",
-      "tech_match": "technology keyword"
-    },
-    "GXAI": {
-      "name": "Gaxos.ai Inc. -",
-      "source": "nasdaq_listed",
-      "sector": "",
-      "industry": "",
-      "tech_match": "technology keyword"
-    },
-    "HCAI": {
-      "name": "Huachen AI Parking Management Technology Holding Co., Ltd. - Class A Ordinary Shares",
-      "source": "nasdaq_listed",
-      "sector": "",
-      "industry": "",
-      "tech_match": "technology keyword"
-    },
-    "HDSN": {
-      "name": "Hudson Technologies, Inc. -",
-      "source": "nasdaq_listed",
-      "sector": "",
-      "industry": "",
-      "tech_match": "technology keyword"
-    },
-    "HIVE": {
-      "name": "HIVE Digital Technologies Ltd - Common Shares",
-      "source": "nasdaq_listed",
-      "sector": "",
-      "industry": "",
-      "tech_match": "technology keyword"
-    },
     "HOOD": {
       "name": "Robinhood Markets",
       "source": "nasdaq_listed,sp500",
       "sector": "Financials",
       "industry": "Investment Banking & Brokerage",
       "tech_match": "known tech ticker"
-    },
-    "HPAI": {
-      "name": "Helport AI Limited - Ordinary Shares",
-      "source": "nasdaq_listed",
-      "sector": "",
-      "industry": "",
-      "tech_match": "technology keyword"
     },
     "HPE": {
       "name": "Hewlett Packard Enterprise",
@@ -1218,20 +462,6 @@
       "industry": "Technology Hardware, Storage & Peripherals",
       "tech_match": "S&P Information Technology"
     },
-    "HRZN": {
-      "name": "Horizon Technology Finance Corporation -",
-      "source": "nasdaq_listed",
-      "sector": "",
-      "industry": "",
-      "tech_match": "technology keyword"
-    },
-    "HUBC": {
-      "name": "Hub Cyber Security Ltd. - Ordinary Shares",
-      "source": "nasdaq_listed",
-      "sector": "",
-      "industry": "",
-      "tech_match": "technology keyword"
-    },
     "IBM": {
       "name": "IBM",
       "source": "sp500",
@@ -1244,27 +474,6 @@
       "source": "sp500",
       "sector": "Financials",
       "industry": "Financial Exchanges & Data",
-      "tech_match": "technology keyword"
-    },
-    "IMTE": {
-      "name": "Integrated Media Technology Limited - Ordinary Shares",
-      "source": "nasdaq_listed",
-      "sector": "",
-      "industry": "",
-      "tech_match": "technology keyword"
-    },
-    "INBK": {
-      "name": "First Internet Bancorp -",
-      "source": "nasdaq_listed",
-      "sector": "",
-      "industry": "",
-      "tech_match": "technology keyword"
-    },
-    "INDI": {
-      "name": "indie Semiconductor, Inc. - Class A",
-      "source": "nasdaq_listed",
-      "sector": "",
-      "industry": "",
       "tech_match": "technology keyword"
     },
     "INTC": {
@@ -1280,27 +489,6 @@
       "sector": "Information Technology",
       "industry": "Application Software",
       "tech_match": "known tech ticker"
-    },
-    "INVZ": {
-      "name": "Innoviz Technologies Ltd. - Ordinary shares",
-      "source": "nasdaq_listed",
-      "sector": "",
-      "industry": "",
-      "tech_match": "technology keyword"
-    },
-    "IPDN": {
-      "name": "Professional Diversity Network, Inc. -",
-      "source": "nasdaq_listed",
-      "sector": "",
-      "industry": "",
-      "tech_match": "technology keyword"
-    },
-    "ISPR": {
-      "name": "Ispire Technology Inc. -",
-      "source": "nasdaq_listed",
-      "sector": "",
-      "industry": "",
-      "tech_match": "technology keyword"
     },
     "IT": {
       "name": "Gartner",
@@ -1323,33 +511,12 @@
       "industry": "Transaction & Payment Processing Services",
       "tech_match": "technology keyword"
     },
-    "JTAI": {
-      "name": "Jet.AI Inc. -",
-      "source": "nasdaq_listed",
-      "sector": "",
-      "industry": "",
-      "tech_match": "technology keyword"
-    },
-    "KDK": {
-      "name": "Kodiak AI, Inc. -",
-      "source": "nasdaq_listed",
-      "sector": "",
-      "industry": "",
-      "tech_match": "technology keyword"
-    },
     "KEYS": {
       "name": "Keysight Technologies",
       "source": "sp500",
       "sector": "Information Technology",
       "industry": "Electronic Equipment & Instruments",
       "tech_match": "S&P Information Technology"
-    },
-    "KITT": {
-      "name": "Nauticus Robotics, Inc. - Common stock",
-      "source": "nasdaq_listed",
-      "sector": "",
-      "industry": "",
-      "tech_match": "technology keyword"
     },
     "KLAC": {
       "name": "KLA Corporation",
@@ -1358,40 +525,12 @@
       "industry": "Semiconductor Materials & Equipment",
       "tech_match": "known tech ticker"
     },
-    "KNDI": {
-      "name": "Kandi Technologies Group, Inc. - Ordinary Shares",
-      "source": "nasdaq_listed",
-      "sector": "",
-      "industry": "",
-      "tech_match": "technology keyword"
-    },
-    "KOYN": {
-      "name": "CSLM Digital Asset Acquisition Corp III - Class A Ordinary Shares",
-      "source": "nasdaq_listed",
-      "sector": "",
-      "industry": "",
-      "tech_match": "technology keyword"
-    },
-    "KRNT": {
-      "name": "Kornit Digital Ltd. - Ordinary Shares",
-      "source": "nasdaq_listed",
-      "sector": "",
-      "industry": "",
-      "tech_match": "technology keyword"
-    },
     "LCID": {
       "name": "Lucid Group, Inc. -",
       "source": "nasdaq_listed",
       "sector": "",
       "industry": "",
       "tech_match": "known tech ticker"
-    },
-    "LIFE": {
-      "name": "Ethos Technologies Inc. - Class A",
-      "source": "nasdaq_listed",
-      "sector": "",
-      "industry": "",
-      "tech_match": "technology keyword"
     },
     "LITE": {
       "name": "Lumentum",
@@ -1400,40 +539,12 @@
       "industry": "Communications Equipment",
       "tech_match": "S&P Information Technology"
     },
-    "LOBO": {
-      "name": "LOBO TECHNOLOGIES LTD. - Class A Ordinary Shares",
-      "source": "nasdaq_listed",
-      "sector": "",
-      "industry": "",
-      "tech_match": "technology keyword"
-    },
-    "LPTH": {
-      "name": "LightPath Technologies, Inc. - Class A",
-      "source": "nasdaq_listed",
-      "sector": "",
-      "industry": "",
-      "tech_match": "technology keyword"
-    },
     "LRCX": {
       "name": "Lam Research",
       "source": "nasdaq_listed,sp500",
       "sector": "Information Technology",
       "industry": "Semiconductor Materials & Equipment",
       "tech_match": "known tech ticker"
-    },
-    "LSAK": {
-      "name": "Lesaka Technologies, Inc. -",
-      "source": "nasdaq_listed",
-      "sector": "",
-      "industry": "",
-      "tech_match": "technology keyword"
-    },
-    "LSCC": {
-      "name": "Lattice Semiconductor Corporation -",
-      "source": "nasdaq_listed",
-      "sector": "",
-      "industry": "",
-      "tech_match": "technology keyword"
     },
     "LYFT": {
       "name": "Lyft, Inc. - Class A",
@@ -1442,32 +553,11 @@
       "industry": "",
       "tech_match": "known tech ticker"
     },
-    "LZMH": {
-      "name": "LZ Technology Holdings Limited - Class B Ordinary Shares",
-      "source": "nasdaq_listed",
-      "sector": "",
-      "industry": "",
-      "tech_match": "technology keyword"
-    },
     "MA": {
       "name": "Mastercard",
       "source": "sp500",
       "sector": "Financials",
       "industry": "Transaction & Payment Processing Services",
-      "tech_match": "technology keyword"
-    },
-    "MASK": {
-      "name": "3 E Network Technology Group Ltd - Class A Ordinary Shares",
-      "source": "nasdaq_listed",
-      "sector": "",
-      "industry": "",
-      "tech_match": "technology keyword"
-    },
-    "MATH": {
-      "name": "Metalpha Technology Holding Limited - Ordinary Shares",
-      "source": "nasdaq_listed",
-      "sector": "",
-      "industry": "",
       "tech_match": "technology keyword"
     },
     "MCHP": {
@@ -1482,13 +572,6 @@
       "source": "sp500",
       "sector": "Financials",
       "industry": "Financial Exchanges & Data",
-      "tech_match": "technology keyword"
-    },
-    "MDAI": {
-      "name": "Spectral AI, Inc. - Class A",
-      "source": "nasdaq_listed",
-      "sector": "",
-      "industry": "",
       "tech_match": "technology keyword"
     },
     "MDB": {
@@ -1512,13 +595,6 @@
       "industry": "Interactive Media & Services",
       "tech_match": "known tech ticker"
     },
-    "MIND": {
-      "name": "MIND Technology, Inc. -",
-      "source": "nasdaq_listed",
-      "sector": "",
-      "industry": "",
-      "tech_match": "technology keyword"
-    },
     "MPWR": {
       "name": "Monolithic Power Systems",
       "source": "nasdaq_listed,sp500",
@@ -1526,26 +602,12 @@
       "industry": "Semiconductors",
       "tech_match": "S&P Information Technology"
     },
-    "MRAM": {
-      "name": "Everspin Technologies, Inc. -",
-      "source": "nasdaq_listed",
-      "sector": "",
-      "industry": "",
-      "tech_match": "technology keyword"
-    },
     "MRVL": {
       "name": "Marvell Technology, Inc. -",
       "source": "nasdaq_listed",
       "sector": "",
       "industry": "",
       "tech_match": "known tech ticker"
-    },
-    "MSAI": {
-      "name": "MultiSensor AI Holdings, Inc. -",
-      "source": "nasdaq_listed",
-      "sector": "",
-      "industry": "",
-      "tech_match": "technology keyword"
     },
     "MSCI": {
       "name": "MSCI Inc.",
@@ -1575,13 +637,6 @@
       "industry": "",
       "tech_match": "known tech ticker"
     },
-    "MTSI": {
-      "name": "MACOM Technology Solutions Holdings, Inc. -",
-      "source": "nasdaq_listed",
-      "sector": "",
-      "industry": "",
-      "tech_match": "technology keyword"
-    },
     "MU": {
       "name": "Micron Technology",
       "source": "nasdaq_listed,sp500",
@@ -1589,25 +644,11 @@
       "industry": "Semiconductors",
       "tech_match": "known tech ticker"
     },
-    "MYSE": {
-      "name": "Myseum.AI, Inc. -",
-      "source": "nasdaq_listed",
-      "sector": "",
-      "industry": "",
-      "tech_match": "technology keyword"
-    },
     "NDAQ": {
       "name": "Nasdaq, Inc.",
       "source": "nasdaq_listed,sp500",
       "sector": "Financials",
       "industry": "Financial Exchanges & Data",
-      "tech_match": "technology keyword"
-    },
-    "NEXR": {
-      "name": "Nexera Technologies Ltd - Ordinary Shares",
-      "source": "nasdaq_listed",
-      "sector": "",
-      "industry": "",
       "tech_match": "technology keyword"
     },
     "NFLX": {
@@ -1624,54 +665,12 @@
       "industry": "Systems Software",
       "tech_match": "known tech ticker"
     },
-    "NSSC": {
-      "name": "NAPCO Security Technologies, Inc. -",
-      "source": "nasdaq_listed",
-      "sector": "",
-      "industry": "",
-      "tech_match": "technology keyword"
-    },
     "NTAP": {
       "name": "NetApp",
       "source": "nasdaq_listed,sp500",
       "sector": "Information Technology",
       "industry": "Technology Hardware, Storage & Peripherals",
       "tech_match": "S&P Information Technology"
-    },
-    "NTCL": {
-      "name": "NETCLASS TECHNOLOGY INC - Class A Ordinary Shares",
-      "source": "nasdaq_listed",
-      "sector": "",
-      "industry": "",
-      "tech_match": "technology keyword"
-    },
-    "NTHI": {
-      "name": "NeOnc Technologies Holdings, Inc. -",
-      "source": "nasdaq_listed",
-      "sector": "",
-      "industry": "",
-      "tech_match": "technology keyword"
-    },
-    "NTIC": {
-      "name": "Northern Technologies International Corporation -",
-      "source": "nasdaq_listed",
-      "sector": "",
-      "industry": "",
-      "tech_match": "technology keyword"
-    },
-    "NTWK": {
-      "name": "NETSOL Technologies Inc. -",
-      "source": "nasdaq_listed",
-      "sector": "",
-      "industry": "",
-      "tech_match": "technology keyword"
-    },
-    "NUAI": {
-      "name": "New Era Energy & Digital, Inc. -",
-      "source": "nasdaq_listed",
-      "sector": "",
-      "industry": "",
-      "tech_match": "technology keyword"
     },
     "NVDA": {
       "name": "Nvidia",
@@ -1680,54 +679,12 @@
       "industry": "Semiconductors",
       "tech_match": "known tech ticker"
     },
-    "NVTS": {
-      "name": "Navitas Semiconductor Corporation -",
-      "source": "nasdaq_listed",
-      "sector": "",
-      "industry": "",
-      "tech_match": "technology keyword"
-    },
-    "NXL": {
-      "name": "Nexalin Technology, Inc. -",
-      "source": "nasdaq_listed",
-      "sector": "",
-      "industry": "",
-      "tech_match": "technology keyword"
-    },
     "NXPI": {
       "name": "NXP Semiconductors",
       "source": "nasdaq_listed,sp500",
       "sector": "Information Technology",
       "industry": "Semiconductors",
       "tech_match": "known tech ticker"
-    },
-    "NXTS": {
-      "name": "Nexentis Technologies Inc. -",
-      "source": "nasdaq_listed",
-      "sector": "",
-      "industry": "",
-      "tech_match": "technology keyword"
-    },
-    "NXTT": {
-      "name": "Next Technology Holding Inc. - Ordinary Shares",
-      "source": "nasdaq_listed",
-      "sector": "",
-      "industry": "",
-      "tech_match": "technology keyword"
-    },
-    "ODYS": {
-      "name": "Odysight.ai Inc. -",
-      "source": "nasdaq_listed",
-      "sector": "",
-      "industry": "",
-      "tech_match": "technology keyword"
-    },
-    "OMSE": {
-      "name": "OMS Energy Technologies Inc. - Ordinary Shares",
-      "source": "nasdaq_listed",
-      "sector": "",
-      "industry": "",
-      "tech_match": "technology keyword"
     },
     "ON": {
       "name": "ON Semiconductor",
@@ -1736,47 +693,12 @@
       "industry": "Semiconductors",
       "tech_match": "known tech ticker"
     },
-    "OPEN": {
-      "name": "Opendoor Technologies Inc -",
-      "source": "nasdaq_listed",
-      "sector": "",
-      "industry": "",
-      "tech_match": "technology keyword"
-    },
     "ORCL": {
       "name": "Oracle Corporation",
       "source": "sp500",
       "sector": "Information Technology",
       "industry": "Application Software",
       "tech_match": "known tech ticker"
-    },
-    "ORIO": {
-      "name": "Orion Digital Corp. - Common Shares",
-      "source": "nasdaq_listed",
-      "sector": "",
-      "industry": "",
-      "tech_match": "technology keyword"
-    },
-    "ORKT": {
-      "name": "Orangekloud Technology Inc. - Class A Ordinary Shares",
-      "source": "nasdaq_listed",
-      "sector": "",
-      "industry": "",
-      "tech_match": "technology keyword"
-    },
-    "OST": {
-      "name": "Ostin Technology Group Co., Ltd. - Class A Ordinary Shares",
-      "source": "nasdaq_listed",
-      "sector": "",
-      "industry": "",
-      "tech_match": "technology keyword"
-    },
-    "OSUR": {
-      "name": "OraSure Technologies, Inc. -",
-      "source": "nasdaq_listed",
-      "sector": "",
-      "industry": "",
-      "tech_match": "technology keyword"
     },
     "PANW": {
       "name": "Palo Alto Networks",
@@ -1785,89 +707,12 @@
       "industry": "Systems Software",
       "tech_match": "known tech ticker"
     },
-    "PAVS": {
-      "name": "Paranovus Entertainment Technology Ltd. - Class A Ordinary Shares",
-      "source": "nasdaq_listed",
-      "sector": "",
-      "industry": "",
-      "tech_match": "technology keyword"
-    },
-    "PCT": {
-      "name": "PureCycle Technologies, Inc. - Common stock",
-      "source": "nasdaq_listed",
-      "sector": "",
-      "industry": "",
-      "tech_match": "technology keyword"
-    },
-    "PDYN": {
-      "name": "Palladyne AI Corp. - Common stock",
-      "source": "nasdaq_listed",
-      "sector": "",
-      "industry": "",
-      "tech_match": "technology keyword"
-    },
-    "PERI": {
-      "name": "Perion Network Ltd - Ordinary Shares",
-      "source": "nasdaq_listed",
-      "sector": "",
-      "industry": "",
-      "tech_match": "technology keyword"
-    },
-    "PGY": {
-      "name": "Pagaya Technologies Ltd. - Class A Ordinary Shares",
-      "source": "nasdaq_listed",
-      "sector": "",
-      "industry": "",
-      "tech_match": "technology keyword"
-    },
     "PLTR": {
       "name": "Palantir Technologies",
       "source": "nasdaq_listed,sp500",
       "sector": "Information Technology",
       "industry": "Application Software",
       "tech_match": "known tech ticker"
-    },
-    "PLTS": {
-      "name": "Platinum Analytics Cayman Limited - Class A Ordinary Shares",
-      "source": "nasdaq_listed",
-      "sector": "",
-      "industry": "",
-      "tech_match": "technology keyword"
-    },
-    "POET": {
-      "name": "POET Technologies Inc. - Common Shares",
-      "source": "nasdaq_listed",
-      "sector": "",
-      "industry": "",
-      "tech_match": "technology keyword"
-    },
-    "PRFX": {
-      "name": "PRF Technologies Ltd. - Ordinary Shares",
-      "source": "nasdaq_listed",
-      "sector": "",
-      "industry": "",
-      "tech_match": "technology keyword"
-    },
-    "PRGS": {
-      "name": "Progress Software Corporation -",
-      "source": "nasdaq_listed",
-      "sector": "",
-      "industry": "",
-      "tech_match": "technology keyword"
-    },
-    "PRTH": {
-      "name": "Priority Technology Holdings, Inc. -",
-      "source": "nasdaq_listed",
-      "sector": "",
-      "industry": "",
-      "tech_match": "technology keyword"
-    },
-    "PRZO": {
-      "name": "ParaZero Technologies Ltd. - Ordinary Shares",
-      "source": "nasdaq_listed",
-      "sector": "",
-      "industry": "",
-      "tech_match": "technology keyword"
     },
     "PTC": {
       "name": "PTC Inc.",
@@ -1890,54 +735,12 @@
       "industry": "Semiconductor Materials & Equipment",
       "tech_match": "S&P Information Technology"
     },
-    "QCLS": {
-      "name": "Q/C Technologies, Inc. -",
-      "source": "nasdaq_listed",
-      "sector": "",
-      "industry": "",
-      "tech_match": "technology keyword"
-    },
     "QCOM": {
       "name": "Qualcomm",
       "source": "nasdaq_listed,sp500",
       "sector": "Information Technology",
       "industry": "Semiconductors",
       "tech_match": "known tech ticker"
-    },
-    "QUCY": {
-      "name": "Quantum Cyber N.V. - Ordinary Shares",
-      "source": "nasdaq_listed",
-      "sector": "",
-      "industry": "",
-      "tech_match": "technology keyword"
-    },
-    "RAIN": {
-      "name": "Rain Enhancement Technologies Holdco, Inc. - Class A",
-      "source": "nasdaq_listed",
-      "sector": "",
-      "industry": "",
-      "tech_match": "technology keyword"
-    },
-    "RCMT": {
-      "name": "RCM Technologies, Inc. -",
-      "source": "nasdaq_listed",
-      "sector": "",
-      "industry": "",
-      "tech_match": "technology keyword"
-    },
-    "RCON": {
-      "name": "Recon Technology, Ltd. - Class A Ordinary Shares",
-      "source": "nasdaq_listed",
-      "sector": "",
-      "industry": "",
-      "tech_match": "technology keyword"
-    },
-    "RDAG": {
-      "name": "Republic Digital Acquisition Company - Class A Ordinary Shares",
-      "source": "nasdaq_listed",
-      "sector": "",
-      "industry": "",
-      "tech_match": "technology keyword"
     },
     "RIVN": {
       "name": "Rivian Automotive, Inc. - Class A",
@@ -1967,95 +770,11 @@
       "industry": "Electronic Equipment & Instruments",
       "tech_match": "S&P Information Technology"
     },
-    "RR": {
-      "name": "Richtech Robotics Inc. - Class B",
-      "source": "nasdaq_listed",
-      "sector": "",
-      "industry": "",
-      "tech_match": "technology keyword"
-    },
-    "RTB": {
-      "name": "RTB Digital, Inc. -",
-      "source": "nasdaq_listed",
-      "sector": "",
-      "industry": "",
-      "tech_match": "technology keyword"
-    },
-    "RXT": {
-      "name": "Rackspace Technology, Inc. -",
-      "source": "nasdaq_listed",
-      "sector": "",
-      "industry": "",
-      "tech_match": "technology keyword"
-    },
-    "RYET": {
-      "name": "Ruanyun Edai Technology Inc. - Ordinary shares",
-      "source": "nasdaq_listed",
-      "sector": "",
-      "industry": "",
-      "tech_match": "technology keyword"
-    },
-    "RZLV": {
-      "name": "Rezolve AI PLC - Ordinary Shares",
-      "source": "nasdaq_listed",
-      "sector": "",
-      "industry": "",
-      "tech_match": "technology keyword"
-    },
-    "SANG": {
-      "name": "Sangoma Technologies Corporation - Common Shares",
-      "source": "nasdaq_listed",
-      "sector": "",
-      "industry": "",
-      "tech_match": "technology keyword"
-    },
     "SBAC": {
       "name": "SBA Communications",
       "source": "nasdaq_listed,sp500",
       "sector": "Real Estate",
       "industry": "Telecom Tower REITs",
-      "tech_match": "technology keyword"
-    },
-    "SDA": {
-      "name": "SunCar Technology Group Inc. - Ordinary Shares",
-      "source": "nasdaq_listed",
-      "sector": "",
-      "industry": "",
-      "tech_match": "technology keyword"
-    },
-    "SDM": {
-      "name": "Smart Digital Group Limited - Ordinary Shares",
-      "source": "nasdaq_listed",
-      "sector": "",
-      "industry": "",
-      "tech_match": "technology keyword"
-    },
-    "SEDG": {
-      "name": "SolarEdge Technologies, Inc. -",
-      "source": "nasdaq_listed",
-      "sector": "",
-      "industry": "",
-      "tech_match": "technology keyword"
-    },
-    "SERV": {
-      "name": "Serve Robotics Inc. -",
-      "source": "nasdaq_listed",
-      "sector": "",
-      "industry": "",
-      "tech_match": "technology keyword"
-    },
-    "SGLY": {
-      "name": "Singularity Future Technology Ltd. -",
-      "source": "nasdaq_listed",
-      "sector": "",
-      "industry": "",
-      "tech_match": "technology keyword"
-    },
-    "SHLS": {
-      "name": "Shoals Technologies Group, Inc. - Class A",
-      "source": "nasdaq_listed",
-      "sector": "",
-      "industry": "",
       "tech_match": "technology keyword"
     },
     "SHOP": {
@@ -2065,61 +784,12 @@
       "industry": "",
       "tech_match": "known tech ticker"
     },
-    "SIFY": {
-      "name": "Sify Technologies Limited - American Depository Shares",
-      "source": "nasdaq_listed",
-      "sector": "",
-      "industry": "",
-      "tech_match": "technology keyword"
-    },
-    "SIGA": {
-      "name": "SIGA Technologies Inc. -",
-      "source": "nasdaq_listed",
-      "sector": "",
-      "industry": "",
-      "tech_match": "technology keyword"
-    },
-    "SINT": {
-      "name": "SiNtx Technologies, Inc. -",
-      "source": "nasdaq_listed",
-      "sector": "",
-      "industry": "",
-      "tech_match": "technology keyword"
-    },
-    "SKYT": {
-      "name": "SkyWater Technology, Inc. -",
-      "source": "nasdaq_listed",
-      "sector": "",
-      "industry": "",
-      "tech_match": "technology keyword"
-    },
-    "SLGL": {
-      "name": "Sol-Gel Technologies Ltd. - Ordinary Shares",
-      "source": "nasdaq_listed",
-      "sector": "",
-      "industry": "",
-      "tech_match": "technology keyword"
-    },
     "SMCI": {
       "name": "Supermicro",
       "source": "nasdaq_listed,sp500",
       "sector": "Information Technology",
       "industry": "Technology Hardware, Storage & Peripherals",
       "tech_match": "known tech ticker"
-    },
-    "SMSI": {
-      "name": "Smith Micro Software, Inc. -",
-      "source": "nasdaq_listed",
-      "sector": "",
-      "industry": "",
-      "tech_match": "technology keyword"
-    },
-    "SMXT": {
-      "name": "Solarmax Technology Inc. -",
-      "source": "nasdaq_listed",
-      "sector": "",
-      "industry": "",
-      "tech_match": "technology keyword"
     },
     "SNDK": {
       "name": "Sandisk",
@@ -2135,32 +805,11 @@
       "industry": "Application Software",
       "tech_match": "known tech ticker"
     },
-    "SNT": {
-      "name": "Senstar Technologies Corporation - Common Shares",
-      "source": "nasdaq_listed",
-      "sector": "",
-      "industry": "",
-      "tech_match": "technology keyword"
-    },
-    "SOFI": {
-      "name": "SoFi Technologies, Inc. -",
-      "source": "nasdaq_listed",
-      "sector": "",
-      "industry": "",
-      "tech_match": "technology keyword"
-    },
     "SOLV": {
       "name": "Solventum",
       "source": "sp500",
       "sector": "Health Care",
       "industry": "Health Care Technology",
-      "tech_match": "technology keyword"
-    },
-    "SOUN": {
-      "name": "SoundHound AI, Inc. - Class A",
-      "source": "nasdaq_listed",
-      "sector": "",
-      "industry": "",
       "tech_match": "technology keyword"
     },
     "SPGI": {
@@ -2170,27 +819,6 @@
       "industry": "Financial Exchanges & Data",
       "tech_match": "technology keyword"
     },
-    "SSNC": {
-      "name": "SS&C Technologies Holdings, Inc. -",
-      "source": "nasdaq_listed",
-      "sector": "",
-      "industry": "",
-      "tech_match": "technology keyword"
-    },
-    "STI": {
-      "name": "Solidion Technology, Inc. -",
-      "source": "nasdaq_listed",
-      "sector": "",
-      "industry": "",
-      "tech_match": "technology keyword"
-    },
-    "STSS": {
-      "name": "Sharps Technology Inc. -",
-      "source": "nasdaq_listed",
-      "sector": "",
-      "industry": "",
-      "tech_match": "technology keyword"
-    },
     "STX": {
       "name": "Seagate Technology",
       "source": "nasdaq_listed,sp500",
@@ -2198,47 +826,12 @@
       "industry": "Technology Hardware, Storage & Peripherals",
       "tech_match": "S&P Information Technology"
     },
-    "SUPX": {
-      "name": "SuperX AI Technology Limited - Ordinary Shares",
-      "source": "nasdaq_listed",
-      "sector": "",
-      "industry": "",
-      "tech_match": "technology keyword"
-    },
     "SWKS": {
       "name": "Skyworks Solutions",
       "source": "nasdaq_listed,sp500",
       "sector": "Information Technology",
       "industry": "Semiconductors",
       "tech_match": "S&P Information Technology"
-    },
-    "TACT": {
-      "name": "TransAct Technologies Incorporated -",
-      "source": "nasdaq_listed",
-      "sector": "",
-      "industry": "",
-      "tech_match": "technology keyword"
-    },
-    "TATT": {
-      "name": "TAT Technologies Ltd. - Ordinary Shares",
-      "source": "nasdaq_listed",
-      "sector": "",
-      "industry": "",
-      "tech_match": "technology keyword"
-    },
-    "TCMD": {
-      "name": "Tactile Systems Technology, Inc. -",
-      "source": "nasdaq_listed",
-      "sector": "",
-      "industry": "",
-      "tech_match": "technology keyword"
-    },
-    "TDTH": {
-      "name": "Trident Digital Tech Holdings Ltd - American Depository Shares",
-      "source": "nasdaq_listed",
-      "sector": "",
-      "industry": "",
-      "tech_match": "technology keyword"
     },
     "TDY": {
       "name": "Teledyne Technologies",
@@ -2261,13 +854,6 @@
       "industry": "Electronic Manufacturing Services",
       "tech_match": "S&P Information Technology"
     },
-    "TEM": {
-      "name": "Tempus AI, Inc. - Class A",
-      "source": "nasdaq_listed",
-      "sector": "",
-      "industry": "",
-      "tech_match": "technology keyword"
-    },
     "TER": {
       "name": "Teradyne",
       "source": "nasdaq_listed,sp500",
@@ -2281,20 +867,6 @@
       "sector": "Information Technology",
       "industry": "Application Software",
       "tech_match": "S&P Information Technology"
-    },
-    "TRSG": {
-      "name": "Tungray Technologies Inc - Class A Ordinary Shares",
-      "source": "nasdaq_listed",
-      "sector": "",
-      "industry": "",
-      "tech_match": "technology keyword"
-    },
-    "TSEM": {
-      "name": "Tower Semiconductor Ltd. - Ordinary Shares",
-      "source": "nasdaq_listed",
-      "sector": "",
-      "industry": "",
-      "tech_match": "technology keyword"
     },
     "TSLA": {
       "name": "Tesla, Inc.",
@@ -2317,13 +889,6 @@
       "industry": "Advertising",
       "tech_match": "known tech ticker"
     },
-    "TTMI": {
-      "name": "TTM Technologies, Inc. -",
-      "source": "nasdaq_listed",
-      "sector": "",
-      "industry": "",
-      "tech_match": "technology keyword"
-    },
     "TXN": {
       "name": "Texas Instruments",
       "source": "nasdaq_listed,sp500",
@@ -2345,27 +910,6 @@
       "industry": "Passenger Ground Transportation",
       "tech_match": "known tech ticker"
     },
-    "UBXG": {
-      "name": "U-BX Technology Ltd. - Class A Ordinary Shares",
-      "source": "nasdaq_listed",
-      "sector": "",
-      "industry": "",
-      "tech_match": "technology keyword"
-    },
-    "UFPT": {
-      "name": "UFP Technologies, Inc. -",
-      "source": "nasdaq_listed",
-      "sector": "",
-      "industry": "",
-      "tech_match": "technology keyword"
-    },
-    "UPLD": {
-      "name": "Upland Software, Inc. -",
-      "source": "nasdaq_listed",
-      "sector": "",
-      "industry": "",
-      "tech_match": "technology keyword"
-    },
     "V": {
       "name": "Visa Inc.",
       "source": "sp500",
@@ -2379,13 +923,6 @@
       "sector": "Health Care",
       "industry": "Health Care Technology",
       "tech_match": "known tech ticker"
-    },
-    "VMAR": {
-      "name": "Vision Marine Technologies Inc. - Common Shares",
-      "source": "nasdaq_listed",
-      "sector": "",
-      "industry": "",
-      "tech_match": "technology keyword"
     },
     "VRSK": {
       "name": "Verisk Analytics",
@@ -2415,89 +952,12 @@
       "industry": "Technology Hardware, Storage & Peripherals",
       "tech_match": "S&P Information Technology"
     },
-    "WETH": {
-      "name": "Wetouch Technology Inc. -",
-      "source": "nasdaq_listed",
-      "sector": "",
-      "industry": "",
-      "tech_match": "technology keyword"
-    },
-    "WETO": {
-      "name": "Wetour Robotics Limited - Ordinary Shares",
-      "source": "nasdaq_listed",
-      "sector": "",
-      "industry": "",
-      "tech_match": "technology keyword"
-    },
-    "WIMI": {
-      "name": "WiMi Hologram Cloud Inc. - Class B Ordinary Shares",
-      "source": "nasdaq_listed",
-      "sector": "",
-      "industry": "",
-      "tech_match": "technology keyword"
-    },
-    "WNW": {
-      "name": "Meiwu Technology Company Limited - Ordinary Shares",
-      "source": "nasdaq_listed",
-      "sector": "",
-      "industry": "",
-      "tech_match": "technology keyword"
-    },
-    "WRAP": {
-      "name": "Wrap Technologies, Inc. -",
-      "source": "nasdaq_listed",
-      "sector": "",
-      "industry": "",
-      "tech_match": "technology keyword"
-    },
-    "XNDU": {
-      "name": "Xanadu Quantum Technologies Limited - Class B Subordinate Voting Shares",
-      "source": "nasdaq_listed",
-      "sector": "",
-      "industry": "",
-      "tech_match": "technology keyword"
-    },
     "XYZ": {
       "name": "Block, Inc.",
       "source": "sp500",
       "sector": "Financials",
       "industry": "Transaction & Payment Processing Services",
       "tech_match": "known tech ticker"
-    },
-    "YAAS": {
-      "name": "Youxin Technology Ltd - Class A Ordinary shares",
-      "source": "nasdaq_listed",
-      "sector": "",
-      "industry": "",
-      "tech_match": "technology keyword"
-    },
-    "YDDL": {
-      "name": "One and One Green Technologies. INC - Class A Ordinary Shares",
-      "source": "nasdaq_listed",
-      "sector": "",
-      "industry": "",
-      "tech_match": "technology keyword"
-    },
-    "YDKG": {
-      "name": "Yueda Digital Holding - Class A Ordinary Share",
-      "source": "nasdaq_listed",
-      "sector": "",
-      "industry": "",
-      "tech_match": "technology keyword"
-    },
-    "YTRA": {
-      "name": "Yatra Online, Inc. - Ordinary Shares",
-      "source": "nasdaq_listed",
-      "sector": "",
-      "industry": "",
-      "tech_match": "technology keyword"
-    },
-    "ZBAO": {
-      "name": "Zhibao Technology Inc. - Class A Ordinary Shares",
-      "source": "nasdaq_listed",
-      "sector": "",
-      "industry": "",
-      "tech_match": "technology keyword"
     },
     "ZBRA": {
       "name": "Zebra Technologies",
@@ -2506,27 +966,6 @@
       "industry": "Electronic Equipment & Instruments",
       "tech_match": "S&P Information Technology"
     },
-    "ZDAI": {
-      "name": "DirectBooking Technology Co., Ltd. - Class A Ordinary Shares",
-      "source": "nasdaq_listed",
-      "sector": "",
-      "industry": "",
-      "tech_match": "technology keyword"
-    },
-    "ZKP": {
-      "name": "Lafayette Digital Acquisition Corp. I - Class A Ordinary Shares",
-      "source": "nasdaq_listed",
-      "sector": "",
-      "industry": "",
-      "tech_match": "technology keyword"
-    },
-    "ZNB": {
-      "name": "Zeta Network Group - Class A Ordinary Shares",
-      "source": "nasdaq_listed",
-      "sector": "",
-      "industry": "",
-      "tech_match": "technology keyword"
-    },
     "ZS": {
       "name": "Zscaler, Inc. -",
       "source": "nasdaq_listed",
@@ -2534,5 +973,6 @@
       "industry": "",
       "tech_match": "known tech ticker"
     }
-  }
+  },
+  "trimmed": true
 }
