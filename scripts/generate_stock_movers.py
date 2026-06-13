@@ -1,379 +1,293 @@
 #!/usr/bin/env python3
-"""Generate Jekyll stock-movers data from Yahoo Finance.
+"""Generate Jekyll stock-movers data from the Alpaca Market Data API.
 
-Supports a two-phase workflow to keep daily runs fast:
+Uses the Alpaca Market Data API to fetch snapshots for a curated list of
+~200 tech tickers.  The ticker list is
+stored in a JSON cache that should be refreshed weekly (--refresh-cache).
 
-1. Cache refresh (weekly): ``--refresh-cache`` downloads the full
-   Nasdaq-listed + S&P 500 universe, classifies every ticker for tech
-   relevance, uses yfinance profile lookups for borderline cases, and writes a
-   compact JSON cache to ``--cache-path``.
-
-2. Daily run (default): loads a fresh pre-filtered tech ticker cache so only
-   the tech universe needs price data. If the cache is missing or stale, the
-   script falls back to the full universe automatically.
-
-After the scheduled agent researches catalysts, run the script again with
-``--input`` and ``--explanations`` to merge AI-written explanations without
-refetching prices.
+Usage:
+  Daily run:   python generate_stock_movers.py --output _data/stock_movers.json
+  Weekly:      python generate_stock_movers.py --refresh-cache
+  Merge explanations:
+               python generate_stock_movers.py --input existing.json --explanations expl.json
 """
 
 from __future__ import annotations
 
 import argparse
-import csv
-import html.parser
-import io
 import json
 import math
-import re
-import ssl
+import os
 import sys
 import urllib.error
 import urllib.request
+import ssl
 from datetime import datetime, timedelta, timezone
 from pathlib import Path
-from typing import Any, Iterable
+from typing import Any
 from zoneinfo import ZoneInfo
 
 
-NASDAQ_LISTED_URL = "https://www.nasdaqtrader.com/dynamic/SymDir/nasdaqlisted.txt"
-SP500_CONSTITUENTS_URL = "https://en.wikipedia.org/wiki/List_of_S%26P_500_companies"
-USER_AGENT = "TechBriefingMarketMovers/1.0"
-DEFAULT_BATCH_SIZE = 200
-TECH_TICKER_ALLOWLIST = {
-    "AAPL",
-    "ABNB",
-    "ADBE",
-    "ADI",
-    "AMD",
-    "AMAT",
-    "AMZN",
-    "ANSS",
-    "APP",
-    "ARM",
-    "ASML",
-    "AVGO",
-    "CDNS",
-    "COIN",
-    "CRM",
-    "CRWD",
-    "CSCO",
-    "DASH",
-    "DDOG",
-    "FICO",
-    "FTNT",
-    "GOOGL",
-    "HOOD",
-    "HUBS",
-    "INTC",
-    "INTU",
-    "KLAC",
-    "LCID",
-    "LRCX",
-    "LYFT",
-    "MDB",
-    "MELI",
-    "META",
-    "MRVL",
-    "MSFT",
-    "MSTR",
-    "MU",
-    "NET",
-    "NFLX",
-    "NOW",
-    "NVDA",
-    "NXPI",
-    "ON",
-    "ORCL",
-    "PANW",
-    "PINS",
-    "PLTR",
-    "QCOM",
-    "RBLX",
-    "RIVN",
-    "ROKU",
-    "SE",
-    "SMCI",
-    "SNAP",
-    "SNOW",
-    "SNPS",
-    "SHOP",
-    "TEAM",
-    "TSLA",
-    "TTD",
-    "TXN",
-    "U",
-    "UBER",
-    "VEEV",
-    "WDAY",
-    "XYZ",
-    "ZS",
-}
-ISSUE_NAME_EXCLUSIONS = re.compile(
-    r"\b("
-    r"acquisition right|"
-    r"closed end|"
-    r"depositary|"
-    r"etf|"
-    r"etn|"
-    r"exchange traded|"
-    r"fund|"
-    r"notes? due|"
-    r"preferred|"
-    r"preference|"
-    r"right|"
-    r"rights|"
-    r"unit|"
-    r"units|"
-    r"warrant|"
-    r"warrants"
-    r")\b",
-    re.IGNORECASE,
-)
-NON_TECH_NAME_EXCLUSIONS = re.compile(
-    r"\b("
-    r"biopharma|"
-    r"biopharmaceutical|"
-    r"biotech|"
-    r"biotechnology|"
-    r"biosciences?|"
-    r"clinical|"
-    r"diagnostics?|"
-    r"genomics?|"
-    r"health|"
-    r"healthcare|"
-    r"immuno|"
-    r"medical|"
-    r"oncology|"
-    r"pharma|"
-    r"pharmaceutical|"
-    r"therapeutics?"
-    r")\b",
-    re.IGNORECASE,
-)
-TECH_KEYWORDS = re.compile(
-    r"\b("
-    r"3d printing|"
-    r"ai|"
-    r"analytics?|"
-    r"application software|"
-    r"artificial intelligence|"
-    r"automation|"
-    r"autonomous|"
-    r"broadline retail|"
-    r"cloud|"
-    r"communications equipment|"
-    r"computer|"
-    r"consumer electronics|"
-    r"cyber|"
-    r"cybersecurity|"
-    r"data|"
-    r"digital|"
-    r"e-commerce|"
-    r"electric vehicle|"
-    r"electronic components?|"
-    r"electronic equipment|"
-    r"fintech|"
-    r"hardware|"
-    r"information technology|"
-    r"interactive media|"
-    r"internet|"
-    r"it consulting|"
-    r"machine learning|"
-    r"network|"
-    r"online|"
-    r"payments?|"
-    r"platform|"
-    r"robotics?|"
-    r"saas|"
-    r"semiconductor|"
-    r"software|"
-    r"systems software|"
-    r"technology|"
-    r"technologies|"
-    r"telecom|"
-    r"video games?"
-    r")\b",
-    re.IGNORECASE,
-)
+# ---------------------------------------------------------------------------
+# Curated tech ticker universe (~200 Nasdaq + S&P tech/software companies)
+# ---------------------------------------------------------------------------
+# Refreshed weekly via --refresh-cache (which re-validates against Alpaca).
+# This list is the fallback if no cache exists.
+
+TECH_TICKERS: list[dict[str, str]] = [
+    # Mega-cap tech
+    {"ticker": "AAPL", "name": "Apple Inc."},
+    {"ticker": "MSFT", "name": "Microsoft Corporation"},
+    {"ticker": "GOOGL", "name": "Alphabet Inc."},
+    {"ticker": "AMZN", "name": "Amazon.com Inc."},
+    {"ticker": "META", "name": "Meta Platforms Inc."},
+    {"ticker": "NVDA", "name": "NVIDIA Corporation"},
+    {"ticker": "TSLA", "name": "Tesla Inc."},
+    {"ticker": "AVGO", "name": "Broadcom Inc."},
+    {"ticker": "ORCL", "name": "Oracle Corporation"},
+    {"ticker": "CRM", "name": "Salesforce Inc."},
+    # Semiconductors
+    {"ticker": "AMD", "name": "Advanced Micro Devices"},
+    {"ticker": "INTC", "name": "Intel Corporation"},
+    {"ticker": "QCOM", "name": "Qualcomm Inc."},
+    {"ticker": "TXN", "name": "Texas Instruments"},
+    {"ticker": "MU", "name": "Micron Technology"},
+    {"ticker": "AMAT", "name": "Applied Materials"},
+    {"ticker": "LRCX", "name": "Lam Research"},
+    {"ticker": "KLAC", "name": "KLA Corporation"},
+    {"ticker": "ADI", "name": "Analog Devices"},
+    {"ticker": "NXPI", "name": "NXP Semiconductors"},
+    {"ticker": "MRVL", "name": "Marvell Technology"},
+    {"ticker": "ON", "name": "ON Semiconductor"},
+    {"ticker": "ASML", "name": "ASML Holding"},
+    {"ticker": "ARM", "name": "Arm Holdings"},
+    {"ticker": "SNPS", "name": "Synopsys Inc."},
+    {"ticker": "CDNS", "name": "Cadence Design Systems"},
+    {"ticker": "SMCI", "name": "Super Micro Computer"},
+    {"ticker": "MCHP", "name": "Microchip Technology"},
+    {"ticker": "SWKS", "name": "Skyworks Solutions"},
+    {"ticker": "MPWR", "name": "Monolithic Power Systems"},
+    {"ticker": "WOLF", "name": "Wolfspeed Inc."},
+    {"ticker": "GFS", "name": "GlobalFoundries"},
+    {"ticker": "TSM", "name": "Taiwan Semiconductor"},
+    # Enterprise software & SaaS
+    {"ticker": "NOW", "name": "ServiceNow Inc."},
+    {"ticker": "ADBE", "name": "Adobe Inc."},
+    {"ticker": "INTU", "name": "Intuit Inc."},
+    {"ticker": "WDAY", "name": "Workday Inc."},
+    {"ticker": "SNOW", "name": "Snowflake Inc."},
+    {"ticker": "DDOG", "name": "Datadog Inc."},
+    {"ticker": "MDB", "name": "MongoDB Inc."},
+    {"ticker": "HUBS", "name": "HubSpot Inc."},
+    {"ticker": "TEAM", "name": "Atlassian Corporation"},
+    {"ticker": "VEEV", "name": "Veeva Systems"},
+    {"ticker": "ZS", "name": "Zscaler Inc."},
+    {"ticker": "ANSS", "name": "ANSYS Inc."},
+    {"ticker": "FICO", "name": "Fair Isaac Corporation"},
+    {"ticker": "SPLK", "name": "Splunk Inc."},
+    {"ticker": "BILL", "name": "BILL Holdings"},
+    {"ticker": "CFLT", "name": "Confluent Inc."},
+    {"ticker": "ESTC", "name": "Elastic N.V."},
+    {"ticker": "GTLB", "name": "GitLab Inc."},
+    {"ticker": "MNDY", "name": "monday.com Ltd."},
+    {"ticker": "S", "name": "SentinelOne Inc."},
+    {"ticker": "DOCN", "name": "DigitalOcean Holdings"},
+    {"ticker": "BRZE", "name": "Braze Inc."},
+    {"ticker": "PCOR", "name": "Procore Technologies"},
+    {"ticker": "DT", "name": "Dynatrace Inc."},
+    {"ticker": "SMAR", "name": "Smartsheet Inc."},
+    {"ticker": "PD", "name": "PagerDuty Inc."},
+    {"ticker": "ALRM", "name": "Alarm.com Holdings"},
+    {"ticker": "ASAN", "name": "Asana Inc."},
+    {"ticker": "FRSH", "name": "Freshworks Inc."},
+    {"ticker": "ZI", "name": "ZoomInfo Technologies"},
+    {"ticker": "JAMF", "name": "Jamf Holding"},
+    {"ticker": "TOST", "name": "Toast Inc."},
+    {"ticker": "IOT", "name": "Samsara Inc."},
+    {"ticker": "FOUR", "name": "Shift4 Payments"},
+    {"ticker": "PAYC", "name": "Paycom Software"},
+    {"ticker": "PCTY", "name": "Paylocity Holding"},
+    {"ticker": "VERX", "name": "Vertex Inc."},
+    # Cybersecurity
+    {"ticker": "CRWD", "name": "CrowdStrike Holdings"},
+    {"ticker": "PANW", "name": "Palo Alto Networks"},
+    {"ticker": "FTNT", "name": "Fortinet Inc."},
+    {"ticker": "NET", "name": "Cloudflare Inc."},
+    {"ticker": "OKTA", "name": "Okta Inc."},
+    {"ticker": "CYBR", "name": "CyberArk Software"},
+    {"ticker": "RPD", "name": "Rapid7 Inc."},
+    {"ticker": "TENB", "name": "Tenable Holdings"},
+    {"ticker": "VRNS", "name": "Varonis Systems"},
+    # Networking & infrastructure
+    {"ticker": "CSCO", "name": "Cisco Systems"},
+    {"ticker": "ANET", "name": "Arista Networks"},
+    {"ticker": "AKAM", "name": "Akamai Technologies"},
+    {"ticker": "FFIV", "name": "F5 Inc."},
+    {"ticker": "NTAP", "name": "NetApp Inc."},
+    {"ticker": "PSTG", "name": "Pure Storage"},
+    {"ticker": "HPE", "name": "Hewlett Packard Enterprise"},
+    {"ticker": "HPQ", "name": "HP Inc."},
+    {"ticker": "DELL", "name": "Dell Technologies"},
+    # Consumer internet & platforms
+    {"ticker": "NFLX", "name": "Netflix Inc."},
+    {"ticker": "ABNB", "name": "Airbnb Inc."},
+    {"ticker": "UBER", "name": "Uber Technologies"},
+    {"ticker": "LYFT", "name": "Lyft Inc."},
+    {"ticker": "DASH", "name": "DoorDash Inc."},
+    {"ticker": "SNAP", "name": "Snap Inc."},
+    {"ticker": "PINS", "name": "Pinterest Inc."},
+    {"ticker": "RBLX", "name": "Roblox Corporation"},
+    {"ticker": "ROKU", "name": "Roku Inc."},
+    {"ticker": "TTD", "name": "The Trade Desk"},
+    {"ticker": "SPOT", "name": "Spotify Technology"},
+    {"ticker": "SHOP", "name": "Shopify Inc."},
+    {"ticker": "SE", "name": "Sea Limited"},
+    {"ticker": "MELI", "name": "MercadoLibre Inc."},
+    {"ticker": "BKNG", "name": "Booking Holdings"},
+    {"ticker": "EBAY", "name": "eBay Inc."},
+    {"ticker": "ETSY", "name": "Etsy Inc."},
+    {"ticker": "ZM", "name": "Zoom Video Communications"},
+    {"ticker": "MTCH", "name": "Match Group"},
+    {"ticker": "DUOL", "name": "Duolingo Inc."},
+    {"ticker": "RDDT", "name": "Reddit Inc."},
+    {"ticker": "GRAB", "name": "Grab Holdings"},
+    # AI & data
+    {"ticker": "PLTR", "name": "Palantir Technologies"},
+    {"ticker": "AI", "name": "C3.ai Inc."},
+    {"ticker": "PATH", "name": "UiPath Inc."},
+    {"ticker": "BBAI", "name": "BigBear.ai Holdings"},
+    {"ticker": "SOUN", "name": "SoundHound AI"},
+    {"ticker": "UPST", "name": "Upstart Holdings"},
+    {"ticker": "BFLY", "name": "Butterfly Network"},
+    # Fintech & payments
+    {"ticker": "SQ", "name": "Block Inc."},
+    {"ticker": "PYPL", "name": "PayPal Holdings"},
+    {"ticker": "COIN", "name": "Coinbase Global"},
+    {"ticker": "HOOD", "name": "Robinhood Markets"},
+    {"ticker": "AFRM", "name": "Affirm Holdings"},
+    {"ticker": "SOFI", "name": "SoFi Technologies"},
+    {"ticker": "MSTR", "name": "MicroStrategy Inc."},
+    {"ticker": "XYZ", "name": "Block Inc. (XYZ)"},
+    {"ticker": "FI", "name": "Fiserv Inc."},
+    {"ticker": "GPN", "name": "Global Payments"},
+    {"ticker": "FIS", "name": "Fidelity National Information Services"},
+    {"ticker": "INFY", "name": "Infosys Limited"},
+    {"ticker": "WIT", "name": "Wipro Limited"},
+    # EV & autonomous
+    {"ticker": "RIVN", "name": "Rivian Automotive"},
+    {"ticker": "LCID", "name": "Lucid Group"},
+    {"ticker": "NIO", "name": "NIO Inc."},
+    {"ticker": "XPEV", "name": "XPeng Inc."},
+    {"ticker": "LI", "name": "Li Auto Inc."},
+    # Gaming
+    {"ticker": "U", "name": "Unity Software"},
+    {"ticker": "EA", "name": "Electronic Arts"},
+    {"ticker": "TTWO", "name": "Take-Two Interactive"},
+    {"ticker": "RBLX", "name": "Roblox Corporation"},
+    # Hardware & devices
+    {"ticker": "ZBRA", "name": "Zebra Technologies"},
+    {"ticker": "TER", "name": "Teradyne Inc."},
+    {"ticker": "KEYS", "name": "Keysight Technologies"},
+    {"ticker": "GLW", "name": "Corning Inc."},
+    {"ticker": "STX", "name": "Seagate Technology"},
+    {"ticker": "WDC", "name": "Western Digital"},
+    # IT consulting & services
+    {"ticker": "ACN", "name": "Accenture plc"},
+    {"ticker": "IBM", "name": "IBM Corporation"},
+    {"ticker": "CTSH", "name": "Cognizant Technology Solutions"},
+    {"ticker": "EPAM", "name": "EPAM Systems"},
+    {"ticker": "GDDY", "name": "GoDaddy Inc."},
+    {"ticker": "GEN", "name": "Gen Digital Inc."},
+    {"ticker": "LDOS", "name": "Leidos Holdings"},
+    # Telecom tech
+    {"ticker": "TMUS", "name": "T-Mobile US"},
+    {"ticker": "VZ", "name": "Verizon Communications"},
+    {"ticker": "T", "name": "AT&T Inc."},
+    # Ad tech & martech
+    {"ticker": "APP", "name": "AppLovin Corporation"},
+    {"ticker": "IS", "name": "IronSource / Unity"},
+    {"ticker": "MGNI", "name": "Magnite Inc."},
+    {"ticker": "PUBM", "name": "PubMatic Inc."},
+    {"ticker": "DV", "name": "DoubleVerify Holdings"},
+    {"ticker": "IAS", "name": "Integral Ad Science"},
+    # Other notable tech
+    {"ticker": "CELH", "name": "Celsius Holdings"},
+    {"ticker": "DKNG", "name": "DraftKings Inc."},
+    {"ticker": "CRSP", "name": "CRISPR Therapeutics"},
+    {"ticker": "IONQ", "name": "IonQ Inc."},
+    {"ticker": "RGTI", "name": "Rigetti Computing"},
+    {"ticker": "QUBT", "name": "Quantum Computing Inc."},
+    {"ticker": "LUNR", "name": "Intuitive Machines"},
+    {"ticker": "RKLB", "name": "Rocket Lab USA"},
+    {"ticker": "ASTS", "name": "AST SpaceMobile"},
+    {"ticker": "VRT", "name": "Vertiv Holdings"},
+    {"ticker": "PWR", "name": "Quanta Services"},
+    {"ticker": "APH", "name": "Amphenol Corporation"},
+    {"ticker": "IT", "name": "Gartner Inc."},
+    {"ticker": "FLEX", "name": "Flex Ltd."},
+    {"ticker": "JNPR", "name": "Juniper Networks"},
+    {"ticker": "CIEN", "name": "Ciena Corporation"},
+    {"ticker": "LITE", "name": "Lumentum Holdings"},
+    {"ticker": "CRUS", "name": "Cirrus Logic"},
+    {"ticker": "ONTO", "name": "Onto Innovation"},
+    {"ticker": "AMKR", "name": "Amkor Technology"},
+    {"ticker": "COHR", "name": "Coherent Corp."},
+    {"ticker": "LSCC", "name": "Lattice Semiconductor"},
+]
+
+# De-duplicate by ticker
+_seen: set[str] = set()
+_deduped: list[dict[str, str]] = []
+for _t in TECH_TICKERS:
+    if _t["ticker"] not in _seen:
+        _seen.add(_t["ticker"])
+        _deduped.append(_t)
+TECH_TICKERS = _deduped
+del _seen, _deduped
+
+ALPACA_DATA_BASE = "https://data.alpaca.markets/v2"
+USER_AGENT = "TechBriefingMarketMovers/2.0"
 
 
-class SP500TableParser(html.parser.HTMLParser):
-    """Small parser for Wikipedia's constituents table.
-
-    Keeping this standard-library only avoids pulling in pandas just to read a
-    single table. yfinance still installs pandas for price downloads.
-    """
-
-    def __init__(self) -> None:
-        super().__init__()
-        self.in_constituents_table = False
-        self.in_row = False
-        self.in_cell = False
-        self.current_cell: list[str] = []
-        self.current_row: list[str] = []
-        self.rows: list[list[str]] = []
-
-    def handle_starttag(self, tag: str, attrs: list[tuple[str, str | None]]) -> None:
-        attrs_dict = dict(attrs)
-        if tag == "table" and attrs_dict.get("id") == "constituents":
-            self.in_constituents_table = True
-        if not self.in_constituents_table:
-            return
-        if tag == "tr":
-            self.in_row = True
-            self.current_row = []
-        elif tag in {"th", "td"} and self.in_row:
-            self.in_cell = True
-            self.current_cell = []
-
-    def handle_data(self, data: str) -> None:
-        if self.in_cell:
-            self.current_cell.append(data)
-
-    def handle_endtag(self, tag: str) -> None:
-        if not self.in_constituents_table:
-            return
-        if tag in {"th", "td"} and self.in_cell:
-            text = " ".join("".join(self.current_cell).split())
-            self.current_row.append(text)
-            self.in_cell = False
-        elif tag == "tr" and self.in_row:
-            if self.current_row:
-                self.rows.append(self.current_row)
-            self.in_row = False
-        elif tag == "table":
-            self.in_constituents_table = False
-
+# ---------------------------------------------------------------------------
+# Helpers
+# ---------------------------------------------------------------------------
 
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument(
-        "--output",
-        default="_data/stock_movers.json",
-        help="Path for the Jekyll JSON data file.",
-    )
-    parser.add_argument(
-        "--input",
-        help="Existing stock_movers JSON to reuse before merging explanations.",
-    )
-    parser.add_argument(
-        "--explanations",
-        help="JSON object or stock list containing ticker-to-explanation values.",
-    )
-    parser.add_argument("--count", type=int, default=15, help="Number of movers to publish.")
-    parser.add_argument("--date", help="Trading date to write into the JSON payload.")
-    parser.add_argument(
-        "--data-as-of",
-        help='Display timestamp, for example "2026-05-21, 9:00 AM CT".',
-    )
-    parser.add_argument(
-        "--timezone",
-        default="America/Chicago",
-        help="Timezone used for generated_at and default display timestamps.",
-    )
-    parser.add_argument(
-        "--tickers",
-        help=(
-            "Optional comma- or space-separated ticker list for testing. "
-            "Defaults to Nasdaq-listed common stocks plus S&P 500 constituents."
-        ),
-    )
-    parser.add_argument(
-        "--batch-size",
-        type=int,
-        default=DEFAULT_BATCH_SIZE,
-        help="Number of tickers per yfinance download request.",
-    )
-    parser.add_argument(
-        "--min-price",
-        type=float,
-        default=0,
-        help="Optional minimum latest price filter. Defaults to no price filter.",
-    )
-    parser.add_argument(
-        "--min-volume",
-        type=int,
-        default=0,
-        help="Optional minimum latest volume filter. Defaults to no volume filter.",
-    )
-    parser.add_argument(
-        "--list-universe",
-        action="store_true",
-        help="Download and print universe counts without fetching prices.",
-    )
-    parser.add_argument(
-        "--cache-path",
-        default="_data/tech_ticker_cache.json",
-        help="Path for the pre-filtered tech ticker cache file.",
-    )
-    parser.add_argument(
-        "--refresh-cache",
-        action="store_true",
-        help=(
-            "Download the full Nasdaq + S&P 500 universe, classify every ticker "
-            "for tech relevance, and write the filtered list to --cache-path. "
-            "Does not fetch prices or produce movers output."
-        ),
-    )
-    parser.add_argument(
-        "--cache-max-age-days",
-        type=int,
-        default=7,
-        help="Maximum age in days before the ticker cache is considered stale.",
-    )
-    parser.add_argument(
-        "--no-cache",
-        action="store_true",
-        help="Ignore the ticker cache and always download the full universe.",
-    )
-    parser.add_argument(
-        "--max-cache-profile-lookups",
-        type=int,
-        default=750,
-        help="Maximum yfinance profile lookups used while refreshing the ticker cache.",
-    )
-    parser.add_argument(
-        "--include-non-tech",
-        action="store_true",
-        help="Publish the largest movers regardless of tech classification.",
-    )
-    parser.add_argument(
-        "--max-sector-lookups",
-        type=int,
-        default=75,
-        help="Maximum yfinance profile lookups used to classify borderline movers.",
-    )
-    parser.add_argument(
-        "--two-pass",
-        action="store_true",
-        help=(
-            "Enable two-pass mode: pass 1 fetches prices for cached tech tickers, "
-            "pass 2 downloads the Nasdaq ticker list and fetches prices for any "
-            "tickers not already in the cache, merging big movers into the results."
-        ),
-    )
-    parser.add_argument(
-        "--pass2-min-change-pct",
-        type=float,
-        default=0,
-        help=(
-            "In two-pass mode, only keep pass-2 tickers whose absolute percent "
-            "change exceeds this threshold. 0 = use the smallest pass-1 mover as "
-            "the threshold automatically."
-        ),
-    )
-    parser.add_argument(
-        "--pass2-batch-size",
-        type=int,
-        default=200,
-        help="Batch size for pass-2 price downloads.",
-    )
+    parser.add_argument("--output", default="_data/stock_movers.json",
+                        help="Path for the Jekyll JSON data file.")
+    parser.add_argument("--input",
+                        help="Existing stock_movers JSON to reuse (skip price fetch).")
+    parser.add_argument("--explanations",
+                        help="JSON file with ticker-to-explanation mapping.")
+    parser.add_argument("--count", type=int, default=15,
+                        help="Number of movers to publish.")
+    parser.add_argument("--date",
+                        help="Trading date to write into the JSON payload.")
+    parser.add_argument("--data-as-of",
+                        help='Display timestamp, e.g. "2026-06-13, 9:00 AM CT".')
+    parser.add_argument("--timezone", default="America/Chicago",
+                        help="Timezone for generated_at and display timestamps.")
+    parser.add_argument("--cache-path", default="_data/tech_ticker_cache.json",
+                        help="Path for the validated tech ticker cache.")
+    parser.add_argument("--refresh-cache", action="store_true",
+                        help="Validate tickers against Alpaca and write cache. No price fetch.")
+    parser.add_argument("--cache-max-age-days", type=int, default=7,
+                        help="Maximum age before the ticker cache is stale.")
+    parser.add_argument("--no-cache", action="store_true",
+                        help="Ignore the ticker cache; use the built-in list directly.")
+    parser.add_argument("--alpaca-key-id",
+                        default=os.environ.get("APCA_API_KEY_ID", ""),
+                        help="Alpaca API key ID (or set APCA_API_KEY_ID env var).")
+    parser.add_argument("--alpaca-secret-key",
+                        default=os.environ.get("APCA_API_SECRET_KEY", ""),
+                        help="Alpaca API secret key (or set APCA_API_SECRET_KEY env var).")
     return parser.parse_args()
 
 
-def market_now(timezone: str) -> datetime:
-    return datetime.now(ZoneInfo(timezone))
+def market_now(tz: str) -> datetime:
+    return datetime.now(ZoneInfo(tz))
 
 
 def display_time(now: datetime) -> str:
@@ -381,703 +295,263 @@ def display_time(now: datetime) -> str:
     return f"{now.date().isoformat()}, {time_text} CT"
 
 
-def finite_number(value: Any) -> float | None:
+def finite(value: Any) -> float | None:
     try:
-        number = float(value)
+        n = float(value)
     except (TypeError, ValueError):
         return None
-    if not math.isfinite(number):
-        return None
-    return number
+    return n if math.isfinite(n) else None
 
 
-def format_volume(value: Any) -> str:
-    number = finite_number(value)
-    if number is None:
+def format_volume(v: Any) -> str:
+    n = finite(v)
+    if n is None:
         return ""
-    abs_number = abs(number)
-    if abs_number >= 1_000_000_000:
-        return f"{number / 1_000_000_000:.1f}B"
-    if abs_number >= 1_000_000:
-        return f"{number / 1_000_000:.1f}M"
-    if abs_number >= 1_000:
-        return f"{number / 1_000:.1f}K"
-    return str(int(number))
+    a = abs(n)
+    if a >= 1_000_000_000:
+        return f"{n / 1_000_000_000:.1f}B"
+    if a >= 1_000_000:
+        return f"{n / 1_000_000:.1f}M"
+    if a >= 1_000:
+        return f"{n / 1_000:.1f}K"
+    return str(int(n))
 
 
-def fetch_text(url: str) -> str:
-    request = urllib.request.Request(url, headers={"User-Agent": USER_AGENT})
-    context = None
+def _ssl_context() -> ssl.SSLContext:
     try:
         import certifi
-
-        context = ssl.create_default_context(cafile=certifi.where())
+        return ssl.create_default_context(cafile=certifi.where())
     except Exception:
-        context = ssl.create_default_context()
+        return ssl.create_default_context()
 
+
+def alpaca_request(
+    url: str,
+    key_id: str,
+    secret_key: str,
+) -> dict[str, Any]:
+    """Make an authenticated GET request to Alpaca and return parsed JSON."""
+    headers = {
+        "APCA-API-KEY-ID": key_id,
+        "APCA-API-SECRET-KEY": secret_key,
+        "User-Agent": USER_AGENT,
+        "Accept": "application/json",
+    }
+    req = urllib.request.Request(url, headers=headers)
+    ctx = _ssl_context()
     try:
-        with urllib.request.urlopen(request, timeout=30, context=context) as response:
-            return response.read().decode("utf-8", errors="replace")
+        with urllib.request.urlopen(req, timeout=30, context=ctx) as resp:
+            return json.loads(resp.read().decode("utf-8"))
     except urllib.error.URLError as exc:
         if "CERTIFICATE_VERIFY_FAILED" not in str(exc):
-            raise RuntimeError(f"Could not download {url}: {exc}") from exc
-        with urllib.request.urlopen(
-            request,
-            timeout=30,
-            context=ssl._create_unverified_context(),
-        ) as response:
-            return response.read().decode("utf-8", errors="replace")
+            raise
+        ctx = ssl._create_unverified_context()
+        with urllib.request.urlopen(req, timeout=30, context=ctx) as resp:
+            return json.loads(resp.read().decode("utf-8"))
 
 
-def normalize_yahoo_ticker(symbol: str) -> str:
-    return symbol.strip().upper().replace(".", "-")
+# ---------------------------------------------------------------------------
+# Snapshot fetching
+# ---------------------------------------------------------------------------
 
-
-def clean_name(name: str) -> str:
-    return " ".join(name.replace(" Common Stock", "").split())
-
-
-def is_common_stock(symbol: str, security_name: str) -> bool:
-    if not symbol or "$" in symbol or "^" in symbol or "/" in symbol:
-        return False
-    if ISSUE_NAME_EXCLUSIONS.search(security_name):
-        return False
-    return True
-
-
-def make_stock_meta(
-    name: str,
-    source: str,
-    sector: str = "",
-    industry: str = "",
-    force_tech: bool = False,
-) -> dict[str, str]:
-    return {
-        "name": clean_name(name),
-        "source": source,
-        "sector": sector,
-        "industry": industry,
-        "force_tech": "true" if force_tech else "",
-    }
-
-
-def parse_ticker_override(raw: str | None) -> dict[str, dict[str, str]]:
-    if not raw:
-        return {}
-    normalized = raw.replace(",", " ")
-    tickers = [normalize_yahoo_ticker(ticker) for ticker in normalized.split() if ticker.strip()]
-    return {
-        ticker: make_stock_meta(ticker, source="manual", force_tech=True)
-        for ticker in dict.fromkeys(tickers)
-    }
-
-
-def load_nasdaq_listed_common_stocks() -> dict[str, dict[str, str]]:
-    text = fetch_text(NASDAQ_LISTED_URL)
-    rows = csv.DictReader(io.StringIO(text), delimiter="|")
-    stocks: dict[str, dict[str, str]] = {}
-    for row in rows:
-        symbol = (row.get("Symbol") or "").strip()
-        if symbol == "File Creation Time":
-            break
-        security_name = (row.get("Security Name") or "").strip()
-        if row.get("Test Issue") != "N":
-            continue
-        if row.get("ETF") == "Y" or row.get("NextShares") == "Y":
-            continue
-        if not is_common_stock(symbol, security_name):
-            continue
-        ticker = normalize_yahoo_ticker(symbol)
-        stocks[ticker] = make_stock_meta(security_name or ticker, source="nasdaq_listed")
-    return stocks
-
-
-def load_sp500_constituents() -> dict[str, dict[str, str]]:
-    parser = SP500TableParser()
-    parser.feed(fetch_text(SP500_CONSTITUENTS_URL))
-    if not parser.rows:
-        raise RuntimeError("Could not find S&P 500 constituents table")
-
-    header = parser.rows[0]
-    try:
-        symbol_index = header.index("Symbol")
-        name_index = header.index("Security")
-        sector_index = header.index("GICS Sector")
-        industry_index = header.index("GICS Sub-Industry")
-    except ValueError as exc:
-        raise RuntimeError("Could not parse S&P 500 constituents table headers") from exc
-
-    stocks: dict[str, dict[str, str]] = {}
-    for row in parser.rows[1:]:
-        if len(row) <= max(symbol_index, name_index, sector_index, industry_index):
-            continue
-        ticker = normalize_yahoo_ticker(row[symbol_index])
-        stocks[ticker] = make_stock_meta(
-            name=row[name_index] or ticker,
-            source="sp500",
-            sector=row[sector_index],
-            industry=row[industry_index],
-        )
-    return stocks
-
-
-def merge_stock_meta(
-    existing: dict[str, str] | None,
-    incoming: dict[str, str],
-) -> dict[str, str]:
-    if not existing:
-        return dict(incoming)
-    merged = dict(existing)
-    for key in ("name", "sector", "industry"):
-        if incoming.get(key):
-            merged[key] = incoming[key]
-    sources = {
-        source
-        for source in f"{existing.get('source', '')},{incoming.get('source', '')}".split(",")
-        if source
-    }
-    merged["source"] = ",".join(sorted(sources))
-    return merged
-
-
-def load_market_universe() -> tuple[dict[str, dict[str, str]], dict[str, Any]]:
-    nasdaq = load_nasdaq_listed_common_stocks()
-    sp500 = load_sp500_constituents()
-    combined = dict(nasdaq)
-    for ticker, meta in sp500.items():
-        combined[ticker] = merge_stock_meta(combined.get(ticker), meta)
-    meta = {
-        "mode": "nasdaq_listed_plus_sp500",
-        "count": len(combined),
-        "nasdaq_listed_common_stock_count": len(nasdaq),
-        "sp500_count": len(sp500),
-        "sources": [
-            NASDAQ_LISTED_URL,
-            SP500_CONSTITUENTS_URL,
-        ],
-    }
-    return combined, meta
-
-
-def load_json(path: str | None) -> dict[str, Any]:
-    if not path:
-        return {}
-    return json.loads(Path(path).read_text(encoding="utf-8"))
-
-
-def load_explanations(path: str | None) -> dict[str, str]:
-    data = load_json(path)
-    if not data:
-        return {}
-    if isinstance(data, dict) and "stocks" in data:
-        rows = data.get("stocks") or []
-        return {
-            str(row.get("ticker", "")).upper(): str(row.get("explanation", "")).strip()
-            for row in rows
-            if row.get("ticker") and row.get("explanation")
-        }
-    return {
-        str(ticker).upper(): str(explanation).strip()
-        for ticker, explanation in data.items()
-        if explanation
-    }
-
-
-def first_existing_column(frame: Any, names: list[str]) -> Any:
-    for name in names:
-        if name in frame:
-            return frame[name]
-    raise KeyError(names[0])
-
-
-def extract_frame(download: Any, ticker: str, multi_ticker: bool) -> Any:
-    if multi_ticker:
-        return download[ticker]
-    return download
-
-
-def chunks(items: list[str], size: int) -> Iterable[list[str]]:
-    for index in range(0, len(items), size):
-        yield items[index : index + size]
-
-
-def fetch_price_rows(
-    ticker_meta: dict[str, dict[str, str]],
-    batch_size: int,
-    min_price: float,
-    min_volume: int,
-) -> list[dict[str, Any]]:
-    try:
-        import yfinance as yf
-    except ImportError as exc:
-        raise SystemExit(
-            "yfinance is required. Install it with: python3 -m pip install yfinance"
-        ) from exc
-
-    tickers = sorted(ticker_meta)
-    rows: list[dict[str, Any]] = []
-    total_batches = math.ceil(len(tickers) / batch_size)
-
-    for batch_number, batch in enumerate(chunks(tickers, batch_size), start=1):
+def fetch_snapshots(
+    tickers: list[str],
+    key_id: str,
+    secret_key: str,
+    batch_size: int = 200,
+) -> dict[str, Any]:
+    """Fetch Alpaca snapshots for all tickers, batching if needed."""
+    all_snapshots: dict[str, Any] = {}
+    for i in range(0, len(tickers), batch_size):
+        batch = tickers[i : i + batch_size]
+        symbols = ",".join(batch)
+        url = f"{ALPACA_DATA_BASE}/stocks/snapshots?symbols={symbols}&feed=iex"
         print(
-            f"Fetching price batch {batch_number}/{total_batches} ({len(batch)} tickers)",
+            f"Fetching Alpaca snapshots batch {i // batch_size + 1} "
+            f"({len(batch)} tickers)",
             file=sys.stderr,
         )
         try:
-            download = yf.download(
-                tickers=" ".join(batch),
-                period="2d",
-                interval="1d",
-                group_by="ticker",
-                auto_adjust=False,
-                progress=False,
-                threads=True,
-            )
+            data = alpaca_request(url, key_id, secret_key)
+            all_snapshots.update(data)
         except Exception as exc:
-            print(f"Skipping batch {batch_number}: {exc}", file=sys.stderr)
-            continue
+            print(f"Snapshot batch error: {exc}", file=sys.stderr)
+    return all_snapshots
 
-        multi_ticker = len(batch) > 1
-        for ticker in batch:
-            try:
-                frame = extract_frame(download, ticker, multi_ticker).dropna(how="all")
-                close_series = first_existing_column(frame, ["Close", "Adj Close"]).dropna()
-                if len(close_series) < 2:
-                    continue
-                latest_close = finite_number(close_series.iloc[-1])
-                previous_close = finite_number(close_series.iloc[-2])
-                if latest_close is None or previous_close in (None, 0):
-                    continue
 
-                volume_raw = None
-                if "Volume" in frame:
-                    volume_series = frame["Volume"].dropna()
-                    if not volume_series.empty:
-                        volume_raw = finite_number(volume_series.iloc[-1])
+def snapshots_to_rows(
+    snapshots: dict[str, Any],
+    ticker_names: dict[str, str],
+) -> list[dict[str, Any]]:
+    """Convert Alpaca snapshot data into ranked mover rows."""
+    rows: list[dict[str, Any]] = []
+    for ticker, snap in snapshots.items():
+        try:
+            daily = snap.get("dailyBar") or {}
+            prev = snap.get("prevDailyBar") or {}
+            latest_trade = snap.get("latestTrade") or {}
 
-                if min_price and latest_close < min_price:
-                    continue
-                if min_volume and (volume_raw is None or volume_raw < min_volume):
-                    continue
+            price = finite(daily.get("c") or latest_trade.get("p"))
+            prev_close = finite(prev.get("c"))
+            volume_raw = finite(daily.get("v"))
 
-                change_abs = latest_close - previous_close
-                change_pct = (change_abs / previous_close) * 100
-                meta = ticker_meta.get(ticker, {})
-                rows.append(
-                    {
-                        "ticker": ticker,
-                        "name": meta.get("name") or ticker,
-                        "price": round(latest_close, 2),
-                        "previous_close": round(previous_close, 2),
-                        "change_pct": round(change_pct, 2),
-                        "change_abs": round(change_abs, 2),
-                        "volume": format_volume(volume_raw),
-                        "volume_raw": int(volume_raw) if volume_raw is not None else None,
-                        "direction": "gain" if change_abs >= 0 else "loss",
-                        "sector": meta.get("sector", ""),
-                        "industry": meta.get("industry", ""),
-                        "universe_source": meta.get("source", ""),
-                        "explanation": "",
-                    }
-                )
-            except Exception as exc:  # Keep one bad ticker from breaking the run.
-                print(f"Skipping {ticker}: {exc}", file=sys.stderr)
+            if price is None or prev_close is None or prev_close == 0:
+                continue
 
-    rows.sort(key=lambda row: abs(row["change_pct"]), reverse=True)
+            change_abs = price - prev_close
+            change_pct = (change_abs / prev_close) * 100
+
+            rows.append({
+                "ticker": ticker,
+                "name": ticker_names.get(ticker, ticker),
+                "price": round(price, 2),
+                "previous_close": round(prev_close, 2),
+                "change_pct": round(change_pct, 2),
+                "change_abs": round(change_abs, 2),
+                "volume": format_volume(volume_raw),
+                "volume_raw": int(volume_raw) if volume_raw is not None else None,
+                "direction": "gain" if change_abs >= 0 else "loss",
+                "explanation": "",
+            })
+        except Exception as exc:
+            print(f"Skipping {ticker}: {exc}", file=sys.stderr)
+
+    rows.sort(key=lambda r: abs(r["change_pct"]), reverse=True)
     return rows
 
 
-def classify_tech_related(ticker: str, meta: dict[str, str]) -> tuple[bool, str]:
-    if meta.get("force_tech") == "true":
-        return True, "manual override"
-    if ticker in TECH_TICKER_ALLOWLIST:
-        return True, "known tech ticker"
+# ---------------------------------------------------------------------------
+# Ticker cache
+# ---------------------------------------------------------------------------
 
-    name = meta.get("name", "")
-    sector = meta.get("sector", "")
-    industry = meta.get("industry", "")
-    search_text = f"{name} {sector} {industry}"
-
-    if sector == "Information Technology":
-        return True, "S&P Information Technology"
-    if sector in {"Communication Services", "Consumer Discretionary"} and TECH_KEYWORDS.search(
-        search_text
-    ):
-        return True, f"S&P {sector} tech-adjacent industry"
-    if NON_TECH_NAME_EXCLUSIONS.search(name):
-        return False, "non-tech health/biotech name"
-    if TECH_KEYWORDS.search(search_text):
-        return True, "technology keyword"
-    return False, "not tech-related"
+def validate_tickers_against_alpaca(
+    tickers: list[str],
+    key_id: str,
+    secret_key: str,
+) -> list[str]:
+    """Return only tickers that Alpaca returns valid snapshot data for."""
+    snapshots = fetch_snapshots(tickers, key_id, secret_key)
+    valid = [t for t in tickers if t in snapshots]
+    invalid = [t for t in tickers if t not in snapshots]
+    if invalid:
+        print(f"Removed {len(invalid)} invalid tickers: {invalid[:20]}...", file=sys.stderr)
+    print(f"Validated {len(valid)} tickers with Alpaca", file=sys.stderr)
+    return valid
 
 
-def fetch_yahoo_profile(ticker: str) -> dict[str, str]:
-    try:
-        import yfinance as yf
-    except ImportError:
-        return {}
-
-    try:
-        info = yf.Ticker(ticker).get_info()
-    except Exception as exc:
-        print(f"Could not classify {ticker} with yfinance profile: {exc}", file=sys.stderr)
-        return {}
-
-    return {
-        "name": info.get("shortName") or info.get("longName") or info.get("displayName") or "",
-        "sector": info.get("sector") or "",
-        "industry": info.get("industry") or "",
-    }
-
-
-def should_lookup_profile_for_cache(meta: dict[str, str]) -> bool:
-    """Return whether a non-tech ticker is worth a profile lookup."""
-    if meta.get("sector") or meta.get("industry"):
-        return False
-    name = meta.get("name", "")
-    return not NON_TECH_NAME_EXCLUSIONS.search(name)
-
-
-def build_tech_ticker_cache(max_profile_lookups: int) -> dict[str, Any]:
-    """Download the full universe and save only tech-related tickers."""
-    ticker_meta, universe_meta = load_market_universe()
-    tech_tickers: dict[str, dict[str, str]] = {}
-    non_tech_count = 0
-    profile_lookups = 0
-    total = len(ticker_meta)
-
-    for index, (ticker, meta) in enumerate(sorted(ticker_meta.items()), start=1):
-        is_tech, reason = classify_tech_related(ticker, meta)
-
-        if (
-            not is_tech
-            and profile_lookups < max_profile_lookups
-            and should_lookup_profile_for_cache(meta)
-        ):
-            profile = fetch_yahoo_profile(ticker)
-            profile_lookups += 1
-            if profile:
-                meta.update({key: value for key, value in profile.items() if value})
-                is_tech, reason = classify_tech_related(ticker, meta)
-
-        if is_tech:
-            tech_tickers[ticker] = {
-                "name": meta.get("name", ticker),
-                "source": meta.get("source", ""),
-                "sector": meta.get("sector", ""),
-                "industry": meta.get("industry", ""),
-                "tech_match": reason,
-            }
-        else:
-            non_tech_count += 1
-
-        if index % 500 == 0:
-            print(
-                f"Classified {index}/{total} tickers "
-                f"({len(tech_tickers)} tech, {non_tech_count} non-tech, "
-                f"{profile_lookups} profile lookups)",
-                file=sys.stderr,
-            )
-
-    print(
-        f"Cache complete: {len(tech_tickers)} tech tickers from {total} total "
-        f"({non_tech_count} non-tech, {profile_lookups} profile lookups)",
-        file=sys.stderr,
-    )
-
+def build_cache(key_id: str, secret_key: str) -> dict[str, Any]:
+    """Validate the built-in ticker list against Alpaca and build cache."""
+    all_tickers = [t["ticker"] for t in TECH_TICKERS]
+    valid = validate_tickers_against_alpaca(all_tickers, key_id, secret_key)
+    name_map = {t["ticker"]: t["name"] for t in TECH_TICKERS}
     return {
         "generated_at": datetime.now(timezone.utc).isoformat(timespec="seconds"),
-        "universe": universe_meta,
-        "profile_lookups_used": profile_lookups,
-        "tech_ticker_count": len(tech_tickers),
-        "non_tech_count": non_tech_count,
-        "tickers": tech_tickers,
+        "source": "alpaca_validated",
+        "total_candidates": len(all_tickers),
+        "valid_count": len(valid),
+        "tickers": [
+            {"ticker": t, "name": name_map.get(t, t)} for t in valid
+        ],
     }
 
 
-def write_cache(cache_data: dict[str, Any], cache_path: str) -> None:
-    path = Path(cache_path)
-    path.parent.mkdir(parents=True, exist_ok=True)
-    path.write_text(json.dumps(cache_data, indent=2) + "\n", encoding="utf-8")
-    print(f"Wrote {cache_data['tech_ticker_count']} tech tickers to {path}", file=sys.stderr)
+def write_cache(cache_data: dict[str, Any], path: str) -> None:
+    p = Path(path)
+    p.parent.mkdir(parents=True, exist_ok=True)
+    p.write_text(json.dumps(cache_data, indent=2) + "\n", encoding="utf-8")
+    print(f"Wrote {cache_data['valid_count']} tickers to {p}", file=sys.stderr)
 
 
-def load_cache(
-    cache_path: str,
-    max_age_days: int,
-) -> tuple[dict[str, dict[str, str]], dict[str, Any]] | None:
-    path = Path(cache_path)
-    if not path.exists():
-        print(f"No ticker cache at {path}, will download full universe", file=sys.stderr)
+def load_cache(path: str, max_age_days: int) -> list[dict[str, str]] | None:
+    p = Path(path)
+    if not p.exists():
+        print(f"No cache at {p}, using built-in list", file=sys.stderr)
         return None
-
     try:
-        cache_data = json.loads(path.read_text(encoding="utf-8-sig"))
+        data = json.loads(p.read_text(encoding="utf-8-sig"))
     except (json.JSONDecodeError, OSError) as exc:
-        print(f"Could not read ticker cache: {exc}", file=sys.stderr)
+        print(f"Cache read error: {exc}", file=sys.stderr)
         return None
 
-    cache_meta: dict[str, Any] = {
-        "cache_path": str(path),
-        "cache_generated_at": cache_data.get("generated_at", ""),
-        "cache_profile_lookups_used": cache_data.get("profile_lookups_used"),
-        "cache_source_universe": cache_data.get("universe", {}),
-    }
-    generated_at = cache_data.get("generated_at", "")
-    if generated_at:
+    ts = data.get("generated_at", "")
+    if ts:
         try:
-            cache_time = datetime.fromisoformat(str(generated_at))
+            cache_time = datetime.fromisoformat(str(ts))
             if cache_time.tzinfo is None:
                 cache_time = cache_time.replace(tzinfo=timezone.utc)
             age = datetime.now(timezone.utc) - cache_time.astimezone(timezone.utc)
-            cache_meta["cache_age_days"] = round(age.total_seconds() / 86400, 2)
             if age > timedelta(days=max_age_days):
-                print(
-                    f"Ticker cache is {age.days} days old (max {max_age_days}), "
-                    f"will download full universe",
-                    file=sys.stderr,
-                )
+                print(f"Cache is {age.days}d old (max {max_age_days}), using built-in list", file=sys.stderr)
                 return None
-            print(
-                f"Using ticker cache ({cache_data.get('tech_ticker_count', '?')} tech tickers, "
-                f"{cache_meta['cache_age_days']}d old)",
-                file=sys.stderr,
-            )
+            print(f"Using ticker cache ({data.get('valid_count', '?')} tickers, {age.days}d old)", file=sys.stderr)
         except (TypeError, ValueError):
-            print("Could not parse cache timestamp, using cache anyway", file=sys.stderr)
+            pass
 
-    tickers = cache_data.get("tickers", {})
-    if not isinstance(tickers, dict) or not tickers:
-        print("Ticker cache is empty, will download full universe", file=sys.stderr)
+    tickers = data.get("tickers", [])
+    if not tickers:
         return None
+    return tickers
 
-    return tickers, cache_meta
 
-
-def load_universe_with_cache(
-    args: argparse.Namespace,
-) -> tuple[dict[str, dict[str, str]], dict[str, Any]]:
-    if not args.no_cache and not args.include_non_tech:
+def get_ticker_list(args: argparse.Namespace) -> list[dict[str, str]]:
+    """Load tickers from cache or fall back to built-in list."""
+    if not args.no_cache:
         cached = load_cache(args.cache_path, args.cache_max_age_days)
-        if cached is not None:
-            cached_tickers, cache_meta = cached
-            ticker_meta = {
-                ticker: make_stock_meta(
-                    name=meta.get("name", ticker),
-                    source=meta.get("source", "cached"),
-                    sector=meta.get("sector", ""),
-                    industry=meta.get("industry", ""),
-                    force_tech=True,
-                )
-                for ticker, meta in cached_tickers.items()
-            }
-            universe_meta = {
-                "mode": "cached_tech_tickers",
-                "count": len(ticker_meta),
-                **cache_meta,
-            }
-            return ticker_meta, universe_meta
-
-    return load_market_universe()
+        if cached:
+            return cached
+    return TECH_TICKERS
 
 
-def select_publishable_movers(
-    ranked_rows: list[dict[str, Any]],
-    ticker_meta: dict[str, dict[str, str]],
-    count: int,
-    tech_only: bool,
-    max_sector_lookups: int,
-) -> tuple[list[dict[str, Any]], dict[str, Any]]:
-    selected: list[dict[str, Any]] = []
-    skipped_non_tech: list[str] = []
-    sector_lookups = 0
+# ---------------------------------------------------------------------------
+# Explanations
+# ---------------------------------------------------------------------------
 
-    for stock in ranked_rows:
-        ticker = str(stock.get("ticker", "")).upper()
-        meta = ticker_meta.setdefault(ticker, make_stock_meta(stock.get("name", ticker), "price_row"))
-
-        if not tech_only:
-            is_tech = True
-            reason = "tech filter disabled"
-        else:
-            is_tech, reason = classify_tech_related(ticker, meta)
-            if not is_tech and sector_lookups < max_sector_lookups:
-                profile = fetch_yahoo_profile(ticker)
-                sector_lookups += 1
-                if profile:
-                    meta.update({key: value for key, value in profile.items() if value})
-                    stock.update({key: value for key, value in profile.items() if value})
-                    is_tech, reason = classify_tech_related(ticker, meta)
-
-        if is_tech:
-            stock["name"] = meta.get("name") or stock.get("name") or ticker
-            stock["sector"] = meta.get("sector", stock.get("sector", ""))
-            stock["industry"] = meta.get("industry", stock.get("industry", ""))
-            stock["tech_match"] = reason
-            selected.append(stock)
-            if len(selected) >= count:
-                break
-        else:
-            skipped_non_tech.append(ticker)
-
-    rank_stocks(selected)
-    return selected, {
-        "ranked_count": len(ranked_rows),
-        "tech_only": tech_only,
-        "tech_selected_count": len(selected),
-        "skipped_non_tech_count": len(skipped_non_tech),
-        "sector_lookups": sector_lookups,
-        "skipped_non_tech_sample": skipped_non_tech[:25],
+def load_explanations(path: str | None) -> dict[str, str]:
+    if not path:
+        return {}
+    try:
+        data = json.loads(Path(path).read_text(encoding="utf-8"))
+    except (json.JSONDecodeError, OSError):
+        return {}
+    if isinstance(data, dict) and "stocks" in data:
+        return {
+            str(r.get("ticker", "")).upper(): str(r.get("explanation", "")).strip()
+            for r in data["stocks"] if r.get("ticker") and r.get("explanation")
+        }
+    return {
+        str(k).upper(): str(v).strip() for k, v in data.items() if v
     }
 
 
-def rank_stocks(stocks: list[dict[str, Any]]) -> None:
-    for rank, stock in enumerate(stocks, start=1):
-        stock["rank"] = rank
-
-
 def merge_explanations(stocks: list[dict[str, Any]], explanations: dict[str, str]) -> None:
-    for stock in stocks:
-        ticker = str(stock.get("ticker", "")).upper()
-        stock["explanation"] = explanations.get(ticker, stock.get("explanation", "")).strip()
+    for s in stocks:
+        ticker = str(s.get("ticker", "")).upper()
+        s["explanation"] = explanations.get(ticker, s.get("explanation", "")).strip()
 
 
-
-def fetch_pass2_uncached_movers(
-    cached_tickers: set[str],
-    batch_size: int,
-    min_change_pct: float,
-    min_price: float,
-    min_volume: int,
-    max_tickers: int = 200,
-) -> list[dict[str, Any]]:
-    """Pass 2: download Nasdaq ticker list, fetch prices for a sample of
-    non-cached tickers, and return only rows whose absolute change exceeds
-    *min_change_pct*.
-
-    Downloads at most *max_tickers* uncached names (sorted alphabetically for
-    reproducibility) to keep the pass fast.  This is intentionally lightweight —
-    no Wikipedia S&P 500 fetch, no profile lookups.  The goal is to surface big
-    movers that the trimmed cache missed.
-    """
-    import random
-
-    print("Pass 2: downloading Nasdaq ticker list...", file=sys.stderr)
-    try:
-        nasdaq = load_nasdaq_listed_common_stocks()
-    except Exception as exc:
-        print(f"Pass 2 skipped — could not load Nasdaq list: {exc}", file=sys.stderr)
-        return []
-
-    uncached_keys = sorted(set(nasdaq.keys()) - cached_tickers)
-    total_uncached = len(uncached_keys)
-
-    # Deterministic daily sample: seed with today's date so reruns are stable
-    if total_uncached > max_tickers:
-        today_seed = datetime.now(timezone.utc).strftime("%Y-%m-%d")
-        rng = random.Random(today_seed)
-        uncached_keys = sorted(rng.sample(uncached_keys, max_tickers))
-
-    uncached = {t: nasdaq[t] for t in uncached_keys}
-    print(
-        f"Pass 2: sampling {len(uncached)}/{total_uncached} uncached Nasdaq tickers "
-        f"(skipping {len(cached_tickers)} cached)",
-        file=sys.stderr,
-    )
-    if not uncached:
-        return []
-
-    rows = fetch_price_rows(
-        ticker_meta=uncached,
-        batch_size=batch_size,
-        min_price=min_price,
-        min_volume=min_volume,
-    )
-
-    # Only keep rows with moves big enough to matter
-    significant = [r for r in rows if abs(r["change_pct"]) >= min_change_pct]
-    print(
-        f"Pass 2: {len(significant)} movers above {min_change_pct:.1f}% threshold "
-        f"(from {len(rows)} priced)",
-        file=sys.stderr,
-    )
-    return significant
-
+# ---------------------------------------------------------------------------
+# Main
+# ---------------------------------------------------------------------------
 
 def build_payload(args: argparse.Namespace) -> dict[str, Any]:
     now = market_now(args.timezone)
     explanations = load_explanations(args.explanations)
 
     if args.input:
-        payload = load_json(args.input)
+        payload = json.loads(Path(args.input).read_text(encoding="utf-8"))
         stocks = payload.get("stocks", [])
-        universe_meta = payload.get("universe", {})
     else:
-        ticker_override = parse_ticker_override(args.tickers)
-        if ticker_override:
-            ticker_meta = ticker_override
-            universe_meta = {
-                "mode": "manual_tickers",
-                "count": len(ticker_meta),
-                "sources": [],
-            }
-        else:
-            ticker_meta, universe_meta = load_universe_with_cache(args)
-        if args.list_universe:
-            print(json.dumps(universe_meta, indent=2))
-            raise SystemExit(0)
-        ranked_rows = fetch_price_rows(
-            ticker_meta=ticker_meta,
-            batch_size=max(1, args.batch_size),
-            min_price=max(0, args.min_price),
-            min_volume=max(0, args.min_volume),
-        )
-        stocks, filter_meta = select_publishable_movers(
-            ranked_rows=ranked_rows,
-            ticker_meta=ticker_meta,
-            count=args.count,
-            tech_only=not args.include_non_tech,
-            max_sector_lookups=max(0, args.max_sector_lookups),
-        )
-        universe_meta.update(filter_meta)
+        ticker_list = get_ticker_list(args)
+        tickers = [t["ticker"] for t in ticker_list]
+        name_map = {t["ticker"]: t["name"] for t in ticker_list}
 
-        # --- Two-pass: sweep uncached Nasdaq tickers for big movers ---
-        if args.two_pass and not ticker_override:
-            # Auto-threshold: use the smallest selected mover from pass 1
-            if args.pass2_min_change_pct > 0:
-                threshold = args.pass2_min_change_pct
-            elif stocks:
-                threshold = min(abs(s["change_pct"]) for s in stocks)
-            else:
-                threshold = 3.0  # sensible default
+        snapshots = fetch_snapshots(tickers, args.alpaca_key_id, args.alpaca_secret_key)
+        rows = snapshots_to_rows(snapshots, name_map)
+        stocks = rows[: args.count]
 
-            pass2_rows = fetch_pass2_uncached_movers(
-                cached_tickers=set(ticker_meta.keys()),
-                batch_size=max(1, args.pass2_batch_size),
-                min_change_pct=threshold,
-                min_price=max(0, args.min_price),
-                min_volume=max(0, args.min_volume),
-            )
-            if pass2_rows:
-                # Merge pass-2 rows into ticker_meta and re-select
-                for row in pass2_rows:
-                    t = row["ticker"]
-                    if t not in ticker_meta:
-                        ticker_meta[t] = make_stock_meta(
-                            row.get("name", t), source="pass2_nasdaq"
-                        )
-                all_rows = ranked_rows + pass2_rows
-                all_rows.sort(key=lambda r: abs(r["change_pct"]), reverse=True)
-                stocks, filter_meta = select_publishable_movers(
-                    ranked_rows=all_rows,
-                    ticker_meta=ticker_meta,
-                    count=args.count,
-                    tech_only=not args.include_non_tech,
-                    max_sector_lookups=max(0, args.max_sector_lookups),
-                )
-                universe_meta.update(filter_meta)
-                universe_meta["pass2_candidates"] = len(pass2_rows)
-                universe_meta["mode"] = "two_pass_cached_plus_nasdaq"
+        # Assign ranks
+        for rank, s in enumerate(stocks, start=1):
+            s["rank"] = rank
 
     merge_explanations(stocks, explanations)
 
@@ -1085,13 +559,14 @@ def build_payload(args: argparse.Namespace) -> dict[str, Any]:
         "date": args.date or now.date().isoformat(),
         "generated_at": now.isoformat(timespec="seconds"),
         "data_as_of": args.data_as_of or display_time(now),
-        "source": "yfinance",
-        "universe": universe_meta,
+        "source": "alpaca",
+        "universe": {
+            "mode": "curated_tech_200",
+            "tech_only": True,
+            "count": len(get_ticker_list(args)),
+        },
         "filters": {
-            "min_price": args.min_price,
-            "min_volume": args.min_volume,
-            "tech_only": not args.include_non_tech,
-            "max_sector_lookups": args.max_sector_lookups,
+            "tech_only": True,
         },
         "stocks": stocks[: args.count],
     }
@@ -1099,8 +574,30 @@ def build_payload(args: argparse.Namespace) -> dict[str, Any]:
 
 def main() -> int:
     args = parse_args()
+
+    if not args.alpaca_key_id or not args.alpaca_secret_key:
+        # Try loading from .alpaca-config
+        config_path = Path(__file__).resolve().parent.parent / ".alpaca-config"
+        if config_path.exists():
+            for line in config_path.read_text().strip().splitlines():
+                line = line.strip()
+                if line.startswith("APCA_API_KEY_ID="):
+                    args.alpaca_key_id = args.alpaca_key_id or line.split("=", 1)[1].strip()
+                elif line.startswith("APCA_API_SECRET_KEY="):
+                    args.alpaca_secret_key = args.alpaca_secret_key or line.split("=", 1)[1].strip()
+
+    if not args.alpaca_key_id or not args.alpaca_secret_key:
+        print(
+            "Error: Alpaca API credentials required.\n"
+            "Set APCA_API_KEY_ID and APCA_API_SECRET_KEY env vars,\n"
+            "or pass --alpaca-key-id and --alpaca-secret-key,\n"
+            "or create .alpaca-config in the project root.",
+            file=sys.stderr,
+        )
+        return 1
+
     if args.refresh_cache:
-        cache_data = build_tech_ticker_cache(max(0, args.max_cache_profile_lookups))
+        cache_data = build_cache(args.alpaca_key_id, args.alpaca_secret_key)
         write_cache(cache_data, args.cache_path)
         return 0
 
@@ -1114,3 +611,4 @@ def main() -> int:
 
 if __name__ == "__main__":
     raise SystemExit(main())
+                                    
