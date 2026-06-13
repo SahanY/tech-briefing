@@ -1,10 +1,9 @@
 .github-pages-config
+.alpaca-config
 __pycache__/
 *.pyc
 .venv/
 latest-post.md
-_site/
-jekyll-serve*.log
 tmp/
 stock_movers*.json
 tech_ticker_cache.json
