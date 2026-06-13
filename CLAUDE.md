@@ -2,7 +2,7 @@
 
 ## Purpose
 
-Publish a concise weekday tech briefing to GitHub Pages as a Jekyll post, then refresh the Market Movers page with the day's largest tech-related stock moves from a broad Nasdaq-listed plus S&P 500 scan.
+Publish a concise weekday tech briefing to GitHub Pages as a Jekyll post, then refresh the Market Movers page with the day's largest tech-related stock moves from a curated ~200 tech ticker universe via the Alpaca Market Data API.
 
 ## Schedule
 
@@ -27,7 +27,7 @@ On Monday runs, include weekend coverage: collect and consider technology news p
 6. Before writing, apply the source-diversity gate from `config.yaml`: the ranked story pool should include at least 10 usable articles from at least 5 publications, and no single publication should account for more than 35% of usable articles. If the gate fails, retry RSS/web collection with broader searches before drafting. If it still fails, publish only with an explicit reduced-coverage note in the sources footer.
 7. Write one Jekyll post: `_posts/YYYY-MM-DD-tech-briefing.md`.
 8. Publish the briefing through the GitHub Contents API.
-9. Generate `_data/stock_movers.json` from `scripts/generate_stock_movers.py` using `--two-pass` mode. Pass 1 fetches prices for the pre-classified tech ticker cache (`_data/tech_ticker_cache.json`). Pass 2 samples uncached Nasdaq-listed tickers to catch big movers outside the cache. Run: `python3 scripts/generate_stock_movers.py --count 15 --two-pass --output _data/stock_movers.json`. Research each selected mover, add 3-4 sentence explanations, and publish the JSON through the GitHub Contents API.
+9. Generate `_data/stock_movers.json` from `scripts/generate_stock_movers.py`, which fetches Alpaca snapshots for ~200 curated tech tickers and ranks by absolute percent change. Research each selected mover, add 3-4 sentence explanations, and publish the JSON through the GitHub Contents API. The ticker list is validated weekly via `--refresh-cache`.
 10. GitHub Pages builds and serves the site.
 
 ## Output Format
@@ -59,9 +59,9 @@ Market Movers data must be valid JSON at `_data/stock_movers.json` with this sha
   "date": "YYYY-MM-DD",
   "generated_at": "ISO timestamp",
   "data_as_of": "YYYY-MM-DD, 9:00 AM CT",
-  "source": "yfinance",
+  "source": "alpaca",
   "universe": {
-    "mode": "nasdaq_listed_plus_sp500",
+    "mode": "curated_tech_200",
     "tech_only": true
   },
   "filters": {
@@ -74,4 +74,13 @@ Market Movers data must be valid JSON at `_data/stock_movers.json` with this sha
       "name": "NVIDIA Corporation",
       "price": 135.42,
       "previous_close": 125.61,
-      "change
+      "change_pct": 7.81,
+      "change_abs": 9.81,
+      "volume": "98.2M",
+      "volume_raw": 98200000,
+      "direction": "gain",
+      "explanation": "Three to four sentences explaining the catalyst."
+    }
+  ]
+}
+```
