@@ -1,10 +1,3 @@
-delivery:
-  time: "09:00"
-  timezone: "America/Chicago"
-  weekdays_only: true
-  recipients:
-    - recipient@example.com
-
 sources:
   # Tier 1 — Traditional / Institutional Media
   - name: Wall Street Journal Tech
@@ -202,14 +195,10 @@ market_movers:
   data_path: _data/stock_movers.json
   script_path: scripts/generate_stock_movers.py
   count: 15
-  source: yfinance
-  universe: nasdaq_listed_plus_sp500
-  universe_sources:
-    - https://www.nasdaqtrader.com/dynamic/SymDir/nasdaqlisted.txt
-    - https://en.wikipedia.org/wiki/List_of_S%26P_500_companies
+  source: alpaca
+  universe: curated_tech_200
   tech_only: true
-  batch_size: 200
-  max_sector_lookups: 75
-  min_price: 0
-  min_volume: 0
+  credentials_file: .alpaca-config
+  cache_path: _data/tech_ticker_cache.json
+  cache_refresh: weekly
   explanation_query_template: "{ticker} stock news today"
