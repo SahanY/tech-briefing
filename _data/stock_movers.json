@@ -1,31 +1,44 @@
 {
-  "date": "2026-06-13",
-  "generated_at": "2026-06-13T11:34:03-05:00",
-  "data_as_of": "2026-06-13, 11:34 AM CT",
+  "date": "2026-06-15",
+  "generated_at": "2026-06-15T09:00:00-05:00",
+  "data_as_of": "2026-06-15, 9:00 AM CT",
   "source": "alpaca",
   "universe": {
     "mode": "curated_tech_200",
-    "tech_only": true,
-    "count": 182
+    "tech_only": true
   },
   "filters": {
     "tech_only": true
   },
   "stocks": [
     {
+      "rank": 1,
+      "ticker": "KLAC",
+      "name": "KLA Corporation",
+      "price": 254.65,
+      "previous_close": 2410.64,
+      "change_pct": -89.44,
+      "change_abs": -2155.99,
+      "volume": "371.6K",
+      "volume_raw": 371559,
+      "direction": "loss",
+      "explanation": "KLA's apparent 89% drop reflects its 10-for-1 stock split that took effect on June 12, not a fundamental decline. The split was announced May 7 alongside a 21% dividend increase. KLA's previous close of ~$2,411 pre-split translates to ~$241 post-split, making the actual adjusted move modest. The split aims to improve share accessibility and liquidity for the semiconductor equipment maker."
+    },
+    {
+      "rank": 2,
       "ticker": "ROKU",
       "name": "Roku Inc.",
       "price": 143.22,
-      "previous_close": 119.7,
+      "previous_close": 119.70,
       "change_pct": 19.65,
       "change_abs": 23.52,
       "volume": "723.2K",
       "volume_raw": 723191,
       "direction": "gain",
-      "explanation": "Roku surged after Bloomberg reported the streaming platform is in acquisition talks with at least one U.S. media company. The news arrived alongside multiple tailwinds: Roku recently raised its full-year 2026 outlook after record premium subscription sign-ups, and the company is being added to the S&P MidCap 400 effective June 22. Evercore ISI also raised its price target to $185 from $160.",
-      "rank": 1
+      "explanation": "Roku surged nearly 20% after Fox Corporation announced a definitive agreement to acquire the streaming platform for approximately $22 billion, or $160 per share in a mix of cash and Fox Class A stock. The deal combines Fox's Tubi service and sports/news content with Roku's 100-million-plus streaming household base, creating the third-largest U.S. television company by viewing share."
     },
     {
+      "rank": 3,
       "ticker": "ASTS",
       "name": "AST SpaceMobile",
       "price": 82.42,
@@ -35,10 +48,10 @@
       "volume": "1.4M",
       "volume_raw": 1442562,
       "direction": "loss",
-      "explanation": "AST SpaceMobile fell for a fourth straight session, marking its longest losing streak of 2026, as SpaceX's blockbuster Nasdaq IPO diverted capital from other space stocks. Investors are weighing whether SpaceX's $2 trillion debut will structurally reduce interest in smaller space plays. A Blue Origin New Glenn explosion earlier in the month also weighed on broader space sector sentiment.",
-      "rank": 2
+      "explanation": "AST SpaceMobile continued its post-SpaceX IPO selloff as capital rotated out of smaller space stocks into the newly public SpaceX. Concerns about execution risk following a Bluebird 7 satellite launch anomaly added pressure. Despite the drop, the company holds $3.5 billion in cash and $1.2 billion in contracted revenue commitments from telecom partners."
     },
     {
+      "rank": 4,
       "ticker": "LUNR",
       "name": "Intuitive Machines",
       "price": 26.62,
@@ -48,23 +61,23 @@
       "volume": "737.9K",
       "volume_raw": 737874,
       "direction": "loss",
-      "explanation": "Intuitive Machines dropped as the broader space sector sold off following SpaceX's massive IPO debut on Nasdaq. The $75 billion raise and $2 trillion market cap drew capital away from smaller space companies, with investors rotating into SPCX as MSCI announced early index inclusion eligibility.",
-      "rank": 3
+      "explanation": "Intuitive Machines dropped 13% as part of a broad space-sector rotation triggered by SpaceX's record IPO on June 12. Investors shifted capital from smaller space plays into the newly public SpaceX, with Intuitive Machines hit harder than peers due to its direct competition in lunar delivery services and narrower revenue base."
     },
     {
+      "rank": 5,
       "ticker": "ARM",
       "name": "Arm Holdings",
-      "price": 380.2,
+      "price": 380.20,
       "previous_close": 342.65,
       "change_pct": 10.96,
       "change_abs": 37.56,
       "volume": "709.5K",
       "volume_raw": 709469,
       "direction": "gain",
-      "explanation": "Arm Holdings rallied to new highs after Bank of America raised its price target to $335 from $245, citing a structural shift in AI infrastructure spending. Hyperscalers are now adding large quantities of CPUs alongside GPUs, a tailwind that disproportionately benefits Arm's licensing model. The Microsoft-Nvidia-Arm 'New Era for PC' announcement at Computex added further momentum.",
-      "rank": 4
+      "explanation": "Arm rallied 11% as the US-Iran peace deal boosted global risk appetite, amplifying momentum from Nvidia's RTX Spark superchip announcement using Arm-based architecture. Mizuho raised its price target to $500 citing agentic AI workloads, and Arm's record Q4 revenue of $1.49 billion showed 20% year-over-year growth with $2 billion in committed customer demand for its AGI CPU."
     },
     {
+      "rank": 6,
       "ticker": "RKLB",
       "name": "Rocket Lab USA",
       "price": 102.42,
@@ -74,10 +87,10 @@
       "volume": "1.2M",
       "volume_raw": 1241157,
       "direction": "loss",
-      "explanation": "Rocket Lab fell despite reporting record quarterly revenue of $200.3 million and a backlog swelling to $2.2 billion. Investors were spooked by guidance for lower gross margins driven by a mix shift toward large-scale government contracts with the Space Development Agency. The SpaceX IPO also drew attention and capital away from smaller launch providers.",
-      "rank": 5
+      "explanation": "Rocket Lab fell nearly 11% in the SpaceX IPO rotation trade, as investors sold smaller space names to fund positions in the newly public SPCX. The decline was relatively contained compared to peers like Virgin Galactic (-24%). Rocket Lab will join the Nasdaq-100 on June 22 and reported strong Q1 results with $344 million revenue and a $2.2 billion backlog."
     },
     {
+      "rank": 7,
       "ticker": "ZI",
       "name": "ZoomInfo Technologies",
       "price": 10.34,
@@ -87,10 +100,10 @@
       "volume": "543.7K",
       "volume_raw": 543733,
       "direction": "gain",
-      "explanation": "ZoomInfo bounced after steep recent losses that saw shares fall 36% in the prior week following guidance cuts, a 20% workforce reduction, and analyst downgrades. The rebound appears to be a technical recovery from oversold conditions rather than a fundamental shift. Q1 revenue of $310.2 million beat expectations but full-year guidance was cut to $1.19-1.21 billion.",
-      "rank": 6
+      "explanation": "ZoomInfo jumped over 10% as the company's turnaround narrative gained traction ahead of its virtual investor day. Quarterly revenue of $309 million surpassed expectations with the largest sequential growth since Q2 2022. Analyst upgrades from Barclays and Citi reflect growing confidence in ZoomInfo's enterprise pivot and its Copilot product reaching $150 million in annual contract value."
     },
     {
+      "rank": 8,
       "ticker": "AMKR",
       "name": "Amkor Technology",
       "price": 82.78,
@@ -100,10 +113,10 @@
       "volume": "333.2K",
       "volume_raw": 333249,
       "direction": "gain",
-      "explanation": "Amkor Technology climbed on continued enthusiasm for its Arizona advanced packaging expansion, a nearly 171-acre complex targeting AI and high-performance computing chips. The stock sits at the intersection of AI demand, U.S. semiconductor onshoring, and rising reliance on advanced packaging. Q2 guidance calls for revenue of $1.75-1.85 billion.",
-      "rank": 7
+      "explanation": "Amkor Technology rose nearly 9% as the US-Iran peace deal lifted semiconductor stocks broadly, with particular strength in packaging and test names benefiting from sustained AI chip demand. Amkor's advanced packaging capabilities for AI accelerators position it as a key beneficiary of the ongoing data center buildout cycle."
     },
     {
+      "rank": 9,
       "ticker": "RIVN",
       "name": "Rivian Automotive",
       "price": 16.77,
@@ -113,10 +126,10 @@
       "volume": "1.5M",
       "volume_raw": 1460259,
       "direction": "gain",
-      "explanation": "Rivian jumped as first public deliveries of the R2 mid-size SUV began from its Normal, Illinois plant. A new 5G connectivity deal with AT&T for the R2 added to momentum, while Volkswagen's private purchase of 62.89 million new shares giving it 15.9% of Class A stock signals long-term strategic alignment. The ~$58,000 R2 is Rivian's play for mass-market scale.",
-      "rank": 8
+      "explanation": "Rivian extended its rally on continued momentum from R2 SUV deliveries that began June 9, marking the company's entry into the mass-market EV segment. Volkswagen's recent purchase of a 15.9% stake and a new 5G connectivity deal with AT&T for the R2 have bolstered investor confidence. The stock is up over 30% from its May lows."
     },
     {
+      "rank": 10,
       "ticker": "STX",
       "name": "Seagate Technology",
       "price": 930.75,
@@ -126,10 +139,10 @@
       "volume": "135.4K",
       "volume_raw": 135371,
       "direction": "gain",
-      "explanation": "Seagate rallied as AI-driven demand for high-capacity hard drives continues to outstrip supply. The company's nearline HDD capacity is fully committed through 2026 with long-term agreements extending into 2027. Seagate's Mozaic HAMR technology positions it as a key beneficiary of the AI infrastructure storage buildout.",
-      "rank": 9
+      "explanation": "Seagate continued its 2026 tear — now up over 200% year-to-date — after multiple analyst upgrades from Wells Fargo, Barclays, and BofA citing AI-driven storage demand. The company announced redemption of $150.7 million in convertible notes and guided for at least 20% annual revenue growth. Recent quarterly revenue hit $3.1 billion with a 32% operating margin."
     },
     {
+      "rank": 11,
       "ticker": "RDDT",
       "name": "Reddit Inc.",
       "price": 162.08,
@@ -139,10 +152,10 @@
       "volume": "285.2K",
       "volume_raw": 285243,
       "direction": "loss",
-      "explanation": "Reddit declined after being excluded from the S&P 500 index, disappointing investors who had anticipated inclusion. Wells Fargo analysts see a silver lining: AI data licensing deals with Google and OpenAI are up for renewal this year, with combined annual revenue potentially surging to $550 million from $140 million. The stock had gained 11.7% over the prior month.",
-      "rank": 10
+      "explanation": "Reddit dropped nearly 7%, extending a 40% year-to-date decline despite posting record Q1 revenue of $663 million (up 69% YoY). The stock remains under pressure from Meta's launch of Forum, a Reddit-clone built on Facebook Groups, and lingering concerns about Google algorithm changes that could reduce Reddit's search traffic referral pipeline."
     },
     {
+      "rank": 12,
       "ticker": "ONTO",
       "name": "Onto Innovation",
       "price": 323.64,
@@ -152,10 +165,10 @@
       "volume": "106.0K",
       "volume_raw": 106045,
       "direction": "gain",
-      "explanation": "Onto Innovation gained as investors reacted to planned June 2026 shipments of its Dragonfly G5 platform for advanced AI packaging. Management raised the 2026 revenue outlook above $1.3 billion and is targeting operating margins above 30% by year-end. Deutsche Bank and Stifel both maintained Buy ratings with $350 price targets.",
-      "rank": 11
+      "explanation": "Onto Innovation rose 6.6% as semiconductor equipment stocks rallied broadly on the US-Iran peace deal and continued strength in AI chip capital expenditure. As a specialist in process control for advanced packaging and lithography, Onto benefits from the multi-year upgrade cycle at TSMC, Samsung, and Intel foundries."
     },
     {
+      "rank": 13,
       "ticker": "ADBE",
       "name": "Adobe Inc.",
       "price": 204.02,
@@ -165,10 +178,10 @@
       "volume": "754.3K",
       "volume_raw": 754345,
       "direction": "loss",
-      "explanation": "Adobe dropped despite posting record Q2 revenue of $6.62 billion, beating expectations and raising full-year guidance. The sell-off was driven by CFO Dan Durn's surprise departure effective June 15, leaving Adobe without a permanent CEO or CFO simultaneously. AI annual recurring revenue tripled year-over-year, but the leadership vacuum spooked investors.",
-      "rank": 12
+      "explanation": "Adobe fell 6.5% following CFO Dan Durn's abrupt departure to Marvell Technology, compounding concerns about a dual leadership vacuum as CEO Shantanu Narayen announced his own planned exit in March. Despite beating Q2 estimates with $6.62 billion in revenue (up 13% YoY), investors are wary of Adobe's shift toward a freemium AI model that could pressure near-term revenue."
     },
     {
+      "rank": 14,
       "ticker": "INTC",
       "name": "Intel Corporation",
       "price": 124.55,
@@ -178,10 +191,10 @@
       "volume": "5.9M",
       "volume_raw": 5901388,
       "direction": "gain",
-      "explanation": "Intel extended its remarkable 2026 rally after Bank of America issued a rare double upgrade to Buy from Underperform, raising its price target to $135. The catalysts: stronger server CPU demand from agentic AI workloads and improved Intel Foundry visibility after Google reportedly committed to having Intel produce over three million TPUs by 2028. CHIPS Act grants have de-risked capex through 2027.",
-      "rank": 13
+      "explanation": "Intel rose 6.5%, extending a 250%+ year-to-date rally fueled by its foundry turnaround. The stock is riding momentum from Google's order for 3 million+ TPUs to be manufactured at Intel fabs, a Foxconn partnership for AI rack-scale infrastructure, and Bank of America's price target raise to $135. CHIPS Act grants for Ohio and Arizona fabs have de-risked the capex outlook through 2027."
     },
     {
+      "rank": 15,
       "ticker": "WDC",
       "name": "Western Digital",
       "price": 562.88,
@@ -191,8 +204,7 @@
       "volume": "224.6K",
       "volume_raw": 224577,
       "direction": "gain",
-      "explanation": "Western Digital rose alongside the broader storage rally as AI infrastructure demand drives unprecedented need for high-capacity drives. The company announced a 20% dividend increase payable June 17, and like competitor Seagate, has nearline HDD capacity committed through 2026 with long-term agreements into 2027.",
-      "rank": 14
+      "explanation": "Western Digital gained 6.4% in sympathy with Seagate's continued rally as AI-driven data storage demand lifts the entire hard drive sector. Analyst upgrades across the storage space and expectations for sustained enterprise demand from hyperscaler data center builds have propelled both WDC and STX to multi-year highs in 2026."
     }
   ]
 }
