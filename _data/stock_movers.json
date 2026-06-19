@@ -22,8 +22,8 @@
       "volume": "2.2M",
       "volume_raw": 2209733,
       "direction": "gain",
-      "explanation": "Shares surged for a second straight day after Midjourney unveiled a full-body scanner using Butterfly's ultrasound-on-chip technology, marking Midjourney's first hardware product. The co-development deal could generate up to $74 million in payments to Butterfly over five years. Management is amplifying the story with back-to-back conference appearances this week.",
-      "rank": 1
+      "rank": 1,
+      "explanation": "Shares surged for a second straight day after Midjourney unveiled a full-body scanner using Butterfly's ultrasound-on-chip technology, marking Midjourney's first hardware product. The co-development deal could generate up to $74 million in payments to Butterfly over five years. Management is amplifying the story with back-to-back conference appearances this week."
     },
     {
       "ticker": "WOLF",
@@ -35,8 +35,8 @@
       "volume": "280.6K",
       "volume_raw": 280567,
       "direction": "gain",
-      "explanation": "Rally fueled by a new MOU with GE Aerospace to supply 10 kV silicon carbide MOSFETs for AI, aerospace, and defense applications. Wolfspeed also announced fifth-generation SiC MOSFETs and a new data center solutions team. With ~33% short interest, the stock is prone to sharp short-covering rallies on positive catalysts.",
-      "rank": 2
+      "rank": 2,
+      "explanation": "Rally fueled by a new MOU with GE Aerospace to supply 10 kV silicon carbide MOSFETs for AI, aerospace, and defense applications. Wolfspeed also announced fifth-generation SiC MOSFETs and a new data center solutions team. With roughly 33% short interest, the stock is prone to sharp short-covering rallies on positive catalysts."
     },
     {
       "ticker": "ACN",
@@ -48,8 +48,8 @@
       "volume": "1.6M",
       "volume_raw": 1625464,
       "direction": "loss",
-      "explanation": "Shares cratered after Q3 fiscal 2026 earnings disappointed on guidance. Revenue rose 6% to $18.7 billion and EPS hit $3.80, but the company cut full-year revenue growth outlook to 3-4% from 3-5%, citing geopolitical tensions and weaker U.S. federal bookings. The guidance cut triggered a broad selloff across IT services stocks.",
-      "rank": 3
+      "rank": 3,
+      "explanation": "Shares cratered after Q3 fiscal 2026 earnings disappointed on guidance. Revenue rose 6% to $18.7 billion and EPS hit $3.80, but the company cut full-year revenue growth outlook to 3-4% from 3-5%, citing geopolitical tensions and weaker U.S. federal bookings. The guidance cut triggered a broad selloff across IT services stocks."
     },
     {
       "ticker": "EPAM",
@@ -61,8 +61,8 @@
       "volume": "336.2K",
       "volume_raw": 336225,
       "direction": "loss",
-      "explanation": "Dragged down in the sector-wide IT services selloff triggered by Accenture's guidance cut. Berenberg pulled its Buy rating on Cognizant and flagged AI deflation as a structural headwind for outsourced engineering firms, pressuring the entire group. EPAM is down over 50% year to date on persistent concerns about AI disruption to its core business.",
-      "rank": 4
+      "rank": 4,
+      "explanation": "Dragged down in the sector-wide IT services selloff triggered by Accenture's guidance cut. Berenberg pulled its Buy rating on Cognizant and flagged AI deflation as a structural headwind for outsourced engineering firms, pressuring the entire group. EPAM is down over 50% year to date on persistent concerns about AI disruption to its core business."
     },
     {
       "ticker": "GLW",
@@ -74,8 +74,8 @@
       "volume": "684.0K",
       "volume_raw": 684016,
       "direction": "gain",
-      "explanation": "Continued its AI-infrastructure rally, now up 119% year to date. The stock is benefiting from a multibillion-dollar Amazon contract for optical fiber and connectivity solutions for data center expansion, plus broader momentum from Jensen Huang's Computex commentary on surging demand for high-speed optical connectivity in AI data centers.",
-      "rank": 5
+      "rank": 5,
+      "explanation": "Continued its AI-infrastructure rally, now up 119% year to date. The stock is benefiting from a multibillion-dollar Amazon contract for optical fiber and connectivity solutions for data center expansion, plus broader momentum from Jensen Huang's Computex commentary on surging demand for high-speed optical connectivity in AI data centers."
     },
     {
       "ticker": "CTSH",
@@ -87,8 +87,8 @@
       "volume": "3.3M",
       "volume_raw": 3324864,
       "direction": "loss",
-      "explanation": "Fell to a fresh 52-week low in sympathy with Accenture's guidance cut. Berenberg downgraded the stock, citing AI deflation as a sector-wide theme and concluding Cognizant lacks the differentiated mix to offset the pressure. The company's own fundamentals remain solid — it beat adjusted EPS in each of its last five quarters.",
-      "rank": 6
+      "rank": 6,
+      "explanation": "Fell to a fresh 52-week low in sympathy with Accenture's guidance cut. Berenberg downgraded the stock, citing AI deflation as a sector-wide theme and concluding Cognizant lacks the differentiated mix to offset the pressure. The company's own fundamentals remain solid, having beat adjusted EPS in each of its last five quarters."
     },
     {
       "ticker": "ZI",
@@ -100,11 +100,112 @@
       "volume": "543.7K",
       "volume_raw": 543733,
       "direction": "gain",
-      "explanation": "Shares bounced amid renewed interest in sales intelligence platforms as enterprise software deal flow picked up. The stock has been volatile throughout 2026, with investors weighing the company's transition to an AI-powered go-to-market platform against competitive pressures in the B2B data space.",
-      "rank": 7
+      "rank": 7,
+      "explanation": "Shares bounced amid renewed interest in sales intelligence platforms as enterprise software deal flow picked up. The stock has been volatile throughout 2026, with investors weighing the company's transition to an AI-powered go-to-market platform against competitive pressures in the B2B data space."
     },
     {
       "ticker": "INTC",
       "name": "Intel Corporation",
       "price": 133.8,
-      "previous_close"
+      "previous_close": 121.08,
+      "change_pct": 10.51,
+      "change_abs": 12.72,
+      "volume": "3.1M",
+      "volume_raw": 3080877,
+      "direction": "gain",
+      "rank": 8,
+      "explanation": "Surged after President Trump announced Apple has agreed to design and build chips with Intel, the biggest potential customer win for Intel's foundry business. The deal would diversify Apple's supply chain away from TSMC. Intel's 18A-P process recently entered risk production, making the timing commercially plausible."
+    },
+    {
+      "ticker": "SMCI",
+      "name": "Super Micro Computer",
+      "price": 30.66,
+      "previous_close": 27.8,
+      "change_pct": 10.31,
+      "change_abs": 2.86,
+      "volume": "2.7M",
+      "volume_raw": 2740828,
+      "direction": "gain",
+      "rank": 9,
+      "explanation": "Rallied on continued AI server demand momentum after closing the depositary share portion of its $7 billion equity financing package. The company recently disclosed approximately $39 billion in AI server orders from over 20 customers. SK Hynix's announcement to double wafer production capacity added further tailwinds to AI infrastructure names."
+    },
+    {
+      "ticker": "LSCC",
+      "name": "Lattice Semiconductor",
+      "price": 153.61,
+      "previous_close": 139.47,
+      "change_pct": 10.14,
+      "change_abs": 14.14,
+      "volume": "250.9K",
+      "volume_raw": 250934,
+      "direction": "gain",
+      "rank": 10,
+      "explanation": "Benefited from broad semiconductor sector strength driven by the Intel-Apple partnership announcement and renewed optimism about domestic chip manufacturing. Lattice's low-power FPGAs are increasingly used in AI edge inference and industrial automation applications, positioning it as a secondary beneficiary of AI infrastructure buildout."
+    },
+    {
+      "ticker": "INFY",
+      "name": "Infosys Limited",
+      "price": 10.56,
+      "previous_close": 11.74,
+      "change_pct": -10.05,
+      "change_abs": -1.18,
+      "volume": "4.0M",
+      "volume_raw": 4013638,
+      "direction": "loss",
+      "rank": 11,
+      "explanation": "Fell sharply in the IT services sector selloff triggered by Accenture's guidance downgrade. Berenberg's note on AI deflation as a structural headwind for outsourced engineering weighed heavily on Indian IT names. Infosys shares on the NSE hit their lowest level in three years ahead of the company's AGM scheduled for June 23."
+    },
+    {
+      "ticker": "QUBT",
+      "name": "Quantum Computing Inc.",
+      "price": 10.74,
+      "previous_close": 9.76,
+      "change_pct": 10.04,
+      "change_abs": 0.98,
+      "volume": "703.0K",
+      "volume_raw": 702956,
+      "direction": "gain",
+      "rank": 12,
+      "explanation": "Rose on momentum in the quantum computing sector following EigenQ's announcement of a $3 billion SPAC merger to go public on Nasdaq. The broader quantum computing theme continues to attract speculative interest as federal cybersecurity mandates drive demand for post-quantum cryptography solutions."
+    },
+    {
+      "ticker": "MU",
+      "name": "Micron Technology",
+      "price": 1132.59,
+      "previous_close": 1043.95,
+      "change_pct": 8.49,
+      "change_abs": 88.64,
+      "volume": "1.2M",
+      "volume_raw": 1199969,
+      "direction": "gain",
+      "rank": 13,
+      "explanation": "Gained on semiconductor sector enthusiasm from the Intel-Apple partnership news and ahead of its fiscal Q3 earnings report on June 24. Apple's warning about a memory chip shortage underscored strong demand dynamics for Micron's DRAM and NAND products. Investors are betting the AI memory boom still has room to run."
+    },
+    {
+      "ticker": "KLAC",
+      "name": "KLA Corporation",
+      "price": 259.01,
+      "previous_close": 238.79,
+      "change_pct": 8.47,
+      "change_abs": 20.22,
+      "volume": "482.4K",
+      "volume_raw": 482391,
+      "direction": "gain",
+      "rank": 14,
+      "explanation": "Rose with the broader semiconductor equipment group on optimism about domestic chip manufacturing following the Intel-Apple announcement. KLA's process control and inspection tools are critical to advanced node manufacturing, making it a direct beneficiary of Intel's foundry expansion and the reshoring push."
+    },
+    {
+      "ticker": "MPWR",
+      "name": "Monolithic Power Systems",
+      "price": 1563.49,
+      "previous_close": 1448.36,
+      "change_pct": 7.95,
+      "change_abs": 115.13,
+      "volume": "65.2K",
+      "volume_raw": 65240,
+      "direction": "gain",
+      "rank": 15,
+      "explanation": "Gained alongside the semiconductor sector rally sparked by the Intel-Apple partnership news. MPWR's power management ICs are essential components in AI servers and data center infrastructure, and the company continues to benefit from accelerating AI capex across hyperscalers and enterprise customers."
+    }
+  ]
+}
