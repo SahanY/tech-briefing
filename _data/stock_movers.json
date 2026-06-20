@@ -22,7 +22,7 @@
       "volume": "2.2M",
       "volume_raw": 2209733,
       "direction": "gain",
-      "explanation": "Shares surged after Midjourney unveiled a full-body ultrasound scanner built with 40 Butterfly ultrasound-on-chip modules. The five-year licensing and co-development agreement could generate up to $74 million in payments for Butterfly. This marks Midjourney's first hardware initiative and validates Butterfly's chip-based imaging platform for AI-driven diagnostics.",
+      "explanation": "Shares surged after Midjourney unveiled a full-body ultrasound scanner built with 40 Butterfly ultrasound-on-chip modules. The five-year licensing and co-development agreement could generate up to $74 million in payments for Butterfly. This marks Midjourney’s first hardware initiative and validates Butterfly’s chip-based imaging platform for AI-driven diagnostics.",
       "rank": 1
     },
     {
@@ -61,7 +61,7 @@
       "volume": "336.2K",
       "volume_raw": 336225,
       "direction": "loss",
-      "explanation": "EPAM fell sharply in sympathy with Accenture's weak guidance, which raised concerns about slowing enterprise IT spending across the outsourcing sector. As a major Eastern European-headquartered IT services provider, EPAM faces additional headwinds from geopolitical uncertainty in the region. The selloff reflects broader market fears that AI-driven automation is cannibalizing traditional consulting and outsourcing revenue.",
+      "explanation": "EPAM fell sharply in sympathy with Accenture’s weak guidance, which raised concerns about slowing enterprise IT spending across the outsourcing sector. As a major Eastern European-headquartered IT services provider, EPAM faces additional headwinds from geopolitical uncertainty in the region. The selloff reflects broader market fears that AI-driven automation is cannibalizing traditional consulting and outsourcing revenue.",
       "rank": 4
     },
     {
@@ -74,7 +74,7 @@
       "volume": "684.0K",
       "volume_raw": 684016,
       "direction": "gain",
-      "explanation": "Corning surged as investors priced in the company's role as a critical physical infrastructure provider for AI data centers. GPU clusters require massive fiber-optic bandwidth, and Corning's recent multiyear, multibillion-dollar supply agreements with major hyperscalers like Amazon have positioned it as an indispensable backbone supplier for the AI buildout.",
+      "explanation": "Corning surged as investors priced in the company’s role as a critical physical infrastructure provider for AI data centers. GPU clusters require massive fiber-optic bandwidth, and Corning’s recent multiyear, multibillion-dollar supply agreements with major hyperscalers like Amazon have positioned it as an indispensable backbone supplier for the AI buildout.",
       "rank": 5
     },
     {
@@ -100,4 +100,112 @@
       "volume": "3.3M",
       "volume_raw": 3324864,
       "direction": "loss",
-      "explanation": "Cognizant fell in the Accenture-led IT services selloff, as the consulting giant's weak guidance raised fears of a broader discretionary spending slowdown across the sector. Cognizant, which derives significant revenue from discreti
+      "explanation": "Cognizant fell in the Accenture-led IT services selloff, as the consulting giant’s weak guidance raised fears of a broader discretionary spending slowdown across the sector. Cognizant, which derives significant revenue from discretionary consulting and digital transformation projects, is viewed as particularly vulnerable to client budget cuts driven by geopolitical uncertainty and AI disruption.",
+      "rank": 7
+    },
+    {
+      "ticker": "INTC",
+      "name": "Intel Corporation",
+      "price": 133.8,
+      "previous_close": 121.08,
+      "change_pct": 10.51,
+      "change_abs": 12.72,
+      "volume": "3.1M",
+      "volume_raw": 3080877,
+      "direction": "gain",
+      "explanation": "Intel surged after President Trump claimed Apple has agreed to design and build chips using Intel’s 18A-P foundry process. While neither company has officially confirmed the deal, the announcement represents a potential landmark win for Intel’s foundry turnaround strategy. The global memory shortage is also driving renewed interest in domestic semiconductor manufacturing capacity.",
+      "rank": 8
+    },
+    {
+      "ticker": "SMCI",
+      "name": "Super Micro Computer",
+      "price": 30.66,
+      "previous_close": 27.8,
+      "change_pct": 10.31,
+      "change_abs": 2.86,
+      "volume": "2.7M",
+      "volume_raw": 2740828,
+      "direction": "gain",
+      "explanation": "Super Micro rallied after raising its fiscal 2026 revenue outlook to at least $40 billion, up from $36 billion, driven by strong demand for its AI-optimized server platforms. The upgraded guidance signals that enterprise and hyperscaler appetite for GPU-dense infrastructure remains robust despite broader IT spending concerns elsewhere in the market.",
+      "rank": 9
+    },
+    {
+      "ticker": "LSCC",
+      "name": "Lattice Semiconductor",
+      "price": 153.61,
+      "previous_close": 139.47,
+      "change_pct": 10.14,
+      "change_abs": 14.14,
+      "volume": "250.9K",
+      "volume_raw": 250934,
+      "direction": "gain",
+      "explanation": "Lattice Semiconductor rose as the broader semiconductor sector rallied on AI infrastructure demand and the Apple-Intel manufacturing news. Lattice’s low-power FPGAs are increasingly used in edge AI, industrial automation, and automotive applications, positioning the company to benefit from AI deployment beyond the data center.",
+      "rank": 10
+    },
+    {
+      "ticker": "INFY",
+      "name": "Infosys Limited",
+      "price": 10.56,
+      "previous_close": 11.74,
+      "change_pct": -10.05,
+      "change_abs": -1.18,
+      "volume": "4.0M",
+      "volume_raw": 4013638,
+      "direction": "loss",
+      "explanation": "Infosys tumbled in the global IT services selloff triggered by Accenture’s weak guidance, with its US-listed shares dropping over 10%. As India’s second-largest IT exporter, Infosys is a bellwether for the outsourcing sector. Indian IT stocks have now shed nearly 30% of their market value this year amid fears that AI automation is structurally undermining the traditional offshoring model.",
+      "rank": 11
+    },
+    {
+      "ticker": "QUBT",
+      "name": "Quantum Computing Inc.",
+      "price": 10.74,
+      "previous_close": 9.76,
+      "change_pct": 10.04,
+      "change_abs": 0.98,
+      "volume": "703.0K",
+      "volume_raw": 702956,
+      "direction": "gain",
+      "explanation": "Quantum Computing Inc. gained amid renewed retail and institutional interest in the quantum computing sector. The stock remains highly volatile with elevated short interest, and recent momentum has been fueled by broader enthusiasm for next-generation computing technologies and government-backed quantum research initiatives.",
+      "rank": 12
+    },
+    {
+      "ticker": "MU",
+      "name": "Micron Technology",
+      "price": 1132.59,
+      "previous_close": 1043.95,
+      "change_pct": 8.49,
+      "change_abs": 88.64,
+      "volume": "1.2M",
+      "volume_raw": 1199969,
+      "direction": "gain",
+      "explanation": "Micron rallied ahead of its Q3 FY2026 earnings on June 24, with expectations running high as the global memory shortage intensifies. The company’s HBM chips are sold out for all of 2026, and AI-driven demand for both DRAM and NAND far exceeds supply. Apple CEO Tim Cook’s comments about ‘unsustainable’ memory costs further validated Micron’s pricing power.",
+      "rank": 13
+    },
+    {
+      "ticker": "KLAC",
+      "name": "KLA Corporation",
+      "price": 259.01,
+      "previous_close": 238.79,
+      "change_pct": 8.47,
+      "change_abs": 20.22,
+      "volume": "482.4K",
+      "volume_raw": 482391,
+      "direction": "gain",
+      "explanation": "KLA Corporation rose with the broader semiconductor equipment sector as AI infrastructure spending continues to drive demand for advanced chip inspection and metrology tools. FERC’s new orders to fast-track data center grid connections also boosted sentiment for companies that supply the upstream semiconductor manufacturing ecosystem.",
+      "rank": 14
+    },
+    {
+      "ticker": "MPWR",
+      "name": "Monolithic Power Systems",
+      "price": 1563.49,
+      "previous_close": 1448.36,
+      "change_pct": 7.95,
+      "change_abs": 115.13,
+      "volume": "65.2K",
+      "volume_raw": 65240,
+      "direction": "gain",
+      "explanation": "Monolithic Power Systems gained as demand for its power management ICs accelerates alongside the AI data center buildout. The company’s chips are critical for power delivery in GPU-dense server racks, and the ongoing expansion of AI training and inference infrastructure is driving strong order growth across its product portfolio.",
+      "rank": 15
+    }
+  ]
+}
