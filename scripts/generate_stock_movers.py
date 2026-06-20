@@ -523,6 +523,32 @@ def load_explanations(path: str | None) -> dict[str, str]:
     }
 
 
+def sanitize_for_yaml(text: str) -> str:
+    """Make a string safe for Jekyll's YAML parser (Psych/safe_yaml).
+
+    Jekyll v3 reads ``_data/*.json`` through a YAML parser, so JSON
+    string values must not contain characters that break YAML scanning.
+    Bare single-quotes (apostrophes) inside flow scalars cause
+    ``found unexpected end of stream while scanning a quoted scalar``.
+    Replace them with the Unicode right-single-quotation-mark (U+2019),
+    which renders identically in browsers but is not a YAML control
+    character.
+    """
+    text = text.replace("'", "’")   # ' -> ’ (right single quote)
+    return text
+
+
+def sanitize_payload(obj: Any) -> Any:
+    """Recursively sanitize all string values in a JSON-serialisable object."""
+    if isinstance(obj, str):
+        return sanitize_for_yaml(obj)
+    if isinstance(obj, dict):
+        return {k: sanitize_payload(v) for k, v in obj.items()}
+    if isinstance(obj, list):
+        return [sanitize_payload(v) for v in obj]
+    return obj
+
+
 def merge_explanations(stocks: list[dict[str, Any]], explanations: dict[str, str]) -> None:
     for s in stocks:
         ticker = str(s.get("ticker", "")).upper()
@@ -583,32 +609,4 @@ def main() -> int:
                 line = line.strip()
                 if line.startswith("APCA_API_KEY_ID="):
                     args.alpaca_key_id = args.alpaca_key_id or line.split("=", 1)[1].strip()
-                elif line.startswith("APCA_API_SECRET_KEY="):
-                    args.alpaca_secret_key = args.alpaca_secret_key or line.split("=", 1)[1].strip()
-
-    if not args.alpaca_key_id or not args.alpaca_secret_key:
-        print(
-            "Error: Alpaca API credentials required.\n"
-            "Set APCA_API_KEY_ID and APCA_API_SECRET_KEY env vars,\n"
-            "or pass --alpaca-key-id and --alpaca-secret-key,\n"
-            "or create .alpaca-config in the project root.",
-            file=sys.stderr,
-        )
-        return 1
-
-    if args.refresh_cache:
-        cache_data = build_cache(args.alpaca_key_id, args.alpaca_secret_key)
-        write_cache(cache_data, args.cache_path)
-        return 0
-
-    payload = build_payload(args)
-    output = Path(args.output)
-    output.parent.mkdir(parents=True, exist_ok=True)
-    output.write_text(json.dumps(payload, indent=2) + "\n", encoding="utf-8")
-    print(f"Wrote {len(payload['stocks'])} stock movers to {output}")
-    return 0
-
-
-if __name__ == "__main__":
-    raise SystemExit(main())
-                                    
+                elif line.startswith("APCA_
