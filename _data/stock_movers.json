@@ -1,7 +1,7 @@
 {
   "date": "2026-06-22",
-  "generated_at": "2026-06-22T11:14:23-05:00",
-  "data_as_of": "2026-06-22, 11:14 AM CT",
+  "generated_at": "2026-06-22T11:30:36-05:00",
+  "data_as_of": "2026-06-22, 9:00 AM CT",
   "source": "alpaca",
   "universe": {
     "mode": "curated_tech_200",
@@ -21,8 +21,8 @@
       "volume": "743.6K",
       "volume_raw": 743571,
       "direction": "loss",
-      "explanation": "Butterfly Network shares fell sharply after a Form 144 insider selling filing appeared Monday, signaling planned executive share sales. The drop reverses gains from the recent Midjourney Scanner partnership announcement, which had boosted sentiment around the company’s ultrasound-on-chip technology. Thin float amplified the move on moderate volume.",
-      "rank": 1
+      "rank": 1,
+      "explanation": "Butterfly Network shares fell sharply after a Form 144 insider selling filing appeared Monday, signaling planned executive share sales. The drop reverses gains from the recent Midjourney Scanner partnership announcement, which had boosted sentiment around the company\u2019s ultrasound-on-chip technology. Thin float amplified the move on moderate volume."
     },
     {
       "ticker": "SMCI",
@@ -34,8 +34,8 @@
       "volume": "2.5M",
       "volume_raw": 2518198,
       "direction": "gain",
-      "explanation": "Super Micro surged after GF Securities upgraded the stock from Hold to Buy with a $48 price target. The upgrade followed SMCI unveiling a new AI data center platform powered by NVIDIA Vera Rubin NVL4 technology at ISC 2026 in Hamburg, with commercial rollouts scheduled for H2 2026. The rally also represents a bounce from a nearly 28% drawdown caused by dilution concerns from a $7 billion equity raise earlier in June.",
-      "rank": 2
+      "rank": 2,
+      "explanation": "Super Micro surged after GF Securities upgraded the stock from Hold to Buy with a $48 price target. The upgrade followed SMCI unveiling a new AI data center platform powered by NVIDIA Vera Rubin NVL4 technology at ISC 2026 in Hamburg, with commercial rollouts scheduled for H2 2026. The rally also represents a bounce from a nearly 28% drawdown caused by dilution concerns from a $7 billion equity raise earlier in June."
     },
     {
       "ticker": "ZI",
@@ -47,8 +47,8 @@
       "volume": "543.7K",
       "volume_raw": 543733,
       "direction": "gain",
-      "explanation": "ZoomInfo bounced on improved large contract wins and stabilizing net retention signals, rebounding from steep year-to-date losses. The stock has been under pressure after the company cut full-year 2026 revenue guidance from $1.25B to $1.19B. Shares remain well off their 52-week high of $12.51, suggesting the move may be a short-covering rally rather than a fundamental inflection.",
-      "rank": 3
+      "rank": 3,
+      "explanation": "ZoomInfo bounced on improved large contract wins and stabilizing net retention signals, rebounding from steep year-to-date losses. The stock has been under pressure after the company cut full-year 2026 revenue guidance from $1.25B to $1.19B. Shares remain well off their 52-week high of $12.51, suggesting the move may be a short-covering rally rather than a fundamental inflection."
     },
     {
       "ticker": "RBLX",
@@ -60,8 +60,8 @@
       "volume": "702.8K",
       "volume_raw": 702837,
       "direction": "loss",
-      "explanation": "Roblox continued its 2026 slide, now down over 36% year to date. The decline reflects ongoing fallout from the company slashing full-year bookings growth guidance to 8-12% from 22-26%, compounded by engagement headwinds from mandatory age verification changes. CEO David Baszucki has sold an estimated $38.6M in shares since February, adding to investor unease.",
-      "rank": 4
+      "rank": 4,
+      "explanation": "Roblox continued its 2026 slide, now down over 36% year to date. The decline reflects ongoing fallout from the company slashing full-year bookings growth guidance to 8-12% from 22-26%, compounded by engagement headwinds from mandatory age verification changes. CEO David Baszucki has sold an estimated $38.6M in shares since February, adding to investor unease."
     },
     {
       "ticker": "DOCN",
@@ -73,8 +73,8 @@
       "volume": "60.2K",
       "volume_raw": 60203,
       "direction": "loss",
-      "explanation": "DigitalOcean pulled back amid broader tech weakness following its recent run-up from the S&P MidCap 400 addition and Hippocratic AI partnership. The stock had rallied sharply on its AI-focused cloud pivot, making it vulnerable to profit-taking. Low volume suggests the move may be amplified by thin liquidity rather than fundamental deterioration.",
-      "rank": 5
+      "rank": 5,
+      "explanation": "DigitalOcean pulled back amid broader tech weakness following its recent run-up from the S&P MidCap 400 addition and Hippocratic AI partnership. The stock had rallied sharply on its AI-focused cloud pivot, making it vulnerable to profit-taking. Low volume suggests the move may be amplified by thin liquidity rather than fundamental deterioration."
     },
     {
       "ticker": "ON",
@@ -86,8 +86,8 @@
       "volume": "282.7K",
       "volume_raw": 282695,
       "direction": "gain",
-      "explanation": "ON Semiconductor extended its remarkable 2026 rally, now up over 137% year to date. AI data center segment revenue more than doubled year-over-year in Q1, and Q2 guidance topped consensus. The stock is riding the broader semiconductor supercycle, with any dips attracting institutional buying as ON positions itself as a critical enabler of AI power management infrastructure.",
-      "rank": 6
+      "rank": 6,
+      "explanation": "ON Semiconductor extended its remarkable 2026 rally, now up over 137% year to date. AI data center segment revenue more than doubled year-over-year in Q1, and Q2 guidance topped consensus. The stock is riding the broader semiconductor supercycle, with any dips attracting institutional buying as ON positions itself as a critical enabler of AI power management infrastructure."
     },
     {
       "ticker": "ASTS",
@@ -99,4 +99,112 @@
       "volume": "512.7K",
       "volume_raw": 512727,
       "direction": "loss",
-      "explanation": "AST SpaceMobile pulled back alongside other space and satellite names as the post-SpaceX-IPO momentum faded. SpaceX shares fell 8% on Monday, dragging the broader space-adjacen
+      "rank": 7,
+      "explanation": "AST SpaceMobile pulled back alongside other space and satellite names as the post-SpaceX-IPO momentum faded. SpaceX shares fell 8% on Monday, dragging the broader space-adjacent cohort lower. ASTS remains a volatile, speculative name with wide daily swings typical for its float and retail interest profile."
+    },
+    {
+      "ticker": "WIT",
+      "name": "Wipro Limited",
+      "price": 2.21,
+      "previous_close": 2.39,
+      "change_pct": -7.74,
+      "change_abs": -0.19,
+      "volume": "357.1K",
+      "volume_raw": 357065,
+      "direction": "loss",
+      "rank": 8,
+      "explanation": "Wipro declined as Indian IT services stocks faced pressure from rising concerns about AI-driven automation displacing traditional outsourcing revenue. The sector has underperformed in 2026 as enterprises redirect IT budgets toward AI infrastructure and away from legacy managed services contracts."
+    },
+    {
+      "ticker": "RKLB",
+      "name": "Rocket Lab USA",
+      "price": 99.13,
+      "previous_close": 107.33,
+      "change_pct": -7.64,
+      "change_abs": -8.2,
+      "volume": "394.6K",
+      "volume_raw": 394635,
+      "direction": "loss",
+      "rank": 9,
+      "explanation": "Rocket Lab fell in sympathy with SpaceX, which dropped 8% on its third consecutive losing session following its blockbuster IPO. As the most prominent publicly traded space launch competitor, RKLB often moves in correlation with SpaceX sentiment. The stock remains up sharply year to date despite Monday\u2019s pullback."
+    },
+    {
+      "ticker": "VERX",
+      "name": "Vertex Inc.",
+      "price": 10.27,
+      "previous_close": 11.1,
+      "change_pct": -7.48,
+      "change_abs": -0.83,
+      "volume": "122.0K",
+      "volume_raw": 121958,
+      "direction": "loss",
+      "rank": 10,
+      "explanation": "Vertex Inc. continued to drift lower amid a challenging environment for mid-cap tax software names. The company faces competitive pressure from larger enterprise players and AI-driven automation tools encroaching on its core indirect tax compliance market."
+    },
+    {
+      "ticker": "ARM",
+      "name": "Arm Holdings",
+      "price": 407.96,
+      "previous_close": 439.19,
+      "change_pct": -7.11,
+      "change_abs": -31.23,
+      "volume": "357.4K",
+      "volume_raw": 357400,
+      "direction": "loss",
+      "rank": 11,
+      "explanation": "Arm Holdings fell after New Street Research downgraded the stock from Buy to Neutral, warning the year-to-date rally has stretched valuation to unsustainable levels with a trailing P/E exceeding 490x. Insider selling by the Chief Commercial Officer and Chief Accounting Officer in late May and June added to pressure. Investors are also questioning Arm\u2019s move into proprietary silicon, which conflicts with its core licensing model."
+    },
+    {
+      "ticker": "SWKS",
+      "name": "Skyworks Solutions",
+      "price": 77.59,
+      "previous_close": 72.46,
+      "change_pct": 7.08,
+      "change_abs": 5.13,
+      "volume": "91.5K",
+      "volume_raw": 91537,
+      "direction": "gain",
+      "rank": 12,
+      "explanation": "Skyworks gained as the memory and component shortage theme boosted analog and RF semiconductor names. Apple\u2019s reported price hikes on devices due to memory constraints signal strong demand across the supply chain. Skyworks, as a major Apple RF supplier, stands to benefit from both pricing power and the Intel-Apple chip partnership momentum."
+    },
+    {
+      "ticker": "RIVN",
+      "name": "Rivian Automotive",
+      "price": 15.38,
+      "previous_close": 16.52,
+      "change_pct": -6.87,
+      "change_abs": -1.13,
+      "volume": "757.6K",
+      "volume_raw": 757570,
+      "direction": "loss",
+      "rank": 13,
+      "explanation": "Rivian extended its decline, now down nearly 16% year to date, pressured by a NHTSA safety investigation into rear suspension failures on 2023-2024 R1S models. The company also cut 2% of its workforce on June 16. Its R2 SUV launch failed to spark a sustained rally, and weakening EV demand signals weigh on the broader sector."
+    },
+    {
+      "ticker": "MDB",
+      "name": "MongoDB Inc.",
+      "price": 311.93,
+      "previous_close": 332.65,
+      "change_pct": -6.23,
+      "change_abs": -20.72,
+      "volume": "72.9K",
+      "volume_raw": 72932,
+      "direction": "loss",
+      "rank": 14,
+      "explanation": "MongoDB dropped as growth software names faced broad selling pressure amid rising bond yields from tech companies tapping debt markets. Despite recent revenue growth accelerating to 25% YoY with Atlas cloud adoption expanding, the stock remains volatile after its 22% plunge on Q4 earnings in March when cloud growth guidance disappointed."
+    },
+    {
+      "ticker": "GOOGL",
+      "name": "Alphabet Inc.",
+      "price": 345.2,
+      "previous_close": 367.93,
+      "change_pct": -6.18,
+      "change_abs": -22.73,
+      "volume": "1.0M",
+      "volume_raw": 1029359,
+      "direction": "loss",
+      "rank": 15,
+      "explanation": "Alphabet suffered one of its steepest single-session declines after losing two marquee AI researchers in one week: Noam Shazeer (Gemini co-lead) departed for OpenAI and Nobel laureate John Jumper (AlphaFold creator) left for Anthropic. Investors also weighed $180-190B in projected AI capex for 2026, a 47% YoY drop in free cash flow, and dilution from an $80B equity offering in early June."
+    }
+  ]
+}
