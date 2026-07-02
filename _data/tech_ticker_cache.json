@@ -1,978 +1,736 @@
 {
-  "generated_at": "2026-05-27T18:17:39+00:00",
-  "universe": {
-    "mode": "nasdaq_listed_plus_sp500",
-    "count": 3536,
-    "nasdaq_listed_common_stock_count": 3194,
-    "sp500_count": 503,
-    "sources": [
-      "https://www.nasdaqtrader.com/dynamic/SymDir/nasdaqlisted.txt",
-      "https://en.wikipedia.org/wiki/List_of_S%26P_500_companies"
-    ]
-  },
-  "profile_lookups_used": 50,
-  "tech_ticker_count": 137,
-  "non_tech_count": 3176,
-  "tickers": {
-    "A": {
-      "name": "Agilent Technologies",
-      "source": "sp500",
-      "sector": "Health Care",
-      "industry": "Life Sciences Tools & Services",
-      "tech_match": "technology keyword"
-    },
-    "AAOI": {
-      "name": "Applied Optoelectronics, Inc.",
-      "source": "nasdaq_listed",
-      "sector": "Technology",
-      "industry": "Communication Equipment",
-      "tech_match": "technology keyword"
-    },
-    "AAPL": {
-      "name": "Apple Inc.",
-      "source": "nasdaq_listed,sp500",
-      "sector": "Information Technology",
-      "industry": "Technology Hardware, Storage & Peripherals",
-      "tech_match": "known tech ticker"
-    },
-    "ABNB": {
-      "name": "Airbnb",
-      "source": "nasdaq_listed,sp500",
-      "sector": "Consumer Discretionary",
-      "industry": "Hotels, Resorts & Cruise Lines",
-      "tech_match": "known tech ticker"
-    },
-    "ACFN": {
-      "name": "Acorn Energy, Inc.",
-      "source": "nasdaq_listed",
-      "sector": "Technology",
-      "industry": "Scientific & Technical Instruments",
-      "tech_match": "technology keyword"
-    },
-    "ACIW": {
-      "name": "ACI Worldwide, Inc.",
-      "source": "nasdaq_listed",
-      "sector": "Technology",
-      "industry": "Software - Infrastructure",
-      "tech_match": "technology keyword"
-    },
-    "ACMR": {
-      "name": "ACM Research, Inc.",
-      "source": "nasdaq_listed",
-      "sector": "Technology",
-      "industry": "Semiconductor Equipment & Materials",
-      "tech_match": "technology keyword"
-    },
-    "ACN": {
-      "name": "Accenture",
-      "source": "sp500",
-      "sector": "Information Technology",
-      "industry": "IT Consulting & Other Services",
-      "tech_match": "S&P Information Technology"
-    },
-    "ADBE": {
-      "name": "Adobe Inc.",
-      "source": "nasdaq_listed,sp500",
-      "sector": "Information Technology",
-      "industry": "Application Software",
-      "tech_match": "known tech ticker"
-    },
-    "ADEA": {
-      "name": "Adeia Inc.",
-      "source": "nasdaq_listed",
-      "sector": "Technology",
-      "industry": "Software - Application",
-      "tech_match": "technology keyword"
-    },
-    "ADI": {
-      "name": "Analog Devices",
-      "source": "nasdaq_listed,sp500",
-      "sector": "Information Technology",
-      "industry": "Semiconductors",
-      "tech_match": "known tech ticker"
-    },
-    "ADP": {
-      "name": "Automatic Data Processing",
-      "source": "nasdaq_listed,sp500",
-      "sector": "Industrials",
-      "industry": "Human Resource & Employment Services",
-      "tech_match": "technology keyword"
-    },
-    "ADSK": {
-      "name": "Autodesk",
-      "source": "nasdaq_listed,sp500",
-      "sector": "Information Technology",
-      "industry": "Application Software",
-      "tech_match": "S&P Information Technology"
-    },
-    "ADTN": {
-      "name": "ADTRAN Holdings, Inc.",
-      "source": "nasdaq_listed",
-      "sector": "Technology",
-      "industry": "Communication Equipment",
-      "tech_match": "technology keyword"
-    },
-    "AKAM": {
-      "name": "Akamai Technologies",
-      "source": "nasdaq_listed,sp500",
-      "sector": "Information Technology",
-      "industry": "Internet Services & Infrastructure",
-      "tech_match": "S&P Information Technology"
-    },
-    "ALGN": {
-      "name": "Align Technology",
-      "source": "nasdaq_listed,sp500",
-      "sector": "Health Care",
-      "industry": "Health Care Supplies",
-      "tech_match": "technology keyword"
-    },
-    "AMAT": {
-      "name": "Applied Materials",
-      "source": "nasdaq_listed,sp500",
-      "sector": "Information Technology",
-      "industry": "Semiconductor Materials & Equipment",
-      "tech_match": "known tech ticker"
-    },
-    "AMD": {
-      "name": "Advanced Micro Devices",
-      "source": "nasdaq_listed,sp500",
-      "sector": "Information Technology",
-      "industry": "Semiconductors",
-      "tech_match": "known tech ticker"
-    },
-    "AMT": {
-      "name": "American Tower",
-      "source": "sp500",
-      "sector": "Real Estate",
-      "industry": "Telecom Tower REITs",
-      "tech_match": "technology keyword"
-    },
-    "AMZN": {
-      "name": "Amazon",
-      "source": "nasdaq_listed,sp500",
-      "sector": "Consumer Discretionary",
-      "industry": "Broadline Retail",
-      "tech_match": "known tech ticker"
-    },
-    "ANET": {
-      "name": "Arista Networks",
-      "source": "sp500",
-      "sector": "Information Technology",
-      "industry": "Communications Equipment",
-      "tech_match": "S&P Information Technology"
-    },
-    "APH": {
-      "name": "Amphenol",
-      "source": "sp500",
-      "sector": "Information Technology",
-      "industry": "Electronic Components",
-      "tech_match": "S&P Information Technology"
-    },
-    "APP": {
-      "name": "AppLovin",
-      "source": "nasdaq_listed,sp500",
-      "sector": "Information Technology",
-      "industry": "Application Software",
-      "tech_match": "known tech ticker"
-    },
-    "ASML": {
-      "name": "ASML Holding N.V. - New York Registry Shares",
-      "source": "nasdaq_listed",
-      "sector": "",
-      "industry": "",
-      "tech_match": "known tech ticker"
-    },
-    "AVGO": {
-      "name": "Broadcom",
-      "source": "nasdaq_listed,sp500",
-      "sector": "Information Technology",
-      "industry": "Semiconductors",
-      "tech_match": "known tech ticker"
-    },
-    "BBY": {
-      "name": "Best Buy",
-      "source": "sp500",
-      "sector": "Consumer Discretionary",
-      "industry": "Computer & Electronics Retail",
-      "tech_match": "S&P Consumer Discretionary tech-adjacent industry"
-    },
-    "BR": {
-      "name": "Broadridge Financial Solutions",
-      "source": "sp500",
-      "sector": "Industrials",
-      "industry": "Data Processing & Outsourced Services",
-      "tech_match": "technology keyword"
-    },
-    "CBOE": {
-      "name": "Cboe Global Markets",
-      "source": "sp500",
-      "sector": "Financials",
-      "industry": "Financial Exchanges & Data",
-      "tech_match": "technology keyword"
-    },
-    "CCI": {
-      "name": "Crown Castle",
-      "source": "sp500",
-      "sector": "Real Estate",
-      "industry": "Telecom Tower REITs",
-      "tech_match": "technology keyword"
-    },
-    "CDNS": {
-      "name": "Cadence Design Systems",
-      "source": "nasdaq_listed,sp500",
-      "sector": "Information Technology",
-      "industry": "Application Software",
-      "tech_match": "known tech ticker"
-    },
-    "CDW": {
-      "name": "CDW Corporation",
-      "source": "nasdaq_listed,sp500",
-      "sector": "Information Technology",
-      "industry": "Technology Distributors",
-      "tech_match": "S&P Information Technology"
-    },
-    "CIEN": {
-      "name": "Ciena",
-      "source": "sp500",
-      "sector": "Information Technology",
-      "industry": "Communications Equipment",
-      "tech_match": "S&P Information Technology"
-    },
-    "CME": {
-      "name": "CME Group",
-      "source": "nasdaq_listed,sp500",
-      "sector": "Financials",
-      "industry": "Financial Exchanges & Data",
-      "tech_match": "technology keyword"
-    },
-    "COHR": {
-      "name": "Coherent Corp.",
-      "source": "sp500",
-      "sector": "Information Technology",
-      "industry": "Electronic Components",
-      "tech_match": "S&P Information Technology"
-    },
-    "COIN": {
-      "name": "Coinbase",
-      "source": "nasdaq_listed,sp500",
-      "sector": "Financials",
-      "industry": "Financial Exchanges & Data",
-      "tech_match": "known tech ticker"
-    },
-    "CPAY": {
-      "name": "Corpay",
-      "source": "sp500",
-      "sector": "Financials",
-      "industry": "Transaction & Payment Processing Services",
-      "tech_match": "technology keyword"
-    },
-    "CRM": {
-      "name": "Salesforce",
-      "source": "sp500",
-      "sector": "Information Technology",
-      "industry": "Application Software",
-      "tech_match": "known tech ticker"
-    },
-    "CRWD": {
-      "name": "CrowdStrike",
-      "source": "nasdaq_listed,sp500",
-      "sector": "Information Technology",
-      "industry": "Systems Software",
-      "tech_match": "known tech ticker"
-    },
-    "CSCO": {
-      "name": "Cisco",
-      "source": "nasdaq_listed,sp500",
-      "sector": "Information Technology",
-      "industry": "Communications Equipment",
-      "tech_match": "known tech ticker"
-    },
-    "CTSH": {
-      "name": "Cognizant",
-      "source": "nasdaq_listed,sp500",
-      "sector": "Information Technology",
-      "industry": "IT Consulting & Other Services",
-      "tech_match": "S&P Information Technology"
-    },
-    "DASH": {
-      "name": "DoorDash",
-      "source": "nasdaq_listed,sp500",
-      "sector": "Consumer Discretionary",
-      "industry": "Specialized Consumer Services",
-      "tech_match": "known tech ticker"
-    },
-    "DDOG": {
-      "name": "Datadog",
-      "source": "nasdaq_listed,sp500",
-      "sector": "Information Technology",
-      "industry": "Application Software",
-      "tech_match": "known tech ticker"
-    },
-    "DELL": {
-      "name": "Dell Technologies",
-      "source": "sp500",
-      "sector": "Information Technology",
-      "industry": "Technology Hardware, Storage & Peripherals",
-      "tech_match": "S&P Information Technology"
-    },
-    "DLR": {
-      "name": "Digital Realty",
-      "source": "sp500",
-      "sector": "Real Estate",
-      "industry": "Data Center REITs",
-      "tech_match": "technology keyword"
-    },
-    "EBAY": {
-      "name": "eBay Inc.",
-      "source": "nasdaq_listed,sp500",
-      "sector": "Consumer Discretionary",
-      "industry": "Broadline Retail",
-      "tech_match": "S&P Consumer Discretionary tech-adjacent industry"
-    },
-    "EPAM": {
-      "name": "EPAM Systems",
-      "source": "sp500",
-      "sector": "Information Technology",
-      "industry": "IT Consulting & Other Services",
-      "tech_match": "S&P Information Technology"
-    },
-    "EQIX": {
-      "name": "Equinix",
-      "source": "nasdaq_listed,sp500",
-      "sector": "Real Estate",
-      "industry": "Data Center REITs",
-      "tech_match": "technology keyword"
-    },
-    "FDS": {
-      "name": "FactSet",
-      "source": "sp500",
-      "sector": "Financials",
-      "industry": "Financial Exchanges & Data",
-      "tech_match": "technology keyword"
-    },
-    "FFIV": {
-      "name": "F5, Inc.",
-      "source": "nasdaq_listed,sp500",
-      "sector": "Information Technology",
-      "industry": "Communications Equipment",
-      "tech_match": "S&P Information Technology"
-    },
-    "FICO": {
-      "name": "Fair Isaac",
-      "source": "sp500",
-      "sector": "Information Technology",
-      "industry": "Application Software",
-      "tech_match": "known tech ticker"
-    },
-    "FIS": {
-      "name": "Fidelity National Information Services",
-      "source": "sp500",
-      "sector": "Financials",
-      "industry": "Transaction & Payment Processing Services",
-      "tech_match": "technology keyword"
-    },
-    "FISV": {
-      "name": "Fiserv",
-      "source": "nasdaq_listed,sp500",
-      "sector": "Financials",
-      "industry": "Transaction & Payment Processing Services",
-      "tech_match": "technology keyword"
-    },
-    "FSLR": {
-      "name": "First Solar",
-      "source": "nasdaq_listed,sp500",
-      "sector": "Information Technology",
-      "industry": "Semiconductors",
-      "tech_match": "S&P Information Technology"
-    },
-    "FTNT": {
-      "name": "Fortinet",
-      "source": "nasdaq_listed,sp500",
-      "sector": "Information Technology",
-      "industry": "Systems Software",
-      "tech_match": "known tech ticker"
-    },
-    "GDDY": {
-      "name": "GoDaddy",
-      "source": "sp500",
-      "sector": "Information Technology",
-      "industry": "Internet Services & Infrastructure",
-      "tech_match": "S&P Information Technology"
-    },
-    "GEN": {
-      "name": "Gen Digital",
-      "source": "nasdaq_listed,sp500",
-      "sector": "Information Technology",
-      "industry": "Systems Software",
-      "tech_match": "S&P Information Technology"
-    },
-    "GLW": {
-      "name": "Corning Inc.",
-      "source": "sp500",
-      "sector": "Information Technology",
-      "industry": "Electronic Components",
-      "tech_match": "S&P Information Technology"
-    },
-    "GOOG": {
-      "name": "Alphabet Inc. (Class C)",
-      "source": "nasdaq_listed,sp500",
-      "sector": "Communication Services",
-      "industry": "Interactive Media & Services",
-      "tech_match": "S&P Communication Services tech-adjacent industry"
-    },
-    "GOOGL": {
-      "name": "Alphabet Inc. (Class A)",
-      "source": "nasdaq_listed,sp500",
-      "sector": "Communication Services",
-      "industry": "Interactive Media & Services",
-      "tech_match": "known tech ticker"
-    },
-    "GPN": {
-      "name": "Global Payments",
-      "source": "sp500",
-      "sector": "Financials",
-      "industry": "Transaction & Payment Processing Services",
-      "tech_match": "technology keyword"
-    },
-    "GRMN": {
-      "name": "Garmin",
-      "source": "sp500",
-      "sector": "Consumer Discretionary",
-      "industry": "Consumer Electronics",
-      "tech_match": "S&P Consumer Discretionary tech-adjacent industry"
-    },
-    "HOOD": {
-      "name": "Robinhood Markets",
-      "source": "nasdaq_listed,sp500",
-      "sector": "Financials",
-      "industry": "Investment Banking & Brokerage",
-      "tech_match": "known tech ticker"
-    },
-    "HPE": {
-      "name": "Hewlett Packard Enterprise",
-      "source": "sp500",
-      "sector": "Information Technology",
-      "industry": "Technology Hardware, Storage & Peripherals",
-      "tech_match": "S&P Information Technology"
-    },
-    "HPQ": {
-      "name": "HP Inc.",
-      "source": "sp500",
-      "sector": "Information Technology",
-      "industry": "Technology Hardware, Storage & Peripherals",
-      "tech_match": "S&P Information Technology"
-    },
-    "IBM": {
-      "name": "IBM",
-      "source": "sp500",
-      "sector": "Information Technology",
-      "industry": "IT Consulting & Other Services",
-      "tech_match": "S&P Information Technology"
-    },
-    "ICE": {
-      "name": "Intercontinental Exchange",
-      "source": "sp500",
-      "sector": "Financials",
-      "industry": "Financial Exchanges & Data",
-      "tech_match": "technology keyword"
-    },
-    "INTC": {
-      "name": "Intel",
-      "source": "nasdaq_listed,sp500",
-      "sector": "Information Technology",
-      "industry": "Semiconductors",
-      "tech_match": "known tech ticker"
-    },
-    "INTU": {
-      "name": "Intuit",
-      "source": "nasdaq_listed,sp500",
-      "sector": "Information Technology",
-      "industry": "Application Software",
-      "tech_match": "known tech ticker"
-    },
-    "IT": {
-      "name": "Gartner",
-      "source": "sp500",
-      "sector": "Information Technology",
-      "industry": "IT Consulting & Other Services",
-      "tech_match": "S&P Information Technology"
-    },
-    "JBL": {
-      "name": "Jabil",
-      "source": "sp500",
-      "sector": "Information Technology",
-      "industry": "Electronic Manufacturing Services",
-      "tech_match": "S&P Information Technology"
-    },
-    "JKHY": {
-      "name": "Jack Henry & Associates",
-      "source": "nasdaq_listed,sp500",
-      "sector": "Financials",
-      "industry": "Transaction & Payment Processing Services",
-      "tech_match": "technology keyword"
-    },
-    "KEYS": {
-      "name": "Keysight Technologies",
-      "source": "sp500",
-      "sector": "Information Technology",
-      "industry": "Electronic Equipment & Instruments",
-      "tech_match": "S&P Information Technology"
-    },
-    "KLAC": {
-      "name": "KLA Corporation",
-      "source": "nasdaq_listed,sp500",
-      "sector": "Information Technology",
-      "industry": "Semiconductor Materials & Equipment",
-      "tech_match": "known tech ticker"
-    },
-    "LCID": {
-      "name": "Lucid Group, Inc. -",
-      "source": "nasdaq_listed",
-      "sector": "",
-      "industry": "",
-      "tech_match": "known tech ticker"
-    },
-    "LITE": {
-      "name": "Lumentum",
-      "source": "nasdaq_listed,sp500",
-      "sector": "Information Technology",
-      "industry": "Communications Equipment",
-      "tech_match": "S&P Information Technology"
-    },
-    "LRCX": {
-      "name": "Lam Research",
-      "source": "nasdaq_listed,sp500",
-      "sector": "Information Technology",
-      "industry": "Semiconductor Materials & Equipment",
-      "tech_match": "known tech ticker"
-    },
-    "LYFT": {
-      "name": "Lyft, Inc. - Class A",
-      "source": "nasdaq_listed",
-      "sector": "",
-      "industry": "",
-      "tech_match": "known tech ticker"
-    },
-    "MA": {
-      "name": "Mastercard",
-      "source": "sp500",
-      "sector": "Financials",
-      "industry": "Transaction & Payment Processing Services",
-      "tech_match": "technology keyword"
-    },
-    "MCHP": {
-      "name": "Microchip Technology",
-      "source": "nasdaq_listed,sp500",
-      "sector": "Information Technology",
-      "industry": "Semiconductors",
-      "tech_match": "S&P Information Technology"
-    },
-    "MCO": {
-      "name": "Moody's Corporation",
-      "source": "sp500",
-      "sector": "Financials",
-      "industry": "Financial Exchanges & Data",
-      "tech_match": "technology keyword"
-    },
-    "MDB": {
-      "name": "MongoDB, Inc. - Class A",
-      "source": "nasdaq_listed",
-      "sector": "",
-      "industry": "",
-      "tech_match": "known tech ticker"
-    },
-    "MELI": {
-      "name": "MercadoLibre, Inc. -",
-      "source": "nasdaq_listed",
-      "sector": "",
-      "industry": "",
-      "tech_match": "known tech ticker"
-    },
-    "META": {
-      "name": "Meta Platforms",
-      "source": "nasdaq_listed,sp500",
-      "sector": "Communication Services",
-      "industry": "Interactive Media & Services",
-      "tech_match": "known tech ticker"
-    },
-    "MPWR": {
-      "name": "Monolithic Power Systems",
-      "source": "nasdaq_listed,sp500",
-      "sector": "Information Technology",
-      "industry": "Semiconductors",
-      "tech_match": "S&P Information Technology"
-    },
-    "MRVL": {
-      "name": "Marvell Technology, Inc. -",
-      "source": "nasdaq_listed",
-      "sector": "",
-      "industry": "",
-      "tech_match": "known tech ticker"
-    },
-    "MSCI": {
-      "name": "MSCI Inc.",
-      "source": "sp500",
-      "sector": "Financials",
-      "industry": "Financial Exchanges & Data",
-      "tech_match": "technology keyword"
-    },
-    "MSFT": {
-      "name": "Microsoft",
-      "source": "nasdaq_listed,sp500",
-      "sector": "Information Technology",
-      "industry": "Systems Software",
-      "tech_match": "known tech ticker"
-    },
-    "MSI": {
-      "name": "Motorola Solutions",
-      "source": "sp500",
-      "sector": "Information Technology",
-      "industry": "Communications Equipment",
-      "tech_match": "S&P Information Technology"
-    },
-    "MSTR": {
-      "name": "Strategy Inc - Class A",
-      "source": "nasdaq_listed",
-      "sector": "",
-      "industry": "",
-      "tech_match": "known tech ticker"
-    },
-    "MU": {
-      "name": "Micron Technology",
-      "source": "nasdaq_listed,sp500",
-      "sector": "Information Technology",
-      "industry": "Semiconductors",
-      "tech_match": "known tech ticker"
-    },
-    "NDAQ": {
-      "name": "Nasdaq, Inc.",
-      "source": "nasdaq_listed,sp500",
-      "sector": "Financials",
-      "industry": "Financial Exchanges & Data",
-      "tech_match": "technology keyword"
-    },
-    "NFLX": {
-      "name": "Netflix",
-      "source": "nasdaq_listed,sp500",
-      "sector": "Communication Services",
-      "industry": "Movies & Entertainment",
-      "tech_match": "known tech ticker"
-    },
-    "NOW": {
-      "name": "ServiceNow",
-      "source": "sp500",
-      "sector": "Information Technology",
-      "industry": "Systems Software",
-      "tech_match": "known tech ticker"
-    },
-    "NTAP": {
-      "name": "NetApp",
-      "source": "nasdaq_listed,sp500",
-      "sector": "Information Technology",
-      "industry": "Technology Hardware, Storage & Peripherals",
-      "tech_match": "S&P Information Technology"
-    },
-    "NVDA": {
-      "name": "Nvidia",
-      "source": "nasdaq_listed,sp500",
-      "sector": "Information Technology",
-      "industry": "Semiconductors",
-      "tech_match": "known tech ticker"
-    },
-    "NXPI": {
-      "name": "NXP Semiconductors",
-      "source": "nasdaq_listed,sp500",
-      "sector": "Information Technology",
-      "industry": "Semiconductors",
-      "tech_match": "known tech ticker"
-    },
-    "ON": {
-      "name": "ON Semiconductor",
-      "source": "nasdaq_listed,sp500",
-      "sector": "Information Technology",
-      "industry": "Semiconductors",
-      "tech_match": "known tech ticker"
-    },
-    "ORCL": {
-      "name": "Oracle Corporation",
-      "source": "sp500",
-      "sector": "Information Technology",
-      "industry": "Application Software",
-      "tech_match": "known tech ticker"
-    },
-    "PANW": {
-      "name": "Palo Alto Networks",
-      "source": "nasdaq_listed,sp500",
-      "sector": "Information Technology",
-      "industry": "Systems Software",
-      "tech_match": "known tech ticker"
-    },
-    "PLTR": {
-      "name": "Palantir Technologies",
-      "source": "nasdaq_listed,sp500",
-      "sector": "Information Technology",
-      "industry": "Application Software",
-      "tech_match": "known tech ticker"
-    },
-    "PTC": {
-      "name": "PTC Inc.",
-      "source": "nasdaq_listed,sp500",
-      "sector": "Information Technology",
-      "industry": "Application Software",
-      "tech_match": "S&P Information Technology"
-    },
-    "PYPL": {
-      "name": "PayPal",
-      "source": "nasdaq_listed,sp500",
-      "sector": "Financials",
-      "industry": "Transaction & Payment Processing Services",
-      "tech_match": "technology keyword"
-    },
-    "Q": {
-      "name": "Qnity Electronics",
-      "source": "sp500",
-      "sector": "Information Technology",
-      "industry": "Semiconductor Materials & Equipment",
-      "tech_match": "S&P Information Technology"
-    },
-    "QCOM": {
-      "name": "Qualcomm",
-      "source": "nasdaq_listed,sp500",
-      "sector": "Information Technology",
-      "industry": "Semiconductors",
-      "tech_match": "known tech ticker"
-    },
-    "RIVN": {
-      "name": "Rivian Automotive, Inc. - Class A",
-      "source": "nasdaq_listed",
-      "sector": "",
-      "industry": "",
-      "tech_match": "known tech ticker"
-    },
-    "ROK": {
-      "name": "Rockwell Automation",
-      "source": "sp500",
-      "sector": "Industrials",
-      "industry": "Electrical Components & Equipment",
-      "tech_match": "technology keyword"
-    },
-    "ROKU": {
-      "name": "Roku, Inc. - Class A",
-      "source": "nasdaq_listed",
-      "sector": "",
-      "industry": "",
-      "tech_match": "known tech ticker"
-    },
-    "ROP": {
-      "name": "Roper Technologies",
-      "source": "nasdaq_listed,sp500",
-      "sector": "Information Technology",
-      "industry": "Electronic Equipment & Instruments",
-      "tech_match": "S&P Information Technology"
-    },
-    "SBAC": {
-      "name": "SBA Communications",
-      "source": "nasdaq_listed,sp500",
-      "sector": "Real Estate",
-      "industry": "Telecom Tower REITs",
-      "tech_match": "technology keyword"
-    },
-    "SHOP": {
-      "name": "Shopify Inc. - Class A Subordinate Voting Shares",
-      "source": "nasdaq_listed",
-      "sector": "",
-      "industry": "",
-      "tech_match": "known tech ticker"
-    },
-    "SMCI": {
-      "name": "Supermicro",
-      "source": "nasdaq_listed,sp500",
-      "sector": "Information Technology",
-      "industry": "Technology Hardware, Storage & Peripherals",
-      "tech_match": "known tech ticker"
-    },
-    "SNDK": {
-      "name": "Sandisk",
-      "source": "nasdaq_listed,sp500",
-      "sector": "Information Technology",
-      "industry": "Technology Hardware, Storage & Peripherals",
-      "tech_match": "S&P Information Technology"
-    },
-    "SNPS": {
-      "name": "Synopsys",
-      "source": "nasdaq_listed,sp500",
-      "sector": "Information Technology",
-      "industry": "Application Software",
-      "tech_match": "known tech ticker"
-    },
-    "SOLV": {
-      "name": "Solventum",
-      "source": "sp500",
-      "sector": "Health Care",
-      "industry": "Health Care Technology",
-      "tech_match": "technology keyword"
-    },
-    "SPGI": {
-      "name": "S&P Global",
-      "source": "sp500",
-      "sector": "Financials",
-      "industry": "Financial Exchanges & Data",
-      "tech_match": "technology keyword"
-    },
-    "STX": {
-      "name": "Seagate Technology",
-      "source": "nasdaq_listed,sp500",
-      "sector": "Information Technology",
-      "industry": "Technology Hardware, Storage & Peripherals",
-      "tech_match": "S&P Information Technology"
-    },
-    "SWKS": {
-      "name": "Skyworks Solutions",
-      "source": "nasdaq_listed,sp500",
-      "sector": "Information Technology",
-      "industry": "Semiconductors",
-      "tech_match": "S&P Information Technology"
-    },
-    "TDY": {
-      "name": "Teledyne Technologies",
-      "source": "sp500",
-      "sector": "Information Technology",
-      "industry": "Electronic Equipment & Instruments",
-      "tech_match": "S&P Information Technology"
-    },
-    "TEAM": {
-      "name": "Atlassian Corporation - Class A",
-      "source": "nasdaq_listed",
-      "sector": "",
-      "industry": "",
-      "tech_match": "known tech ticker"
-    },
-    "TEL": {
-      "name": "TE Connectivity",
-      "source": "sp500",
-      "sector": "Information Technology",
-      "industry": "Electronic Manufacturing Services",
-      "tech_match": "S&P Information Technology"
-    },
-    "TER": {
-      "name": "Teradyne",
-      "source": "nasdaq_listed,sp500",
-      "sector": "Information Technology",
-      "industry": "Semiconductor Materials & Equipment",
-      "tech_match": "S&P Information Technology"
-    },
-    "TRMB": {
-      "name": "Trimble Inc.",
-      "source": "nasdaq_listed,sp500",
-      "sector": "Information Technology",
-      "industry": "Application Software",
-      "tech_match": "S&P Information Technology"
-    },
-    "TSLA": {
-      "name": "Tesla, Inc.",
-      "source": "nasdaq_listed,sp500",
-      "sector": "Consumer Discretionary",
-      "industry": "Automobile Manufacturers",
-      "tech_match": "known tech ticker"
-    },
-    "TT": {
-      "name": "Trane Technologies",
-      "source": "sp500",
-      "sector": "Industrials",
-      "industry": "Building Products",
-      "tech_match": "technology keyword"
-    },
-    "TTD": {
-      "name": "Trade Desk (The)",
-      "source": "nasdaq_listed,sp500",
-      "sector": "Communication Services",
-      "industry": "Advertising",
-      "tech_match": "known tech ticker"
-    },
-    "TXN": {
-      "name": "Texas Instruments",
-      "source": "nasdaq_listed,sp500",
-      "sector": "Information Technology",
-      "industry": "Semiconductors",
-      "tech_match": "known tech ticker"
-    },
-    "TYL": {
-      "name": "Tyler Technologies",
-      "source": "sp500",
-      "sector": "Information Technology",
-      "industry": "Application Software",
-      "tech_match": "S&P Information Technology"
-    },
-    "UBER": {
-      "name": "Uber",
-      "source": "sp500",
-      "sector": "Industrials",
-      "industry": "Passenger Ground Transportation",
-      "tech_match": "known tech ticker"
-    },
-    "V": {
-      "name": "Visa Inc.",
-      "source": "sp500",
-      "sector": "Financials",
-      "industry": "Transaction & Payment Processing Services",
-      "tech_match": "technology keyword"
-    },
-    "VEEV": {
-      "name": "Veeva Systems",
-      "source": "sp500",
-      "sector": "Health Care",
-      "industry": "Health Care Technology",
-      "tech_match": "known tech ticker"
-    },
-    "VRSK": {
-      "name": "Verisk Analytics",
-      "source": "nasdaq_listed,sp500",
-      "sector": "Industrials",
-      "industry": "Research & Consulting Services",
-      "tech_match": "technology keyword"
-    },
-    "VRSN": {
-      "name": "Verisign",
-      "source": "nasdaq_listed,sp500",
-      "sector": "Information Technology",
-      "industry": "Internet Services & Infrastructure",
-      "tech_match": "S&P Information Technology"
-    },
-    "WDAY": {
-      "name": "Workday, Inc.",
-      "source": "nasdaq_listed,sp500",
-      "sector": "Information Technology",
-      "industry": "Application Software",
-      "tech_match": "known tech ticker"
-    },
-    "WDC": {
-      "name": "Western Digital",
-      "source": "nasdaq_listed,sp500",
-      "sector": "Information Technology",
-      "industry": "Technology Hardware, Storage & Peripherals",
-      "tech_match": "S&P Information Technology"
-    },
-    "XYZ": {
-      "name": "Block, Inc.",
-      "source": "sp500",
-      "sector": "Financials",
-      "industry": "Transaction & Payment Processing Services",
-      "tech_match": "known tech ticker"
-    },
-    "ZBRA": {
-      "name": "Zebra Technologies",
-      "source": "nasdaq_listed,sp500",
-      "sector": "Information Technology",
-      "industry": "Electronic Equipment & Instruments",
-      "tech_match": "S&P Information Technology"
-    },
-    "ZS": {
-      "name": "Zscaler, Inc. -",
-      "source": "nasdaq_listed",
-      "sector": "",
-      "industry": "",
-      "tech_match": "known tech ticker"
+  "generated_at": "2026-07-02T07:11:34+00:00",
+  "source": "alpaca_validated",
+  "total_candidates": 182,
+  "valid_count": 182,
+  "tickers": [
+    {
+      "ticker": "AAPL",
+      "name": "Apple Inc."
+    },
+    {
+      "ticker": "MSFT",
+      "name": "Microsoft Corporation"
+    },
+    {
+      "ticker": "GOOGL",
+      "name": "Alphabet Inc."
+    },
+    {
+      "ticker": "AMZN",
+      "name": "Amazon.com Inc."
+    },
+    {
+      "ticker": "META",
+      "name": "Meta Platforms Inc."
+    },
+    {
+      "ticker": "NVDA",
+      "name": "NVIDIA Corporation"
+    },
+    {
+      "ticker": "TSLA",
+      "name": "Tesla Inc."
+    },
+    {
+      "ticker": "AVGO",
+      "name": "Broadcom Inc."
+    },
+    {
+      "ticker": "ORCL",
+      "name": "Oracle Corporation"
+    },
+    {
+      "ticker": "CRM",
+      "name": "Salesforce Inc."
+    },
+    {
+      "ticker": "AMD",
+      "name": "Advanced Micro Devices"
+    },
+    {
+      "ticker": "INTC",
+      "name": "Intel Corporation"
+    },
+    {
+      "ticker": "QCOM",
+      "name": "Qualcomm Inc."
+    },
+    {
+      "ticker": "TXN",
+      "name": "Texas Instruments"
+    },
+    {
+      "ticker": "MU",
+      "name": "Micron Technology"
+    },
+    {
+      "ticker": "AMAT",
+      "name": "Applied Materials"
+    },
+    {
+      "ticker": "LRCX",
+      "name": "Lam Research"
+    },
+    {
+      "ticker": "KLAC",
+      "name": "KLA Corporation"
+    },
+    {
+      "ticker": "ADI",
+      "name": "Analog Devices"
+    },
+    {
+      "ticker": "NXPI",
+      "name": "NXP Semiconductors"
+    },
+    {
+      "ticker": "MRVL",
+      "name": "Marvell Technology"
+    },
+    {
+      "ticker": "ON",
+      "name": "ON Semiconductor"
+    },
+    {
+      "ticker": "ASML",
+      "name": "ASML Holding"
+    },
+    {
+      "ticker": "ARM",
+      "name": "Arm Holdings"
+    },
+    {
+      "ticker": "SNPS",
+      "name": "Synopsys Inc."
+    },
+    {
+      "ticker": "CDNS",
+      "name": "Cadence Design Systems"
+    },
+    {
+      "ticker": "SMCI",
+      "name": "Super Micro Computer"
+    },
+    {
+      "ticker": "MCHP",
+      "name": "Microchip Technology"
+    },
+    {
+      "ticker": "SWKS",
+      "name": "Skyworks Solutions"
+    },
+    {
+      "ticker": "MPWR",
+      "name": "Monolithic Power Systems"
+    },
+    {
+      "ticker": "WOLF",
+      "name": "Wolfspeed Inc."
+    },
+    {
+      "ticker": "GFS",
+      "name": "GlobalFoundries"
+    },
+    {
+      "ticker": "TSM",
+      "name": "Taiwan Semiconductor"
+    },
+    {
+      "ticker": "NOW",
+      "name": "ServiceNow Inc."
+    },
+    {
+      "ticker": "ADBE",
+      "name": "Adobe Inc."
+    },
+    {
+      "ticker": "INTU",
+      "name": "Intuit Inc."
+    },
+    {
+      "ticker": "WDAY",
+      "name": "Workday Inc."
+    },
+    {
+      "ticker": "SNOW",
+      "name": "Snowflake Inc."
+    },
+    {
+      "ticker": "DDOG",
+      "name": "Datadog Inc."
+    },
+    {
+      "ticker": "MDB",
+      "name": "MongoDB Inc."
+    },
+    {
+      "ticker": "HUBS",
+      "name": "HubSpot Inc."
+    },
+    {
+      "ticker": "TEAM",
+      "name": "Atlassian Corporation"
+    },
+    {
+      "ticker": "VEEV",
+      "name": "Veeva Systems"
+    },
+    {
+      "ticker": "ZS",
+      "name": "Zscaler Inc."
+    },
+    {
+      "ticker": "ANSS",
+      "name": "ANSYS Inc."
+    },
+    {
+      "ticker": "FICO",
+      "name": "Fair Isaac Corporation"
+    },
+    {
+      "ticker": "SPLK",
+      "name": "Splunk Inc."
+    },
+    {
+      "ticker": "BILL",
+      "name": "BILL Holdings"
+    },
+    {
+      "ticker": "CFLT",
+      "name": "Confluent Inc."
+    },
+    {
+      "ticker": "ESTC",
+      "name": "Elastic N.V."
+    },
+    {
+      "ticker": "GTLB",
+      "name": "GitLab Inc."
+    },
+    {
+      "ticker": "MNDY",
+      "name": "monday.com Ltd."
+    },
+    {
+      "ticker": "S",
+      "name": "SentinelOne Inc."
+    },
+    {
+      "ticker": "DOCN",
+      "name": "DigitalOcean Holdings"
+    },
+    {
+      "ticker": "BRZE",
+      "name": "Braze Inc."
+    },
+    {
+      "ticker": "PCOR",
+      "name": "Procore Technologies"
+    },
+    {
+      "ticker": "DT",
+      "name": "Dynatrace Inc."
+    },
+    {
+      "ticker": "SMAR",
+      "name": "Smartsheet Inc."
+    },
+    {
+      "ticker": "PD",
+      "name": "PagerDuty Inc."
+    },
+    {
+      "ticker": "ALRM",
+      "name": "Alarm.com Holdings"
+    },
+    {
+      "ticker": "ASAN",
+      "name": "Asana Inc."
+    },
+    {
+      "ticker": "FRSH",
+      "name": "Freshworks Inc."
+    },
+    {
+      "ticker": "ZI",
+      "name": "ZoomInfo Technologies"
+    },
+    {
+      "ticker": "JAMF",
+      "name": "Jamf Holding"
+    },
+    {
+      "ticker": "TOST",
+      "name": "Toast Inc."
+    },
+    {
+      "ticker": "IOT",
+      "name": "Samsara Inc."
+    },
+    {
+      "ticker": "FOUR",
+      "name": "Shift4 Payments"
+    },
+    {
+      "ticker": "PAYC",
+      "name": "Paycom Software"
+    },
+    {
+      "ticker": "PCTY",
+      "name": "Paylocity Holding"
+    },
+    {
+      "ticker": "VERX",
+      "name": "Vertex Inc."
+    },
+    {
+      "ticker": "CRWD",
+      "name": "CrowdStrike Holdings"
+    },
+    {
+      "ticker": "PANW",
+      "name": "Palo Alto Networks"
+    },
+    {
+      "ticker": "FTNT",
+      "name": "Fortinet Inc."
+    },
+    {
+      "ticker": "NET",
+      "name": "Cloudflare Inc."
+    },
+    {
+      "ticker": "OKTA",
+      "name": "Okta Inc."
+    },
+    {
+      "ticker": "CYBR",
+      "name": "CyberArk Software"
+    },
+    {
+      "ticker": "RPD",
+      "name": "Rapid7 Inc."
+    },
+    {
+      "ticker": "TENB",
+      "name": "Tenable Holdings"
+    },
+    {
+      "ticker": "VRNS",
+      "name": "Varonis Systems"
+    },
+    {
+      "ticker": "CSCO",
+      "name": "Cisco Systems"
+    },
+    {
+      "ticker": "ANET",
+      "name": "Arista Networks"
+    },
+    {
+      "ticker": "AKAM",
+      "name": "Akamai Technologies"
+    },
+    {
+      "ticker": "FFIV",
+      "name": "F5 Inc."
+    },
+    {
+      "ticker": "NTAP",
+      "name": "NetApp Inc."
+    },
+    {
+      "ticker": "PSTG",
+      "name": "Pure Storage"
+    },
+    {
+      "ticker": "HPE",
+      "name": "Hewlett Packard Enterprise"
+    },
+    {
+      "ticker": "HPQ",
+      "name": "HP Inc."
+    },
+    {
+      "ticker": "DELL",
+      "name": "Dell Technologies"
+    },
+    {
+      "ticker": "NFLX",
+      "name": "Netflix Inc."
+    },
+    {
+      "ticker": "ABNB",
+      "name": "Airbnb Inc."
+    },
+    {
+      "ticker": "UBER",
+      "name": "Uber Technologies"
+    },
+    {
+      "ticker": "LYFT",
+      "name": "Lyft Inc."
+    },
+    {
+      "ticker": "DASH",
+      "name": "DoorDash Inc."
+    },
+    {
+      "ticker": "SNAP",
+      "name": "Snap Inc."
+    },
+    {
+      "ticker": "PINS",
+      "name": "Pinterest Inc."
+    },
+    {
+      "ticker": "RBLX",
+      "name": "Roblox Corporation"
+    },
+    {
+      "ticker": "ROKU",
+      "name": "Roku Inc."
+    },
+    {
+      "ticker": "TTD",
+      "name": "The Trade Desk"
+    },
+    {
+      "ticker": "SPOT",
+      "name": "Spotify Technology"
+    },
+    {
+      "ticker": "SHOP",
+      "name": "Shopify Inc."
+    },
+    {
+      "ticker": "SE",
+      "name": "Sea Limited"
+    },
+    {
+      "ticker": "MELI",
+      "name": "MercadoLibre Inc."
+    },
+    {
+      "ticker": "BKNG",
+      "name": "Booking Holdings"
+    },
+    {
+      "ticker": "EBAY",
+      "name": "eBay Inc."
+    },
+    {
+      "ticker": "ETSY",
+      "name": "Etsy Inc."
+    },
+    {
+      "ticker": "ZM",
+      "name": "Zoom Video Communications"
+    },
+    {
+      "ticker": "MTCH",
+      "name": "Match Group"
+    },
+    {
+      "ticker": "DUOL",
+      "name": "Duolingo Inc."
+    },
+    {
+      "ticker": "RDDT",
+      "name": "Reddit Inc."
+    },
+    {
+      "ticker": "GRAB",
+      "name": "Grab Holdings"
+    },
+    {
+      "ticker": "PLTR",
+      "name": "Palantir Technologies"
+    },
+    {
+      "ticker": "AI",
+      "name": "C3.ai Inc."
+    },
+    {
+      "ticker": "PATH",
+      "name": "UiPath Inc."
+    },
+    {
+      "ticker": "BBAI",
+      "name": "BigBear.ai Holdings"
+    },
+    {
+      "ticker": "SOUN",
+      "name": "SoundHound AI"
+    },
+    {
+      "ticker": "UPST",
+      "name": "Upstart Holdings"
+    },
+    {
+      "ticker": "BFLY",
+      "name": "Butterfly Network"
+    },
+    {
+      "ticker": "SQ",
+      "name": "Block Inc."
+    },
+    {
+      "ticker": "PYPL",
+      "name": "PayPal Holdings"
+    },
+    {
+      "ticker": "COIN",
+      "name": "Coinbase Global"
+    },
+    {
+      "ticker": "HOOD",
+      "name": "Robinhood Markets"
+    },
+    {
+      "ticker": "AFRM",
+      "name": "Affirm Holdings"
+    },
+    {
+      "ticker": "SOFI",
+      "name": "SoFi Technologies"
+    },
+    {
+      "ticker": "MSTR",
+      "name": "MicroStrategy Inc."
+    },
+    {
+      "ticker": "XYZ",
+      "name": "Block Inc. (XYZ)"
+    },
+    {
+      "ticker": "FI",
+      "name": "Fiserv Inc."
+    },
+    {
+      "ticker": "GPN",
+      "name": "Global Payments"
+    },
+    {
+      "ticker": "FIS",
+      "name": "Fidelity National Information Services"
+    },
+    {
+      "ticker": "INFY",
+      "name": "Infosys Limited"
+    },
+    {
+      "ticker": "WIT",
+      "name": "Wipro Limited"
+    },
+    {
+      "ticker": "RIVN",
+      "name": "Rivian Automotive"
+    },
+    {
+      "ticker": "LCID",
+      "name": "Lucid Group"
+    },
+    {
+      "ticker": "NIO",
+      "name": "NIO Inc."
+    },
+    {
+      "ticker": "XPEV",
+      "name": "XPeng Inc."
+    },
+    {
+      "ticker": "LI",
+      "name": "Li Auto Inc."
+    },
+    {
+      "ticker": "U",
+      "name": "Unity Software"
+    },
+    {
+      "ticker": "EA",
+      "name": "Electronic Arts"
+    },
+    {
+      "ticker": "TTWO",
+      "name": "Take-Two Interactive"
+    },
+    {
+      "ticker": "ZBRA",
+      "name": "Zebra Technologies"
+    },
+    {
+      "ticker": "TER",
+      "name": "Teradyne Inc."
+    },
+    {
+      "ticker": "KEYS",
+      "name": "Keysight Technologies"
+    },
+    {
+      "ticker": "GLW",
+      "name": "Corning Inc."
+    },
+    {
+      "ticker": "STX",
+      "name": "Seagate Technology"
+    },
+    {
+      "ticker": "WDC",
+      "name": "Western Digital"
+    },
+    {
+      "ticker": "ACN",
+      "name": "Accenture plc"
+    },
+    {
+      "ticker": "IBM",
+      "name": "IBM Corporation"
+    },
+    {
+      "ticker": "CTSH",
+      "name": "Cognizant Technology Solutions"
+    },
+    {
+      "ticker": "EPAM",
+      "name": "EPAM Systems"
+    },
+    {
+      "ticker": "GDDY",
+      "name": "GoDaddy Inc."
+    },
+    {
+      "ticker": "GEN",
+      "name": "Gen Digital Inc."
+    },
+    {
+      "ticker": "LDOS",
+      "name": "Leidos Holdings"
+    },
+    {
+      "ticker": "TMUS",
+      "name": "T-Mobile US"
+    },
+    {
+      "ticker": "VZ",
+      "name": "Verizon Communications"
+    },
+    {
+      "ticker": "T",
+      "name": "AT&T Inc."
+    },
+    {
+      "ticker": "APP",
+      "name": "AppLovin Corporation"
+    },
+    {
+      "ticker": "IS",
+      "name": "IronSource / Unity"
+    },
+    {
+      "ticker": "MGNI",
+      "name": "Magnite Inc."
+    },
+    {
+      "ticker": "PUBM",
+      "name": "PubMatic Inc."
+    },
+    {
+      "ticker": "DV",
+      "name": "DoubleVerify Holdings"
+    },
+    {
+      "ticker": "IAS",
+      "name": "Integral Ad Science"
+    },
+    {
+      "ticker": "CELH",
+      "name": "Celsius Holdings"
+    },
+    {
+      "ticker": "DKNG",
+      "name": "DraftKings Inc."
+    },
+    {
+      "ticker": "CRSP",
+      "name": "CRISPR Therapeutics"
+    },
+    {
+      "ticker": "IONQ",
+      "name": "IonQ Inc."
+    },
+    {
+      "ticker": "RGTI",
+      "name": "Rigetti Computing"
+    },
+    {
+      "ticker": "QUBT",
+      "name": "Quantum Computing Inc."
+    },
+    {
+      "ticker": "LUNR",
+      "name": "Intuitive Machines"
+    },
+    {
+      "ticker": "RKLB",
+      "name": "Rocket Lab USA"
+    },
+    {
+      "ticker": "ASTS",
+      "name": "AST SpaceMobile"
+    },
+    {
+      "ticker": "VRT",
+      "name": "Vertiv Holdings"
+    },
+    {
+      "ticker": "PWR",
+      "name": "Quanta Services"
+    },
+    {
+      "ticker": "APH",
+      "name": "Amphenol Corporation"
+    },
+    {
+      "ticker": "IT",
+      "name": "Gartner Inc."
+    },
+    {
+      "ticker": "FLEX",
+      "name": "Flex Ltd."
+    },
+    {
+      "ticker": "JNPR",
+      "name": "Juniper Networks"
+    },
+    {
+      "ticker": "CIEN",
+      "name": "Ciena Corporation"
+    },
+    {
+      "ticker": "LITE",
+      "name": "Lumentum Holdings"
+    },
+    {
+      "ticker": "CRUS",
+      "name": "Cirrus Logic"
+    },
+    {
+      "ticker": "ONTO",
+      "name": "Onto Innovation"
+    },
+    {
+      "ticker": "AMKR",
+      "name": "Amkor Technology"
+    },
+    {
+      "ticker": "COHR",
+      "name": "Coherent Corp."
+    },
+    {
+      "ticker": "LSCC",
+      "name": "Lattice Semiconductor"
     }
-  },
-  "trimmed": true
+  ]
 }
