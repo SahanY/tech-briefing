@@ -22,7 +22,7 @@
       "volume": "10.2M",
       "volume_raw": 10200000,
       "direction": "loss",
-      "explanation": "IBM cratered 26% — its worst day on record — after issuing a preliminary Q2 earnings warning with revenue of $17.2B missing the $17.86B consensus. CEO Arvind Krishna blamed weakness in software and infrastructure as clients shifted spending toward AI servers and memory chips. The selloff eclipsed the 23.7% drop during the 1987 Black Monday crash."
+      "explanation": "IBM cratered 26%, its worst day on record, after issuing a preliminary Q2 earnings warning with revenue of $17.2B missing the $17.86B consensus. CEO Arvind Krishna blamed weakness in software and infrastructure as clients shifted spending toward AI servers and memory chips."
     },
     {
       "rank": 2,
@@ -35,7 +35,7 @@
       "volume": "21.7M",
       "volume_raw": 21700000,
       "direction": "gain",
-      "explanation": "Lucid bounced 16% on a relief rally after the EV maker forcefully denied bankruptcy reports that had hammered shares earlier this week. Investors were also reacting to news of cost-cutting initiatives and renewed optimism around its Cosmos SUV push, though shares remain far below year-ago levels."
+      "explanation": "Lucid bounced 16% on a relief rally after the EV maker forcefully denied bankruptcy reports that had hammered shares earlier this week. Cost-cutting initiatives and renewed optimism around its Cosmos SUV push also supported the rebound."
     },
     {
       "rank": 3,
@@ -48,7 +48,7 @@
       "volume": "30.8M",
       "volume_raw": 30800000,
       "direction": "loss",
-      "explanation": "SK hynix gave back most of Monday's historic 27% rally as profit-taking and valuation concerns hit the recently U.S.-listed memory chipmaker. A South Korean brokerage report suggesting operating profit for the current quarter may miss estimates added to selling pressure. The ADR remains volatile as the market prices its U.S. listing relative to its Korean shares."
+      "explanation": "SK hynix gave back most of Monday's historic 27% rally as profit-taking hit the recently U.S.-listed memory chipmaker. A South Korean brokerage report suggesting current-quarter operating profit may miss estimates added to selling pressure."
     },
     {
       "rank": 4,
@@ -61,7 +61,7 @@
       "volume": "3.2M",
       "volume_raw": 3200000,
       "direction": "loss",
-      "explanation": "Applied Optoelectronics reversed sharply, falling 11% after the prior session's 12% surge. The optical networking component maker is experiencing heightened volatility amid uncertainty about the sustainability of AI data center capital spending, with some investors locking in profits after the recent semiconductor rally."
+      "explanation": "Applied Optoelectronics reversed sharply, falling 11% after the prior session's 12% surge. The optical networking component maker saw investors locking in profits amid uncertainty about the sustainability of AI data center capital spending."
     },
     {
       "rank": 5,
@@ -74,7 +74,7 @@
       "volume": "1.0M",
       "volume_raw": 1000000,
       "direction": "gain",
-      "explanation": "Tower Semiconductor gained 10% extending its semiconductor rally on ASML's raised full-year guidance. As a specialty foundry serving analog, mixed-signal, and sensor markets, Tower benefits from the broader chip capex upcycle driven by AI demand. The stock has risen over 400% in the past year."
+      "explanation": "Tower Semiconductor gained 10% extending its semiconductor rally on ASML's raised full-year guidance. The specialty foundry benefits from the broader chip capex upcycle driven by AI demand. The stock has risen over 400% in the past year."
     },
     {
       "rank": 6,
@@ -87,7 +87,7 @@
       "volume": "114.0K",
       "volume_raw": 114000,
       "direction": "gain",
-      "explanation": "Camtek rose 9% as the semiconductor inspection equipment maker rode ASML's strong Q2 earnings higher. The company's metrology and inspection systems are used across advanced chip packaging processes critical to AI chip manufacturing, positioning it as a direct beneficiary of accelerating fab investment."
+      "explanation": "Camtek rose 9% as the semiconductor inspection equipment maker rode ASML's strong Q2 earnings higher. Its metrology systems are critical to AI chip packaging processes, positioning it as a direct beneficiary of accelerating fab investment."
     },
     {
       "rank": 7,
@@ -100,7 +100,7 @@
       "volume": "5.6M",
       "volume_raw": 5600000,
       "direction": "gain",
-      "explanation": "Strategy (formerly MicroStrategy) climbed 7% continuing its recovery from late-June lows, up 29% from the June 26 bottom. The rally was supported by the company's new Digital Credit Capital Framework authorizing up to $1B in stock repurchases and Bitcoin remaining near $64,600. Broader risk-on sentiment from cooler inflation data also helped."
+      "explanation": "Strategy (formerly MicroStrategy) climbed 7% continuing its recovery from late-June lows. The rally was supported by its new Digital Credit Capital Framework authorizing up to $1B in stock repurchases and Bitcoin holding near $64,600."
     },
     {
       "rank": 8,
@@ -113,7 +113,7 @@
       "volume": "10.5M",
       "volume_raw": 10500000,
       "direction": "gain",
-      "explanation": "Alibaba jumped 6% after China's Cyberspace Administration approved Apple Intelligence powered by Alibaba's Qwen AI model. The approval covers iOS, iPadOS, macOS, and visionOS, clearing a major regulatory hurdle for Apple's AI features in mainland China and validating Qwen as a tier-one foundation model."
+      "explanation": "Alibaba jumped 6% after China's Cyberspace Administration approved Apple Intelligence powered by Alibaba's Qwen AI model across iOS, iPadOS, macOS, and visionOS, clearing a major regulatory hurdle for Apple's AI features in mainland China."
     },
     {
       "rank": 9,
@@ -126,7 +126,7 @@
       "volume": "785.0K",
       "volume_raw": 785000,
       "direction": "gain",
-      "explanation": "Atlassian climbed 6% extending a multi-week rally after Gartner named it a Leader in its first Magic Quadrant for Developer Productivity Insight Platforms. The stock has also been boosted by a strategic Atlassian Ventures investment in AI-focused Rocketlane, signaling ecosystem expansion around AI-driven developer tools."
+      "explanation": "Atlassian climbed 6% extending a multi-week rally after Gartner named it a Leader in its first Magic Quadrant for Developer Productivity Insight Platforms. A strategic Atlassian Ventures investment in AI-focused Rocketlane also boosted sentiment."
     },
     {
       "rank": 10,
@@ -139,7 +139,7 @@
       "volume": "3.6M",
       "volume_raw": 3600000,
       "direction": "loss",
-      "explanation": "Cisco fell 6% in sympathy with IBM's enterprise software selloff as investors questioned whether IT budget shifts toward AI hardware are coming at the expense of traditional networking and infrastructure spending. The decline came despite Cisco's own AI infrastructure order momentum remaining strong."
+      "explanation": "Cisco fell 6% in sympathy with IBM's enterprise software selloff as investors questioned whether IT budget shifts toward AI hardware are coming at the expense of traditional networking and infrastructure spending."
     },
     {
       "rank": 11,
@@ -152,7 +152,7 @@
       "volume": "7.8M",
       "volume_raw": 7800000,
       "direction": "loss",
-      "explanation": "Marvell continued its slide, down 5% extending a week of losses totaling over 13%. The custom silicon and networking chipmaker is facing valuation compression amid elevated interest rates and concerns over the sustainability of enterprise AI spending, with signals from cloud providers suggesting potential deceleration in networking hardware capex."
+      "explanation": "Marvell continued its slide, down 5% extending a week of losses totaling over 13%. The custom silicon chipmaker is facing valuation compression amid concerns over the sustainability of enterprise AI spending on networking hardware."
     },
     {
       "rank": 12,
@@ -165,7 +165,7 @@
       "volume": "6.3M",
       "volume_raw": 6300000,
       "direction": "gain",
-      "explanation": "Alphabet rose 4% as cooler inflation data lifted big-cap tech and investors rotated into AI platform leaders following IBM's commentary that enterprise AI spending remains robust. Google's recent Gemini Enterprise launch at Cloud Next '26 positioned it as a direct competitor to Anthropic and OpenAI in the enterprise AI market."
+      "explanation": "Alphabet rose 4% as cooler inflation data lifted big-cap tech and investors rotated into AI platform leaders. Google's recent Gemini Enterprise launch at Cloud Next '26 positioned it as a direct competitor in the enterprise AI market."
     },
     {
       "rank": 13,
@@ -178,7 +178,7 @@
       "volume": "2.0M",
       "volume_raw": 2000000,
       "direction": "loss",
-      "explanation": "Qualcomm dropped 4% as the mobile chipmaker faced headwinds from the broader semiconductor rotation. While AI chip demand remains strong, Qualcomm's exposure to handset and automotive markets left it trailing pure-play AI semiconductor names. Concerns about China trade policy also weighed on the stock."
+      "explanation": "Qualcomm dropped 4% as the mobile chipmaker faced headwinds from the broader semiconductor rotation. While AI chip demand remains strong, Qualcomm's handset and automotive exposure left it trailing pure-play AI semiconductor names."
     },
     {
       "rank": 14,
@@ -191,7 +191,7 @@
       "volume": "1.8M",
       "volume_raw": 1800000,
       "direction": "gain",
-      "explanation": "ASML rose 2.4% after reporting Q2 revenue of €9.33B, beating estimates by €400M, with EPS of €7.59 topping consensus by €0.60. The company raised its full-year sales forecast for the second time in 2026 to €43–45B, citing relentless AI chip demand and plans to increase production capacity by 30%."
+      "explanation": "ASML rose 2.4% after reporting Q2 revenue of 9.33B euros, beating estimates by 400M euros. The company raised its full-year sales forecast for the second time in 2026 to 43-45B euros, citing relentless AI chip demand."
     },
     {
       "rank": 15,
@@ -204,4 +204,7 @@
       "volume": "28.1M",
       "volume_raw": 28100000,
       "direction": "gain",
-      "explanation": "Nvidia gained 3% on multiple tailwinds: ASML's strong earnings confirmed sustained AI chip demand, a U.S. trade official confirmed H200 shipments to China have restarted, and cooler-than-expected PPI data supported broader tech sentiment. The stock continues to benefit from 
+      "explanation": "Nvidia gained 3% on multiple tailwinds: ASML's earnings confirmed sustained AI chip demand, H200 shipments to China have restarted, and cooler-than-expected PPI data supported broader tech sentiment."
+    }
+  ]
+}
